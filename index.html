@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WellkOn QAI - Quantum Artificial Intelligence</title>
+    <title>WellkOn - QAI : Quantum Artificial Intelligence</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
         :root {
             --primary: #7C3AED;
@@ -24,26 +25,60 @@
             background: var(--dark);
             color: var(--light);
             line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 8rem;
         }
 
+        /* Hero Section */
         .hero-section {
             min-height: 100vh;
+            position: relative;
+            padding: 4rem;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientAnimation 5s ease infinite;
+            margin-bottom: 1.5rem;
+        }
+
+        .vision-statement {
+            font-size: 1.25rem;
+            color: var(--secondary);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        /* Introdução */
+        .intro-section {
+            padding: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            align-items: center;
-            padding: 4rem;
             gap: 3rem;
+            align-items: center;
         }
 
-        .core-statement {
-            border-right: 2px solid var(--primary);
-            padding-right: 3rem;
+        .founder-avatar {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
         }
 
-        .founder-profile {
-            padding-left: 3rem;
-        }
-
+        /* Proposta de Valor */
         .value-pillars {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -52,113 +87,193 @@
         }
 
         .pillar-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255,255,255,0.03);
             padding: 2rem;
             border-radius: 16px;
             transition: transform 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .pillar-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .integration-diagram {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* Diferencial */
+        .differentiation-section {
             padding: 4rem;
-            gap: 2rem;
-            flex-wrap: wrap;
+            background: rgba(255,255,255,0.03);
         }
 
-        .tech-node {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .differentiation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        /* Impacto */
+        .impact-section {
+            padding: 4rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem;
+            background: rgba(255,255,255,0.05);
             text-align: center;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            padding: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Elementos comuns */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .fade-in {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .social-icons {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 2rem;
+            z-index: 10;
+        }
+
+        .social-icon {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            transition: 0.3s;
+            padding: 0.5rem;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+            color: var(--primary);
         }
     </style>
 </head>
 <body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
 
-    <!-- Seção Hero Dividida -->
-    <section class="hero-section">
-        <div class="core-statement">
-            <h1 style="font-size: 3.5rem; margin-bottom: 2rem;" class="gradient-text">
-                Redefinindo os Limites da Inovação Tecnológica
-            </h1>
-            <p style="font-size: 1.2rem; opacity: 0.9;">
-                Integração pioneira de IA Quântica, Realidade Estendida e Sistemas Cognitivos
+    <!-- Hero Section -->
+    <section class="hero-section fade-in">
+        <div class="hero-content">
+            <h1 class="hero-title">WellkOn - QAI : Quantum Artificial Intelligence</h1>
+            <p class="vision-statement">
+                "Imagine um mundo onde a realidade e a imaginação se fundem, onde decisões são tomadas em nanossegundos e o impossível se torna rotina. Na WellkOn - QAI, esse futuro já começou."
             </p>
-        </div>
-
-        <!-- Perfil do Fundador -->
-        <div class="founder-profile">
-            <div class="founder-avatar" style="width: 150px; height: 150px; border-radius: 50%; background: #2D3748; margin-bottom: 1.5rem;"></div>
-            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Wellington, Fundador & CEO</h2>
-            <blockquote style="font-style: italic; border-left: 3px solid var(--primary); padding-left: 1rem;">
-                "Nossa missão é desenvolver sistemas que integrem o digital ao físico, criando soluções para desafios que ainda nem imaginamos."
-            </blockquote>
         </div>
     </section>
 
-    <!-- Pilares de Valor -->
-    <section class="value-pillars">
+    <!-- Redes Sociais Fixas -->
+    <div class="social-icons">
+        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+    </div>
+
+    <!-- Introdução -->
+    <section class="intro-section fade-in">
+        <div class="founder-avatar"></div>
+        <div>
+            <h2>Sou Wellington, fundador da WellkOn - QAI</h2>
+            <p>
+                Uma deep tech startup que está redefinindo os limites da inovação. Não somos apenas uma empresa de tecnologia — somos arquitetos do futuro, unindo Inteligência Artificial, Computação Quântica, Realidade Virtual (VR), Realidade Aumentada (AR) e Hologramas em soluções que transcendem o que conhecemos hoje.
+            </p>
+        </div>
+    </section>
+
+    <!-- Proposta de Valor -->
+    <section class="value-pillars fade-in">
+        <div class="section-title">Proposta de Valor</div>
         <div class="pillar-card">
             <i class="fas fa-brain fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
-            <h3>Inteligência Adaptativa</h3>
-            <p>Sistemas que evoluem com contextos complexos em tempo real</p>
+            <h3>IA Quântica Híbrida</h3>
+            <p>Algoritmos que aprendem, preveem e resolvem problemas complexos em velocidade exponencial, desde otimização logística até descoberta de novos materiais.</p>
         </div>
         
         <div class="pillar-card">
             <i class="fas fa-cube fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
-            <h3>Realidade Convergente</h3>
-            <p>Plataformas que unem VR, AR e holografia em ecossistemas únicos</p>
+            <h3>Mundos Imersivos</h3>
+            <p>Plataformas VR/AR que transformam dados em experiências tangíveis — imagine treinar equipes em hospitais virtuais ou projetar cidades em hologramas interativos.</p>
         </div>
         
         <div class="pillar-card">
-            <i class="fas fa-infinity fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
-            <h3>Escalabilidade Quântica</h3>
-            <p>Soluções que crescem exponencialmente com a complexidade</p>
+            <i class="fas fa-eye fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
+            <h3>Realidade Aumentada Contextual</h3>
+            <p>Sistemas que não apenas "sobrepõem" informações, mas compreendem e interagem com o ambiente em tempo real, revolucionando setores como educação e manutenção industrial.</p>
         </div>
     </section>
 
-    <!-- Diagrama de Integração -->
-    <section class="integration-diagram">
-        <div class="tech-node">IA Quântica</div>
-        <div class="tech-node" style="transform: scale(1.2);">+</div>
-        <div class="tech-node">Realidade Estendida</div>
-        <div class="tech-node" style="transform: scale(1.2);">+</div>
-        <div class="tech-node">Sistemas Cognitivos</div>
-    </section>
-
-    <!-- Seção de Diferencial Estratégico -->
-    <section class="value-pillars" style="background: rgba(255,255,255,0.03); padding: 4rem;">
-        <div style="grid-column: 1 / -1; text-align: center; margin-bottom: 3rem;">
-            <h2 class="gradient-text" style="font-size: 2.5rem;">Arquitetura de Integração</h2>
-            <p>Sinergia de tecnologias complementares para inovação radical</p>
-        </div>
-        
-        <div class="pillar-card">
-            <h3>Camada Quântica</h3>
-            <p>Processamento de dados em múltiplos estados simultâneos</p>
-        </div>
-        
-        <div class="pillar-card">
-            <h3>Camada Cognitiva</h3>
-            <p>Interpretação contextual e tomada de decisão adaptativa</p>
-        </div>
-        
-        <div class="pillar-card">
-            <h3>Camada Física</h3>
-            <p>Interação holográfica com ambiente real através de sensores IoT</p>
+    <!-- Diferencial -->
+    <section class="differentiation-section fade-in">
+        <div class="section-title">Nosso Diferencial</div>
+        <div class="differentiation-grid">
+            <div>
+                <h3>Integração Multitecnológica</h3>
+                <p>Enquanto outros exploram uma tecnologia de cada vez, nós as integramos. Nossos sistemas combinam o poder preditivo da IA quântica com a imersão de hologramas, criando ecossistemas onde máquinas entendem contexto e antecipam necessidades.</p>
+            </div>
+            <div>
+                <h3>Impacto Transformador</h3>
+                <p>Ampliamos o potencial humano: eficiência sem precedentes para empresas e democratização de experiências imersivas para indivíduos - da educação avançada à telemedicina de ponta.</p>
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="fade-in">
+        <div class="footer-logo">WellkOn - QAI</div>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Termos de Serviço</a>
+            <a href="#" class="footer-link">Política de Privacidade</a>
+            <a href="#" class="footer-link">Contato</a>
+        </div>
+        <p>© 2025 WellkOn - QAI. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: ["#7C3AED", "#00F7FF"] },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, anim: { enable: true } },
+                size: { value: 3, random: true },
+                line_linked: { enable: false },
+                move: { enable: true, speed: 2, direction: "none" }
+            },
+            interactivity: {
+                events: { onhover: { enable: true, mode: "repulse" } }
+            }
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 1.5s ease-out';
+                    }
+                });
+            });
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
