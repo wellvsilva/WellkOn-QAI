@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WellkOn QAI - Quantum Artificial Intelligence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7C3AED;
+            --secondary: #00F7FF;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 4rem;
+            gap: 3rem;
+        }
+
+        .core-statement {
+            border-right: 2px solid var(--primary);
+            padding-right: 3rem;
+        }
+
+        .founder-profile {
+            padding-left: 3rem;
+        }
+
+        .value-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem;
+        }
+
+        .pillar-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 16px;
+            transition: transform 0.3s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .integration-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-node {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Seção Hero Dividida -->
+    <section class="hero-section">
+        <div class="core-statement">
+            <h1 style="font-size: 3.5rem; margin-bottom: 2rem;" class="gradient-text">
+                Redefinindo os Limites da Inovação Tecnológica
+            </h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">
+                Integração pioneira de IA Quântica, Realidade Estendida e Sistemas Cognitivos
+            </p>
+        </div>
+
+        <!-- Perfil do Fundador -->
+        <div class="founder-profile">
+            <div class="founder-avatar" style="width: 150px; height: 150px; border-radius: 50%; background: #2D3748; margin-bottom: 1.5rem;"></div>
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Wellington, Fundador & CEO</h2>
+            <blockquote style="font-style: italic; border-left: 3px solid var(--primary); padding-left: 1rem;">
+                "Nossa missão é desenvolver sistemas que integrem o digital ao físico, criando soluções para desafios que ainda nem imaginamos."
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Pilares de Valor -->
+    <section class="value-pillars">
+        <div class="pillar-card">
+            <i class="fas fa-brain fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
+            <h3>Inteligência Adaptativa</h3>
+            <p>Sistemas que evoluem com contextos complexos em tempo real</p>
+        </div>
+        
+        <div class="pillar-card">
+            <i class="fas fa-cube fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
+            <h3>Realidade Convergente</h3>
+            <p>Plataformas que unem VR, AR e holografia em ecossistemas únicos</p>
+        </div>
+        
+        <div class="pillar-card">
+            <i class="fas fa-infinity fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
+            <h3>Escalabilidade Quântica</h3>
+            <p>Soluções que crescem exponencialmente com a complexidade</p>
+        </div>
+    </section>
+
+    <!-- Diagrama de Integração -->
+    <section class="integration-diagram">
+        <div class="tech-node">IA Quântica</div>
+        <div class="tech-node" style="transform: scale(1.2);">+</div>
+        <div class="tech-node">Realidade Estendida</div>
+        <div class="tech-node" style="transform: scale(1.2);">+</div>
+        <div class="tech-node">Sistemas Cognitivos</div>
+    </section>
+
+    <!-- Seção de Diferencial Estratégico -->
+    <section class="value-pillars" style="background: rgba(255,255,255,0.03); padding: 4rem;">
+        <div style="grid-column: 1 / -1; text-align: center; margin-bottom: 3rem;">
+            <h2 class="gradient-text" style="font-size: 2.5rem;">Arquitetura de Integração</h2>
+            <p>Sinergia de tecnologias complementares para inovação radical</p>
+        </div>
+        
+        <div class="pillar-card">
+            <h3>Camada Quântica</h3>
+            <p>Processamento de dados em múltiplos estados simultâneos</p>
+        </div>
+        
+        <div class="pillar-card">
+            <h3>Camada Cognitiva</h3>
+            <p>Interpretação contextual e tomada de decisão adaptativa</p>
+        </div>
+        
+        <div class="pillar-card">
+            <h3>Camada Física</h3>
+            <p>Interação holográfica com ambiente real através de sensores IoT</p>
+        </div>
+    </section>
+
+</body>
+</html>
