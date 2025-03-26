@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>WellkOn - QAI : Quantum Artificial Intelligence</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -12,6 +12,7 @@
             --secondary: #00F7FF;
             --dark: #0F172A;
             --light: #F8FAFC;
+            --highlight: #FF6B6B;
         }
 
         * {
@@ -29,86 +30,62 @@
             padding-bottom: 6rem;
         }
 
-        /* Mobile-first responsive design */
+        /* Destaques Específicos */
+        .highlight-title {
+            position: relative;
+            display: inline-block;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .highlight-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        /* Sistema de Grid Responsivo */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Tipografia Fluida */
+        .main-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            line-height: 1;
+            background-clip: text;
+            -webkit-background-clip: text;
+            background-image: linear-gradient(45deg, var(--primary), var(--secondary));
+            animation: gradientAnimation 5s ease infinite;
+        }
+
+        /* Hero Section */
         .hero-section {
             min-height: 100vh;
-            padding: 2rem 1rem;
             display: flex;
             align-items: center;
+            position: relative;
+            padding: 2rem;
         }
 
-        .hero-title {
-            font-size: 2rem;
-            line-height: 1.2;
-            margin-bottom: 1rem;
+        .hero-content {
+            text-align: center;
         }
 
-        .vision-statement {
-            font-size: 0.9rem;
-            margin: 0 1rem;
-        }
-
-        .social-icons {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(15, 23, 42, 0.9);
-            display: flex;
-            justify-content: center;
-            padding: 0.5rem;
-            gap: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .social-icon {
-            font-size: 1.2rem;
-            padding: 0.5rem;
-        }
-
-        /* Responsive grid system */
-        .responsive-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            padding: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .responsive-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 2rem;
-                padding: 2rem;
-            }
-        }
-
-        /* Section adjustments */
-        .intro-section {
-            display: grid;
-            gap: 1.5rem;
-            padding: 1.5rem;
-        }
-
-        .founder-avatar {
-            width: 100%;
-            max-width: 250px;
-            aspect-ratio: 1;
-            margin: 0 auto;
-            border-radius: 50%;
-        }
-
-        /* Typography adjustments */
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Mobile-specific particles config */
+        /* Partículas Adaptativas */
         #particles-js {
             position: absolute;
             top: 0;
@@ -118,58 +95,58 @@
             z-index: -1;
         }
 
-        /* Footer adjustments */
-        footer {
-            padding: 1.5rem;
-            text-align: center;
+        /* Avatar Responsivo */
+        .founder-avatar {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            margin: 0 auto;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
         }
 
-        .footer-links {
+        /* Grid Inteligente */
+        .responsive-grid {
             display: grid;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        /* Advanced responsive breakpoints */
-        @media (min-width: 480px) {
-            .hero-title { font-size: 2.5rem; }
-            .vision-statement { font-size: 1rem; }
+            gap: 1.5rem;
+            padding: 2rem 0;
         }
 
         @media (min-width: 768px) {
-            .hero-section { padding: 4rem 2rem; }
-            .hero-title { font-size: 3.5rem; }
-            .vision-statement { font-size: 1.25rem; }
-            .intro-section { grid-template-columns: 1fr 1fr; }
-            .founder-avatar { max-width: 300px; }
+            .responsive-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
         }
 
-        @media (min-width: 1024px) {
-            .hero-title { font-size: 4rem; }
-            .intro-section { padding: 4rem; }
-            .responsive-grid { padding: 4rem; }
+        /* Social Icons no Rodapé */
+        .social-section {
+            padding: 2rem;
+            background: var(--dark);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
         }
 
-        /* Touch-friendly interactions */
-        a {
-            text-decoration: none;
-            color: inherit;
+        .social-icons-footer {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
         }
 
-        button, .social-icon {
-            transition: all 0.3s ease;
+        .social-icon-footer {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            transition: transform 0.3s;
         }
 
-        button:hover, .social-icon:hover {
-            transform: scale(1.1);
+        /* Footer Responsivo */
+        footer {
+            padding: 2rem 1.5rem;
+            text-align: center;
         }
 
-        /* Performance optimizations */
-        img, svg {
-            max-width: 100%;
-            height: auto;
-        }
-
+        /* Animações */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -180,6 +157,13 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Gradiente animado */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
     </style>
 </head>
 <body>
@@ -187,86 +171,101 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">WellkOn - QAI </h1>
-            <h4 class="hero-title">Quantum Artificial Intelligence</h4>
-            <p class="vision-statement">
-                "Imagine um mundo onde a realidade e a imaginação se fundem, onde decisões são tomadas em nanossegundos e o impossível se torna rotina. Na WellkOn - QAI, esse futuro já começou."
-            </p>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="main-title fade-in">WellkOn - QAI</h1>
+                <h2 class="main-title fade-in">Quantum Artificial Intelligence</h2>
+                <p class="vision-statement fade-in">
+                    "Imagine um mundo onde a realidade e a imaginação se fundem, onde decisões são tomadas em nanossegundos e o impossível se torna rotina. Na WellkOn - QAI, esse futuro já começou."
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- Social Icons -->
-    <div class="social-icons">
-        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-    </div>
-
     <!-- Introdução -->
-    <section class="intro-section responsive-grid">
-        <div class="founder-avatar"></div>
-        <div>
+    <section class="intro-section responsive-grid container">
+        <div class="founder-avatar fade-in"></div>
+        <div class="fade-in">
             <h2>Sou Wellington, fundador da WellkOn - QAI</h2>
             <p>
-                Uma deep tech startup que está trabalhando para redefinir os limites da inovação. Não somos apenas uma empresa de tecnologia — somos o futuro, unindo Inteligência Artificial, Computação Quântica, Realidade Virtual (VR), Realidade Aumentada (AR) e Hologramas em soluções que transcendem o que conhecemos hoje.
+                Uma deep tech startup que está redefinindo os limites da inovação. Não somos apenas uma empresa de tecnologia — somos arquitetos do futuro, unindo Inteligência Artificial, Computação Quântica, Realidade Virtual (VR), Realidade Aumentada (AR) e Hologramas em soluções que transcendem o que conhecemos hoje.
             </p>
         </div>
     </section>
 
     <!-- Valores -->
-    <section class="responsive-grid value-pillars">
-        <div class="section-title">Proposta</div>
-        <div class="pillar-card">
+    <section class="responsive-grid container value-pillars">
+        <div class="section-title fade-in">
+            <span class="highlight-title">Proposta de Valor</span>
+        </div>
+        <div class="pillar-card fade-in">
             <i class="fas fa-brain fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
             <h3>IA Quântica Híbrida</h3>
             <p>Algoritmos que aprendem, preveem e resolvem problemas complexos em velocidade exponencial, desde otimização logística até descoberta de novos materiais.</p>
         </div>
         
-        <div class="pillar-card">
+        <div class="pillar-card fade-in">
             <i class="fas fa-cube fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
             <h3>Mundos Imersivos</h3>
             <p>Plataformas VR/AR que transformam dados em experiências tangíveis — imagine treinar equipes em hospitais virtuais ou projetar cidades em hologramas interativos.</p>
         </div>
         
-        <div class="pillar-card">
+        <div class="pillar-card fade-in">
             <i class="fas fa-eye fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
-            <h3>Realidade Aumentada</h3>
+            <h3>Realidade Aumentada Contextual</h3>
             <p>Sistemas que não apenas "sobrepõem" informações, mas compreendem e interagem com o ambiente em tempo real, revolucionando setores como educação e manutenção industrial.</p>
         </div>
     </section>
 
     <!-- Diferencial -->
-    <section class="differentiation-section responsive-grid">
-        <div class="section-title">Nosso Diferencial</div>
-        <div>
-            <h3>Integração Multitecnológica</h3>
-            <p> Nossos sistemas combinam o poder preditivo da IA com a imersão de hologramas, criando ecossistemas onde máquinas entendem contexto e antecipam necessidades.</p>
+    <section class="responsive-grid container differentiation-section">
+        <div class="section-title fade-in">
+            <span class="highlight-title">Nosso Diferencial</span>
         </div>
-        <div>
+        <div class="fade-in">
+            <h3>Integração Multitecnológica</h3>
+            <p>Nossos sistemas combinam o poder preditivo da Inteligência Artificial com a imersão de hologramas, criando ecossistemas onde máquinas entendem contexto e antecipam necessidades.</p>
+        </div>
+        <div class="fade-in">
             <h3>Impacto Transformador</h3>
             <p>Ampliamos o potencial humano: eficiência sem precedentes para empresas e experiências imersivas para indivíduos - da educação avançada à telemedicina de ponta.</p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-           
+    <!-- Redes Sociais no Rodapé -->
+    <div class="social-section">
+        <div class="container">
+            <div class="social-icons-footer">
+                <a href="#" class="social-icon-footer"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon-footer"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon-footer"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon-footer"><i class="fab fa-instagram"></i></a>
+            </div>
         </div>
-        <p>© 2025 WellkOn - QAI. Todos os direitos reservados.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="fade-in">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Termos de Serviço</a>
+                <a href="#" class="footer-link">Política de Privacidade</a>
+                <a href="#" class="footer-link">Contato</a>
+            </div>
+            <p>© 2025 WellkOn - QAI. Todos os direitos reservados.</p>
+        </div>
     </footer>
 
     <script>
-        // Particles config optimized for mobile
+        // Partículas adaptativas
         particlesJS('particles-js', {
             particles: {
-                number: { value: 40, density: { enable: true, value_area: 800 } },
+                number: { value: window.innerWidth < 768 ? 40 : 80 },
                 color: { value: ["#7C3AED", "#00F7FF"] },
                 shape: { type: "circle" },
-                opacity: { value: 0.4, anim: { enable: true, speed: 0.5 } },
-                size: { value: 2, random: true },
-                move: { enable: true, speed: 1, direction: "none" }
+                opacity: { value: 0.5 },
+                size: { value: 2 },
+                move: { speed: window.innerWidth < 768 ? 1 : 2 }
             },
             interactivity: {
                 events: { onhover: { enable: true, mode: "repulse" } }
@@ -274,7 +273,7 @@
             retina_detect: true
         });
 
-        // Smooth scroll and fade-in animation
+        // Observador de interseção para animações
         document.querySelectorAll('.fade-in').forEach(el => {
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
