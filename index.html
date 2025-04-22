@@ -3,73 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>WellkOn - QAI : Quantum Artificial Intelligence</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>WellkOn - QAI: Quantum Artificial Intelligence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #7C3AED;
-            --secondary: #00F7FF;
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #06B6D4;
+            --secondary-dark: #0891B2;
             --dark: #0F172A;
+            --darker: #020617;
             --light: #F8FAFC;
-            --highlight: #FF6B6B;
+            --gray: #94A3B8;
+            --highlight: #F43F5E;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background: var(--dark);
+            background: var(--darker);
             color: var(--light);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
-            padding-bottom: 6rem;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        /* Destaques Específicos */
-        .highlight-title {
-            position: relative;
-            display: inline-block;
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: transform 0.3s;
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
         }
 
-        .highlight-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--secondary);
-            border-radius: 2px;
-        }
-
-        /* Sistema de Grid Responsivo */
         .container {
-            max-width: 1440px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 0 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Tipografia Fluida */
-        .main-title {
-            font-size: clamp(2rem, 5vw, 4rem);
-            line-height: 1;
-            background-clip: text;
+        /* Header */
+        header {
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(2, 6, 23, 0.85);
+        }
+
+        header.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
             -webkit-background-clip: text;
-            background-image: linear-gradient(45deg, var(--primary), var(--secondary));
-            animation: gradientAnimation 5s ease infinite;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Menu de navegação */
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: var(--light);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Menu mobile */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Hero Section */
@@ -78,214 +162,931 @@
             display: flex;
             align-items: center;
             position: relative;
-            padding: 2rem;
+            padding: 8rem 0 6rem;
+            overflow: hidden;
         }
 
-        .hero-content {
-            text-align: center;
-        }
-
-        /* Partículas Adaptativas */
         #particles-js {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: 0;
         }
 
-        /* Avatar Responsivo */
-        .founder-avatar {
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            z-index: 1;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .quantum-illustration {
+            width: 90%;
+            max-width: 500px;
+            height: 400px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #4F46E5, #0891B2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .quantum-illustration::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            top: -50%;
+            left: -50%;
+            animation: pulseGlow 6s linear infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+        
+        .quantum-illustration svg {
+            width: 60%;
+            height: 60%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientAnimation 5s ease infinite;
+        }
+
+        .subtitle {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+
+        .vision-statement {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        /* Cards */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .highlight-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            display: inline-block;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .highlight-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--secondary);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .card-text {
+            color: var(--gray);
+            flex-grow: 1;
+        }
+
+        /* About section */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .robot-avatar {
             width: 100%;
             max-width: 400px;
             aspect-ratio: 1;
-            border-radius: 50%;
+            border-radius: 20px;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             margin: 0 auto;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Grid Inteligente */
-        .responsive-grid {
+        .robot-avatar svg {
+            width: 70%;
+            height: 70%;
+            fill: var(--light);
+        }
+
+        .about-content h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--light);
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        /* Diferencial seção */
+        .differential-grid {
             display: grid;
-            gap: 1.5rem;
-            padding: 2rem 0;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
         }
 
-        @media (min-width: 768px) {
-            .responsive-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
+        .differential-item {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
-        /* Social Icons no Rodapé */
-        .social-section {
-            padding: 2rem;
-            background: var(--dark);
-            border-top: 1px solid rgba(255,255,255,0.1);
+        .differential-item:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .differential-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        /* CTA section */
+        .cta-section {
             text-align: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 6rem 0;
         }
 
-        .social-icons-footer {
+        .cta-section h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .cta-buttons {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin-top: 1rem;
         }
 
-        .social-icon-footer {
-            font-size: 1.5rem;
-            color: var(--secondary);
-            transition: transform 0.3s;
+        .secondary-button {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--secondary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
-        /* Footer Responsivo */
+        .secondary-button:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        /* Rodapé */
         footer {
-            padding: 2rem 1.5rem;
+            background: var(--dark);
+            padding: 5rem 0 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 0.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--gradient);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 2rem;
             text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
         }
 
         /* Animações */
-        .fade-in {
+        .fade-up {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
             transition: all 0.6s ease-out;
         }
 
-        .fade-in.active {
+        .fade-up.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Gradiente animado */
         @keyframes gradientAnimation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
+        /* Floating elements */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Electron animation */
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+        }
+
+        .electron {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .electron-1 {
+            animation: orbit 3s linear infinite;
+        }
+
+        .electron-2 {
+            animation: orbit 5s linear infinite;
+        }
+
+        .electron-3 {
+            animation: orbit 7s linear infinite;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .hero-content, .about-section, .differential-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-image {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 5rem 2rem;
+                transition: all 0.5s ease;
+                z-index: 99;
+                align-items: flex-start;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                z-index: 100;
+            }
+            
+            .robot-avatar {
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .differential-grid {
+                gap: 1.5rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="particles-js"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-atom logo-icon"></i>
+                    WellkOn - QAI
+                </div>
+                <nav>
+                    <button class="mobile-menu-btn" id="mobile-menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="nav-menu" id="nav-menu">
+                        <li><a href="#" class="nav-link">Início</a></li>
+                        <li><a href="#about" class="nav-link">Sobre Nós</a></li>
+                        <li><a href="#research" class="nav-link">Pesquisas</a></li>
+                        <li><a href="#differential" class="nav-link">Diferenciais</a></li>
+                        <li><a href="#contact" class="cta-button">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
             <div class="hero-content">
-                <h1 class="main-title fade-in">WellkOn - QAI</h1>
-                <h2 class="main-title fade-in">Quantum Artificial Intelligence</h2>
-                <p class="vision-statement fade-in">
-                    "Imagine um mundo onde a realidade e a imaginação se fundem, onde decisões são tomadas em nanossegundos e o impossível se torna rotina. Na WellkOn - QAI, esse futuro já começou."
-                </p>
+                <div class="hero-text fade-up">
+                    <h1 class="main-title">WellkOn - QAI</h1>
+                    <h2 class="subtitle">Quantum Artificial Intelligence</h2>
+                    <p class="vision-statement">
+                        "Na fronteira entre ciência e inovação, a WellkOn desenvolve tecnologias quânticas e inteligência artificial para resolver os mais complexos desafios do mundo contemporâneo."
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#research" class="cta-button">Nossas Pesquisas</a>
+                        <a href="#contact" class="secondary-button">Fale Conosco</a>
+                    </div>
+                </div>
+                <div class="hero-image fade-up">
+                    <div class="quantum-illustration floating">
+                        <!-- Quantum AI Technology Illustration -->
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Núcleo do átomo -->
+                            <circle cx="100" cy="100" r="20" fill="#ffffff" />
+                            
+                            <!-- Órbitas -->
+                            <circle cx="100" cy="100" r="40" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.5" />
+                            <circle cx="100" cy="100" r="60" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.5" />
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.5" />
+                            
+                            <!-- Elétrons -->
+                            <circle class="electron electron-1" cx="140" cy="100" r="5" fill="#ffffff" />
+                            <circle class="electron electron-2" cx="160" cy="100" r="5" fill="#ffffff" />
+                            <circle class="electron electron-3" cx="180" cy="100" r="5" fill="#ffffff" />
+                            
+                            <!-- Conexões de rede neural -->
+                            <line x1="70" y1="70" x2="130" y2="130" stroke="#ffffff" stroke-width="1" />
+                            <line x1="70" y1="130" x2="130" y2="70" stroke="#ffffff" stroke-width="1" />
+                            <line x1="100" y1="60" x2="100" y2="140" stroke="#ffffff" stroke-width="1" />
+                            <line x1="60" y1="100" x2="140" y2="100" stroke="#ffffff" stroke-width="1" />
+                            
+                            <!-- Nós da rede neural -->
+                            <circle cx="70" cy="70" r="5" fill="#ffffff" opacity="0.8" />
+                            <circle cx="130" cy="130" r="5" fill="#ffffff" opacity="0.8" />
+                            <circle cx="70" cy="130" r="5" fill="#ffffff" opacity="0.8" />
+                            <circle cx="130" cy="70" r="5" fill="#ffffff" opacity="0.8" />
+                            <circle cx="100" cy="60" r="5" fill="#ffffff" opacity="0.8" />
+                            <circle cx="100" cy="140" r="5" fill="#ffffff" opacity="0.8" />
+                            <circle cx="60" cy="100" r="5" fill="#ffffff" opacity="0.8" />
+                            <circle cx="140" cy="100" r="5" fill="#ffffff" opacity="0.8" />
+                        </svg>
+                        
+                        <!-- Efeito de partículas de elétrons -->
+                        <div class="electron electron-1"></div>
+                        <div class="electron electron-2"></div>
+                        <div class="electron electron-3"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Introdução -->
-    <section class="intro-section responsive-grid container">
-        <div class="founder-avatar fade-in"></div>
-        <div class="fade-in">
-            <h2>Sou Wellington, fundador da WellkOn - QAI</h2>
-            <p>
-                Uma deep tech startup que está redefinindo os limites da inovação. Não somos apenas uma empresa de tecnologia — somos arquitetos do futuro, unindo Inteligência Artificial, Computação Quântica, Realidade Virtual (VR), Realidade Aumentada (AR) e Hologramas em soluções que transcendem o que conhecemos hoje.
-            </p>
+    <!-- Sobre Nós -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-section">
+                <div class="robot-avatar fade-up">
+                    <!-- Robot Icon SVG -->
+                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Cabeça do robô -->
+                        <rect x="136" y="56" width="240" height="200" rx="20" ry="20" fill="#ffffff" />
+                        
+                        <!-- Olhos -->
+                        <circle cx="200" cy="120" r="25" fill="#06B6D4" />
+                        <circle cx="312" cy="120" r="25" fill="#06B6D4" />
+                        
+                        <!-- Reflexo dos olhos -->
+                        <circle cx="190" cy="110" r="8" fill="#ffffff" />
+                        <circle cx="302" cy="110" r="8" fill="#ffffff" />
+                        
+                        <!-- Boca -->
+                        <rect x="186" y="180" width="140" height="20" rx="10" ry="10" fill="#06B6D4" />
+                        <rect x="206" y="180" width="20" height="20" fill="#ffffff" />
+                        <rect x="246" y="180" width="20" height="20" fill="#ffffff" />
+                        <rect x="286" y="180" width="20" height="20" fill="#ffffff" />
+                        
+                        <!-- Antenas -->
+                        <rect x="196" y="36" width="10" height="30" fill="#ffffff" />
+                        <circle cx="201" cy="26" r="10" fill="#06B6D4" />
+                        
+                        <rect x="306" y="36" width="10" height="30" fill="#ffffff" />
+                        <circle cx="311" cy="26" r="10" fill="#06B6D4" />
+                        
+                        <!-- Corpo -->
+                        <rect x="166" y="266" width="180" height="140" rx="20" ry="20" fill="#ffffff" />
+                        
+                        <!-- Painel no corpo -->
+                        <rect x="196" y="296" width="120" height="80" rx="5" ry="5" fill="#06B6D4" />
+                        
+                        <!-- Botões no painel -->
+                        <circle cx="226" cy="316" r="10" fill="#ffffff" />
+                        <circle cx="226" cy="356" r="10" fill="#ffffff" />
+                        <circle cx="286" cy="316" r="10" fill="#ffffff" />
+                        <circle cx="286" cy="356" r="10" fill="#ffffff" />
+                        
+                        <!-- Braços -->
+                        <rect x="106" y="276" width="60" height="20" rx="10" ry="10" fill="#ffffff" />
+                        <rect x="346" y="276" width="60" height="20" rx="10" ry="10" fill="#ffffff" />
+                        
+                        <!-- Mãos -->
+                        <circle cx="96" cy="286" r="20" fill="#ffffff" />
+                        <circle cx="416" cy="286" r="20" fill="#ffffff" />
+                        
+                        <!-- Pescoço - conectando a cabeça ao corpo -->
+                        <rect x="216" y="256" width="80" height="20" fill="#ffffff" />
+                        
+                        <!-- Pernas -->
+                        <rect x="196" y="406" width="30" height="60" fill="#ffffff" />
+                        <rect x="286" y="406" width="30" height="60" fill="#ffffff" />
+                        
+                        <!-- Pés -->
+                        <rect x="181" y="466" width="60" height="20" rx="10" ry="10" fill="#ffffff" />
+                        <rect x="271" y="466" width="60" height="20" rx="10" ry="10" fill="#ffffff" />
+                        
+                        <!-- Circuitos na cabeça -->
+                        <line x1="156" y1="76" x2="356" y2="76" stroke="#06B6D4" stroke-width="2" />
+                        <line x1="156" y1="96" x2="356" y2="96" stroke="#06B6D4" stroke-width="2" />
+                        <line x1="156" y1="220" x2="356" y2="220" stroke="#06B6D4" stroke-width="2" />
+                    </svg>
+                </div>
+                <div class="about-content fade-up">
+                    <h2>Tecnologia Quântica e IA</h2>
+                    <p><p>
+                        A WellkOn - QAI é uma deep tech startup dedicada à pesquisa e desenvolvimento de tecnologias que desafiam os paradigmas convencionais. Fundada por especialistas em ciência da computação e inteligência artificial, estamos desenvolvendo soluções inovadoras no campo tecnológico.                    </p>
+                    <p>
+                        Nossa missão é desenvolver sistemas computacionais quânticos e algoritmos de IA avançados que possam resolver problemas complexos em áreas como saúde, energia, logística e ciência de materiais, criando soluções que até recentemente eram consideradas impossíveis.
+                    </p>
+                    <a href="#research" class="cta-button">Conheça Nossas Pesquisas</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Valores -->
-    <section class="responsive-grid container value-pillars">
-        <div class="section-title fade-in">
-            <span class="highlight-title">Proposta de Valor</span>
-        </div>
-        <div class="pillar-card fade-in">
-            <i class="fas fa-brain fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
-            <h3>IA Quântica Híbrida</h3>
-            <p>Algoritmos que aprendem, preveem e resolvem problemas complexos em velocidade exponencial, desde otimização logística até descoberta de novos materiais.</p>
-        </div>
-        
-        <div class="pillar-card fade-in">
-            <i class="fas fa-cube fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
-            <h3>Mundos Imersivos</h3>
-            <p>Plataformas VR/AR que transformam dados em experiências tangíveis — imagine treinar equipes em hospitais virtuais ou projetar cidades em hologramas interativos.</p>
-        </div>
-        
-        <div class="pillar-card fade-in">
-            <i class="fas fa-eye fa-2x" style="color: var(--secondary); margin-bottom: 1rem;"></i>
-            <h3>Realidade Aumentada Contextual</h3>
-            <p>Sistemas que não apenas "sobrepõem" informações, mas compreendem e interagem com o ambiente em tempo real, revolucionando setores como educação e manutenção industrial.</p>
+    <!-- Áreas de Pesquisa -->
+    <section class="section" id="research">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2 class="highlight-title">Áreas de Pesquisa</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="card fade-up">
+                    <i class="fas fa-microchip card-icon"></i>
+                    <h3 class="card-title">Computação Quântica</h3>
+                    <p class="card-text">Desenvolvemos algoritmos quânticos e especializado para processamento exponencialmente mais rápido que sistemas clássicos, permitindo resolver problemas anteriormente intratáveis em otimização, criptografia e simulação molecular.</p>
+                </div>
+                
+                <div class="card fade-up">
+                    <i class="fas fa-brain card-icon"></i>
+                    <h3 class="card-title">Inteligência Artificial Avançada</h3>
+                    <p class="card-text">Nossas pesquisas em IA incluem aprendizado profundo, processamento de linguagem natural e sistemas de raciocínio simbólico, criando algoritmos que podem analisar padrões complexos e extrair insights significativos de grandes volumes de dados.</p>
+                </div>
+                
+                <div class="card fade-up">
+                    <i class="fas fa-vr-cardboard card-icon"></i>
+                    <h3 class="card-title">Realidade Virtual e Aumentada</h3>
+                    <p class="card-text">Exploramos novas fronteiras em experiências imersivas, desenvolvendo interfaces que permitem visualização e manipulação intuitiva de dados complexos, com aplicações em treinamento, educação e simulação científica.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Diferencial -->
-    <section class="responsive-grid container differentiation-section">
-        <div class="section-title fade-in">
-            <span class="highlight-title">Nosso Diferencial</span>
-        </div>
-        <div class="fade-in">
-            <h3>Integração Multitecnológica</h3>
-            <p>Nossos sistemas combinam o poder preditivo da Inteligência Artificial com a imersão de hologramas, criando ecossistemas onde máquinas entendem contexto e antecipam necessidades.</p>
-        </div>
-        <div class="fade-in">
-            <h3>Impacto Transformador</h3>
-            <p>Ampliamos o potencial humano: eficiência sem precedentes para empresas e experiências imersivas para indivíduos - da educação avançada à telemedicina de ponta.</p>
+    <section class="section" id="differential">
+        <div class="container">
+            <div class="section-title fade-up">
+                <h2 class="highlight-title">Nosso Diferencial</h2>
+            </div>
+            <div class="differential-grid">
+                <div class="differential-item fade-up">
+                    <h3>Pesquisa Multidisciplinar</h3>
+                    <p>Nossa pesquisa multidisciplinar abrange computação quântica, inteligência artificial, realidade virtual (VR), realidade aumentada (VA) e hologramas, criando um ambiente único onde ideias revolucionárias emergem da colaboração entre diferentes campos do conhecimento, permitindo o desenvolvimento de soluções tecnológicas que transcendem as abordagens convencionais.</p>                </div>
+                <div class="differential-item fade-up">
+                    <h3>Abordagem Centrada em Resultados</h3>
+                    <p>Nosso compromisso é transformar pesquisa de ponta em soluções práticas para problemas reais, acelerando a transição entre descobertas científicas e aplicações que beneficiam diversos setores da sociedade e indústria. Buscamos constantemente a excelência em tecnologias inovadoras que resolvem desafios atuais e antecipam necessidades futuras, gerando valor sustentável para nossos parceiros e clientes.</p>                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Redes Sociais no Rodapé -->
-    <div class="social-section">
+    <!-- CTA Section -->
+    <section class="section" id="contact">
         <div class="container">
-            <div class="social-icons-footer">
-                <a href="#" class="social-icon-footer"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-icon-footer"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-icon-footer"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-icon-footer"><i class="fab fa-instagram"></i></a>
+            <div class="cta-section fade-up">
+                <h2>Vamos Construir o Futuro</h2>
+                <p>Entre em contato para conhecer como as tecnologias da WellkOn - QAI podem impulsionar seu negócio ou para explorar possibilidades de colaboração em projetos inovadores.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-button">Agendar Reunião</a>
+                    <a href="#" class="secondary-button">Solicitar Informações</a>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="fade-in">
+    <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="#" class="footer-link">Termos de Serviço</a>
-                <a href="#" class="footer-link">Política de Privacidade</a>
-                <a href="#" class="footer-link">Contato</a>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-atom"></i> WellkOn - QAI
+                    </div>
+                    <p class="footer-description">
+                        Desbravando as fronteiras da ciência e tecnologia através da pesquisa em Computação Quântica, Inteligência Artificial e Realidade Estendida.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Início</a></li>
+                        <li><a href="#about">Sobre Nós</a></li>
+                        <li><a href="#research">Pesquisas</a></li>
+                        <li><a href="#differential">Diferenciais</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Pesquisas</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Computação Quântica</a></li>
+                        <li><a href="#">Inteligência Artificial</a></li>
+                        <li><a href="#">Realidade Virtual</a></li>
+                        <li><a href="#">Publicações Científicas</a></li>
+                        <li><a href="#">Parcerias Acadêmicas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contato@wellkonai.com">wellvsilva@gmail.com</a></li>
+                        <li><a href="tel:+5586998322099">+55 86 99832-2099</a></li>
+                        <li><a href="#">Teresina - Piauí, Brasil</a></li>
+                    </ul>
+                </div>
             </div>
-            <p>© 2025 WellkOn - QAI. Todos os direitos reservados.</p>
+            <div class="footer-bottom">
+                <p>© 2025 WellkOn - QAI. Todos os direitos reservados.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Partículas adaptativas
+        // Partículas responsivas
         particlesJS('particles-js', {
             particles: {
-                number: { value: window.innerWidth < 768 ? 40 : 80 },
-                color: { value: ["#7C3AED", "#00F7FF"] },
+                number: { value: window.innerWidth < 768 ? 30 : 60 },
+                color: { value: ["#6366F1", "#06B6D4"] },
                 shape: { type: "circle" },
                 opacity: { value: 0.5 },
                 size: { value: 2 },
-                move: { speed: window.innerWidth < 768 ? 1 : 2 }
+                move: { 
+                    speed: window.innerWidth < 768 ? 1 : 2,
+                    direction: "none",
+                    random: true,
+                    out_mode: "out"
+                }
             },
             interactivity: {
-                events: { onhover: { enable: true, mode: "repulse" } }
+                events: { 
+                    onhover: { 
+                        enable: true, 
+                        mode: "repulse" 
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    }
+                },
+                modes: {
+                    repulse: {
+                        distance: 100,
+                        duration: 0.4
+                    }
+                }
             },
             retina_detect: true
         });
 
-        // Observador de interseção para animações
-        document.querySelectorAll('.fade-in').forEach(el => {
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if(entry.intersectionRatio > 0.2) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: [0, 0.2, 0.5, 1] });
-            
+        // Observador de interseção para animações de fade-in
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-up').forEach(el => {
             observer.observe(el);
         });
-    </script>
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuToggle.querySelector('i').classList.toggle('fa-bars');
+            mobileMenuToggle.querySelector('i').classList.toggle('fa-times');
+            // Continuação do script anterior
+        });
+
+// Fechar menu móvel ao clicar em um link
+document.querySelectorAll('.nav-link, .cta-button').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+        mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+    });
+});
+
+// Adicionar scroll suave para navegação
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const target = document.querySelector(targetId);
+        if (!target) return;
+        
+        const headerOffset = 100;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Ajuste responsivo para partículas
+window.addEventListener('resize', () => {
+    if (window.innerWidth < 768) {
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 30 },
+                move: { speed: 1 }
+            }
+        });
+    } else {
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 60 },
+                move: { speed: 2 }
+            }
+        });
+    }
+});
+
+// Preload de imagens para melhor performance
+const preloadImages = () => {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        const src = img.getAttribute('src');
+        if (src) {
+            const newImg = new Image();
+            newImg.src = src;
+        }
+    });
+};
+
+// Executar preload após o carregamento completo da página
+window.addEventListener('load', preloadImages);
+</script>
 </body>
 </html>
