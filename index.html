@@ -23,7 +23,6 @@
             --highlight: #F43F5E;
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
             --glass: rgba(255, 255, 255, 0.05);
-            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -41,6 +40,28 @@
             position: relative;
         }
 
+        /* Neural Network Background Effect - MUITO SUTIL */
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        #neural-network {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.3;
+            background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.02) 0%, rgba(2, 6, 23, 0.95) 80%);
+        }
+
         h1, h2, h3, h4, h5 {
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
@@ -55,25 +76,33 @@
             z-index: 1;
         }
 
-        /* Neural Network Background Effect */
-        #particles-js {
+        /* Header */
+        header {
+            padding: 1.5rem 0;
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(2, 6, 23, 0.85);
         }
 
-        #neural-network {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
+        header.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
 
         /* Language Selector */
@@ -107,35 +136,6 @@
 
         .language-toggle i {
             font-size: 1rem;
-        }
-
-        /* Header */
-        header {
-            padding: 1.5rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            background: rgba(2, 6, 23, 0.85);
-        }
-
-        header.scrolled {
-            padding: 0.8rem 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header-nav {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
         }
 
         .logo {
@@ -172,7 +172,7 @@
             font-weight: 500;
             position: relative;
             padding: 0.5rem 0;
-            transition: all 0.1s ease;
+            transition: all 0.3s ease;
         }
 
         .nav-link::after {
@@ -204,8 +204,8 @@
         }
 
         .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
         }
 
         /* Menu mobile */
@@ -226,6 +226,7 @@
             position: relative;
             padding: 8rem 0 6rem;
             overflow: hidden;
+            z-index: 1;
         }
 
         .hero-content {
@@ -244,6 +245,13 @@
             z-index: 1;
             display: flex;
             justify-content: center;
+        }
+
+        .hero-image img {
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .quantum-illustration {
@@ -268,13 +276,13 @@
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
             top: -50%;
             left: -50%;
-            animation: pulseGlow 3s linear infinite; /* Reduzido de 1s para 3s */
+            animation: pulseGlow 4s linear infinite;
         }
 
         @keyframes pulseGlow {
-            0% { transform: scale(0.95); opacity: 0.3; }
-            50% { transform: scale(1.05); opacity: 0.6; }
-            100% { transform: scale(0.95); opacity: 0.3; }
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(0.8); opacity: 0.5; }
         }
         
         .quantum-illustration svg {
@@ -293,7 +301,7 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% 200%;
-            animation: gradientAnimation 2s ease infinite; /* Reduzido de 0.8s para 2s */
+            animation: gradientAnimation 3s ease infinite;
         }
 
         .subtitle {
@@ -363,8 +371,8 @@
         }
 
         .card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
             border-color: var(--secondary);
         }
 
@@ -442,12 +450,12 @@
             border-radius: 16px;
             padding: 2.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.1s ease;
+            transition: all 0.3s ease;
         }
 
         .differential-item:hover {
             border-color: var(--secondary);
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-5px);
         }
 
         .differential-item h3 {
@@ -498,14 +506,14 @@
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.1s ease;
+            transition: all 0.3s ease;
             text-decoration: none;
         }
 
         .secondary-button:hover {
             background: var(--secondary);
             color: var(--dark);
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-3px);
         }
 
         /* Rodapé */
@@ -579,13 +587,13 @@
             justify-content: center;
             color: var(--light);
             font-size: 1.2rem;
-            transition: all 0.1s ease;
+            transition: all 0.3s ease;
             text-decoration: none;
         }
 
         .social-icon:hover {
             background: var(--gradient);
-            transform: translateY(-8px) scale(1.1);
+            transform: translateY(-5px);
         }
 
         .footer-bottom {
@@ -600,7 +608,7 @@
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.3s ease-out;
+            transition: all 0.6s ease-out;
         }
 
         .fade-up.active {
@@ -616,16 +624,16 @@
 
         /* Floating elements */
         .floating {
-            animation: floating 2.5s ease-in-out infinite; /* Reduzido de 0.8s para 2.5s */
+            animation: floating 4s ease-in-out infinite;
         }
 
         @keyframes floating {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
 
-        /* Electron animation - VELOCIDADES REDUZIDAS */
+        /* Electron animation */
         @keyframes orbit {
             0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
             100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
@@ -641,15 +649,15 @@
         }
 
         .electron-1 {
-            animation: orbit 2s linear infinite; /* Reduzido de 0.5s para 2s */
+            animation: orbit 4s linear infinite;
         }
 
         .electron-2 {
-            animation: orbit 3s linear infinite; /* Reduzido de 0.7s para 3s */
+            animation: orbit 6s linear infinite;
         }
 
         .electron-3 {
-            animation: orbit 4s linear infinite; /* Reduzido de 0.9s para 4s */
+            animation: orbit 8s linear infinite;
         }
 
         /* Responsividade */
@@ -719,11 +727,36 @@
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+
+            .floating {
+                animation: floating 6s ease-in-out infinite;
+            }
+
+            .electron-1 {
+                animation: orbit 6s linear infinite;
+            }
+
+            .electron-2 {
+                animation: orbit 9s linear infinite;
+            }
+
+            .electron-3 {
+                animation: orbit 12s linear infinite;
+            }
+
+            .quantum-illustration::before {
+                animation: pulseGlow 6s linear infinite;
+            }
+
+            .main-title {
+                animation: gradientAnimation 4s ease infinite;
+            }
         }
     </style>
 </head>
 <body>
     <canvas id="neural-network"></canvas>
+    <div id="particles-js"></div>
     
     <!-- Header -->
     <header>
@@ -1000,7 +1033,7 @@
                 <div class="footer-col">
                     <h3 data-translate="footer-contact-title">Contact</h3>
                     <ul class="footer-links">
-                        <li><a href="mailto:contato@wellkonai.com">wellington@wellkonai.com</a></li>
+                        <li><a href="mailto:wellington@wellkonai.com">wellington@wellkonai.com</a></li>
                         <li><a href="tel:+5586998322099">+55 86 99832-2099</a></li>
                         <li><a href="#" data-translate="footer-location">Teresina - Piauí, Brazil</a></li>
                     </ul>
@@ -1013,7 +1046,232 @@
     </footer>
 
     <script>
-        // Translations object
+        // ========================================
+        // CLASSE NEURAL NETWORK MELHORADA
+        // ========================================
+        
+        class NeuralNetwork {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.nodes = [];
+                this.connections = [];
+                this.pulses = [];
+                this.animationId = null;
+                this.isRunning = false;
+                
+                this.config = {
+                    nodeCount: window.innerWidth < 768 ? 15 : 25,
+                    maxDistance: window.innerWidth < 768 ? 200 : 300,
+                    nodeSize: window.innerWidth < 768 ? 1 : 1.5,
+                    pulseSpeed: 0.3,
+                    pulseFrequency: 0.001,
+                    nodeSpeed: 0.1,
+                    colors: {
+                        node: '#6366F1',
+                        nodeGlow: '#06B6D4',
+                        connection: '#6366F1',
+                        pulse: '#06B6D4',
+                        pulseGlow: '#F43F5E'
+                    }
+                };
+                
+                this.resize();
+                this.init();
+                this.start();
+            }
+            
+            resize() {
+                const dpr = window.devicePixelRatio || 1;
+                this.canvas.width = window.innerWidth * dpr;
+                this.canvas.height = window.innerHeight * dpr;
+                this.canvas.style.width = window.innerWidth + 'px';
+                this.canvas.style.height = window.innerHeight + 'px';
+                this.ctx.scale(dpr, dpr);
+                
+                // Atualizar configurações para mobile
+                if (window.innerWidth < 768) {
+                    this.config.nodeCount = 12;
+                    this.config.maxDistance = 180;
+                    this.config.nodeSize = 0.8;
+                } else if (window.innerWidth < 1200) {
+                    this.config.nodeCount = 20;
+                    this.config.maxDistance = 250;
+                    this.config.nodeSize = 1.2;
+                } else {
+                    this.config.nodeCount = 30;
+                    this.config.maxDistance = 320;
+                    this.config.nodeSize = 1.5;
+                }
+            }
+            
+            init() {
+                this.nodes = [];
+                this.connections = [];
+                this.pulses = [];
+                
+                // Criar nós
+                for (let i = 0; i < this.config.nodeCount; i++) {
+                    this.nodes.push({
+                        x: Math.random() * window.innerWidth,
+                        y: Math.random() * window.innerHeight,
+                        vx: (Math.random() - 0.5) * this.config.nodeSpeed,
+                        vy: (Math.random() - 0.5) * this.config.nodeSpeed,
+                        pulse: Math.random() * Math.PI * 2,
+                        pulseSpeed: 0.02 + Math.random() * 0.03
+                    });
+                }
+                
+                // Criar conexões
+                this.updateConnections();
+            }
+            
+            updateConnections() {
+                this.connections = [];
+                
+                for (let i = 0; i < this.nodes.length; i++) {
+                    for (let j = i + 1; j < this.nodes.length; j++) {
+                        const dist = this.distance(this.nodes[i], this.nodes[j]);
+                        if (dist < this.config.maxDistance) {
+                            this.connections.push({
+                                nodeA: i,
+                                nodeB: j,
+                                distance: dist,
+                                strength: 1 - (dist / this.config.maxDistance)
+                            });
+                        }
+                    }
+                }
+            }
+            
+            distance(a, b) {
+                return Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
+            }
+            
+            update() {
+                // Atualizar posições dos nós
+                this.nodes.forEach(node => {
+                    node.x += node.vx;
+                    node.y += node.vy;
+                    node.pulse += node.pulseSpeed;
+                    
+                    // Bouncing nas bordas
+                    if (node.x < 0 || node.x > window.innerWidth) node.vx *= -1;
+                    if (node.y < 0 || node.y > window.innerHeight) node.vy *= -1;
+                    
+                    // Manter dentro dos limites
+                    node.x = Math.max(0, Math.min(window.innerWidth, node.x));
+                    node.y = Math.max(0, Math.min(window.innerHeight, node.y));
+                });
+                
+                // Atualizar conexões periodicamente
+                if (Math.random() < 0.02) {
+                    this.updateConnections();
+                }
+                
+                // Criar novos pulsos
+                if (Math.random() < this.config.pulseFrequency && this.connections.length > 0) {
+                    const connection = this.connections[Math.floor(Math.random() * this.connections.length)];
+                    this.pulses.push({
+                        connection: connection,
+                        progress: 0,
+                        speed: this.config.pulseSpeed + Math.random() * 0.5,
+                        size: 2 + Math.random() * 3,
+                        life: 1
+                    });
+                }
+                
+                // Atualizar pulsos
+                this.pulses = this.pulses.filter(pulse => {
+                    pulse.progress += pulse.speed / 100;
+                    pulse.life -= 0.008;
+                    return pulse.progress < 1 && pulse.life > 0;
+                });
+            }
+            
+            draw() {
+                // Clear com efeito de trail muito sutil
+                this.ctx.fillStyle = 'rgba(2, 6, 23, 0.02)';
+                this.ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+                
+                // Desenhar conexões muito sutis
+                this.connections.forEach(conn => {
+                    const nodeA = this.nodes[conn.nodeA];
+                    const nodeB = this.nodes[conn.nodeB];
+                    const opacity = conn.strength * 0.05; // Muito sutil
+                    
+                    this.ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
+                    this.ctx.lineWidth = 0.5;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(nodeA.x, nodeA.y);
+                    this.ctx.lineTo(nodeB.x, nodeB.y);
+                    this.ctx.stroke();
+                });
+                
+                // Desenhar pulsos muito sutis (se houver)
+                this.pulses.forEach(pulse => {
+                    const conn = pulse.connection;
+                    const nodeA = this.nodes[conn.nodeA];
+                    const nodeB = this.nodes[conn.nodeB];
+                    
+                    const x = nodeA.x + (nodeB.x - nodeA.x) * pulse.progress;
+                    const y = nodeA.y + (nodeB.y - nodeA.y) * pulse.progress;
+                    
+                    // Apenas um ponto sutil
+                    this.ctx.fillStyle = `rgba(6, 182, 212, ${pulse.life * 0.3})`;
+                    this.ctx.beginPath();
+                    this.ctx.arc(x, y, pulse.size * 0.5, 0, Math.PI * 2);
+                    this.ctx.fill();
+                });
+                
+                // Desenhar nós muito sutis
+                this.nodes.forEach(node => {
+                    const pulseIntensity = (Math.sin(node.pulse) + 1) * 0.5;
+                    const size = this.config.nodeSize + pulseIntensity * 0.5;
+                    
+                    // Apenas o núcleo do nó, muito sutil
+                    this.ctx.fillStyle = `rgba(99, 102, 241, ${0.1 + pulseIntensity * 0.05})`;
+                    this.ctx.beginPath();
+                    this.ctx.arc(node.x, node.y, size, 0, Math.PI * 2);
+                    this.ctx.fill();
+                });
+            }
+            
+            animate() {
+                if (!this.isRunning) return;
+                
+                this.update();
+                this.draw();
+                
+                this.animationId = requestAnimationFrame(() => this.animate());
+            }
+            
+            start() {
+                if (this.isRunning) return;
+                this.isRunning = true;
+                this.animate();
+            }
+            
+            stop() {
+                this.isRunning = false;
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                    this.animationId = null;
+                }
+            }
+            
+            destroy() {
+                this.stop();
+                this.nodes = [];
+                this.connections = [];
+                this.pulses = [];
+            }
+        }
+
+        // ========================================
+        // SISTEMA DE IDIOMAS COMPLETO
+        // ========================================
+        
         const translations = {
             en: {
                 'nav-home': 'Home',
@@ -1059,35 +1317,35 @@
             pt: {
                 'nav-home': 'Início',
                 'nav-about': 'Sobre Nós',
-                'nav-research': 'Pesquisas',
+                'nav-research': 'Pesquisa',
                 'nav-differential': 'Diferenciais',
                 'nav-contact': 'Contato',
-                'hero-vision': '"Na fronteira entre ciência e inovação, a WellkOn desenvolve tecnologias quânticas e inteligência artificial para resolver os mais complexos desafios do mundo contemporâneo."',
-                'hero-cta1': 'Nossas Pesquisas',
-                'hero-cta2': 'Fale Conosco',
+                'hero-vision': '"Na fronteira entre ciência e inovação, a WellkOn desenvolve tecnologias quânticas e inteligência artificial para resolver os desafios mais complexos do mundo contemporâneo."',
+                'hero-cta1': 'Nossa Pesquisa',
+                'hero-cta2': 'Entre em Contato',
                 'about-title': 'Tecnologia Quântica e IA',
-                'about-description1': 'A WellkOn - QAI é uma deep tech startup dedicada à pesquisa e desenvolvimento de tecnologias que desafiam os paradigmas convencionais. Fundada por especialistas em ciência da computação e inteligência artificial, estamos desenvolvendo soluções inovadoras no campo tecnológico.',
-                'about-description2': 'Nossa missão é desenvolver sistemas computacionais quânticos e algoritmos de IA avançados que possam resolver problemas complexos em áreas como saúde, energia, logística e ciência de materiais, criando soluções que até recentemente eram consideradas impossíveis.',
-                'about-cta': 'Conheça Nossas Pesquisas',
+                'about-description1': 'A WellkOn - QAI é uma startup de deep tech dedicada à pesquisa e desenvolvimento de tecnologias que desafiam paradigmas convencionais. Fundada por especialistas em ciência da computação e inteligência artificial, estamos desenvolvendo soluções inovadoras no campo tecnológico.',
+                'about-description2': 'Nossa missão é desenvolver sistemas computacionais quânticos e algoritmos de IA avançados que possam resolver problemas complexos em áreas como saúde, energia, logística e ciência dos materiais, criando soluções que até recentemente eram consideradas impossíveis.',
+                'about-cta': 'Saiba Mais Sobre Nossa Pesquisa',
                 'research-title': 'Áreas de Pesquisa',
                 'research-quantum-title': 'Computação Quântica',
-                'research-quantum-description': 'Desenvolvemos algoritmos quânticos especializados para processamento exponencialmente mais rápido que sistemas clássicos, permitindo resolver problemas anteriormente intratáveis em otimização, criptografia e simulação molecular.',
+                'research-quantum-description': 'Desenvolvemos algoritmos quânticos especializados para processamento exponencialmente mais rápido que sistemas clássicos, possibilitando a solução de problemas anteriormente intratáveis em otimização, criptografia e simulação molecular.',
                 'research-ai-title': 'Inteligência Artificial Avançada',
-                'research-ai-description': 'Nossas pesquisas em IA incluem aprendizado profundo, processamento de linguagem natural e sistemas de raciocínio simbólico, criando algoritmos que podem analisar padrões complexos e extrair insights significativos de grandes volumes de dados.',
+                'research-ai-description': 'Nossa pesquisa em IA inclui deep learning, processamento de linguagem natural e sistemas de raciocínio simbólico, criando algoritmos que podem analisar padrões complexos e extrair insights significativos de grandes volumes de dados.',
                 'research-vr-title': 'Realidade Virtual e Aumentada',
                 'research-vr-description': 'Exploramos novas fronteiras em experiências imersivas, desenvolvendo interfaces que permitem visualização e manipulação intuitiva de dados complexos, com aplicações em treinamento, educação e simulação científica.',
-                'differential-title': 'Nosso Diferencial',
+                'differential-title': 'Nossos Diferenciais',
                 'differential-research-title': 'Pesquisa Multidisciplinar',
-                'differential-research-description': 'Nossa pesquisa multidisciplinar abrange computação quântica, inteligência artificial, realidade virtual (VR), realidade aumentada (VA) e hologramas, criando um ambiente único onde ideias revolucionárias emergem da colaboração entre diferentes campos do conhecimento, permitindo o desenvolvimento de soluções tecnológicas que transcendem as abordagens convencionais.',
+                'differential-research-description': 'Nossa pesquisa multidisciplinar abrange computação quântica, inteligência artificial, realidade virtual (VR), realidade aumentada (AR) e hologramas, criando um ambiente único onde ideias revolucionárias emergem da colaboração entre diferentes campos do conhecimento, possibilitando o desenvolvimento de soluções tecnológicas que transcendem abordagens convencionais.',
                 'differential-results-title': 'Abordagem Centrada em Resultados',
                 'differential-results-description': 'Nosso compromisso é transformar pesquisa de ponta em soluções práticas para problemas reais, acelerando a transição entre descobertas científicas e aplicações que beneficiam diversos setores da sociedade e indústria. Buscamos constantemente a excelência em tecnologias inovadoras que resolvem desafios atuais e antecipam necessidades futuras, gerando valor sustentável para nossos parceiros e clientes.',
                 'cta-title': 'Vamos Construir o Futuro',
-                'cta-description': 'Entre em contato para conhecer como as tecnologias da WellkOn - QAI podem impulsionar seu negócio ou para explorar possibilidades de colaboração em projetos inovadores.',
+                'cta-description': 'Entre em contato conosco para saber como as tecnologias da WellkOn - QAI podem impulsionar seu negócio ou para explorar possibilidades de colaboração em projetos inovadores.',
                 'cta-button1': 'Agendar Reunião',
                 'cta-button2': 'Solicitar Informações',
-                'footer-description': 'Desbravando as fronteiras da ciência e tecnologia através da pesquisa em Computação Quântica, Inteligência Artificial e Realidade Estendida.',
+                'footer-description': 'Pioneirismo nas fronteiras da ciência e tecnologia através de pesquisa em Computação Quântica, Inteligência Artificial e Realidade Estendida.',
                 'footer-nav-title': 'Navegação',
-                'footer-research-title': 'Pesquisas',
+                'footer-research-title': 'Pesquisa',
                 'footer-quantum': 'Computação Quântica',
                 'footer-ai': 'Inteligência Artificial',
                 'footer-vr': 'Realidade Virtual',
@@ -1098,305 +1356,153 @@
                 'footer-copyright': '© 2025 WellkOn - QAI. Todos os direitos reservados.'
             }
         };
-
-        // Current language state
+        
         let currentLanguage = 'en';
-
-        // Language switching function
+        
         function switchLanguage() {
             currentLanguage = currentLanguage === 'en' ? 'pt' : 'en';
-            
-            // Update language indicator
-            document.getElementById('current-language').textContent = currentLanguage.toUpperCase();
-            
-            // Update document language
-            document.documentElement.lang = currentLanguage === 'en' ? 'en' : 'pt-BR';
-            
-            // Update all translatable elements
-            const translatableElements = document.querySelectorAll('[data-translate]');
-            translatableElements.forEach(element => {
+            updateLanguageDisplay();
+            translatePage();
+        }
+        
+        function updateLanguageDisplay() {
+            const langDisplay = document.getElementById('current-language');
+            if (langDisplay) {
+                langDisplay.textContent = currentLanguage.toUpperCase();
+            }
+        }
+        
+        function translatePage() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
                 const key = element.getAttribute('data-translate');
-                if (translations[currentLanguage][key]) {
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
                     element.textContent = translations[currentLanguage][key];
                 }
             });
         }
 
-        // Neural Network Animation - VELOCIDADES REDUZIDAS E OTIMIZADA PARA MOBILE
-        class NeuralNetwork {
-            constructor(canvas) {
-                this.canvas = canvas;
-                this.ctx = canvas.getContext('2d');
-                this.nodes = [];
-                this.connections = [];
-                this.isMobile = window.innerWidth < 768;
-                this.resize();
-                this.init();
-                this.animate();
-                
-                window.addEventListener('resize', () => this.resize());
-            }
-            
-            resize() {
-                this.canvas.width = window.innerWidth;
-                this.canvas.height = document.body.scrollHeight;
-                this.canvas.style.width = '100%';
-                this.canvas.style.height = '100%';
-                this.isMobile = window.innerWidth < 768;
-            }
-            
-            init() {
-                this.nodes = [];
-                this.connections = [];
-                
-                const nodeCount = Math.floor((this.canvas.width * this.canvas.height) / (this.isMobile ? 50000 : 35000));
-                
-                // Create nodes with MUCH slower movement, especially on mobile
-                const speedMultiplier = this.isMobile ? 0.1 : 0.5;
-                
-                for (let i = 0; i < nodeCount; i++) {
-                    this.nodes.push({
-                        x: Math.random() * this.canvas.width,
-                        y: Math.random() * this.canvas.height,
-                        vx: (Math.random() - 0.5) * speedMultiplier,
-                        vy: (Math.random() - 0.5) * speedMultiplier,
-                        radius: Math.random() * (this.isMobile ? 3 : 5) + 2,
-                        opacity: Math.random() * 0.6 + 0.3 // Opacidade reduzida no mobile
-                    });
-                }
-                
-                // Create connections with increased distance
-                const connectionDistance = this.isMobile ? 150 : 220;
-                for (let i = 0; i < this.nodes.length; i++) {
-                    for (let j = i + 1; j < this.nodes.length; j++) {
-                        const distance = this.getDistance(this.nodes[i], this.nodes[j]);
-                        if (distance < connectionDistance) {
-                            this.connections.push({
-                                node1: this.nodes[i],
-                                node2: this.nodes[j],
-                                opacity: Math.max(0, (1 - distance / connectionDistance) * (this.isMobile ? 0.5 : 0.9))
-                            });
-                        }
-                    }
-                }
-            }
-            
-            getDistance(node1, node2) {
-                return Math.sqrt(Math.pow(node1.x - node2.x, 2) + Math.pow(node1.y - node2.y, 2));
-            }
-            
-            update() {
-                // Update nodes
-                this.nodes.forEach(node => {
-                    node.x += node.vx;
-                    node.y += node.vy;
-                    
-                    // Bounce off edges
-                    if (node.x < 0 || node.x > this.canvas.width) node.vx *= -1;
-                    if (node.y < 0 || node.y > this.canvas.height) node.vy *= -1;
-                    
-                    // Keep within bounds
-                    node.x = Math.max(0, Math.min(this.canvas.width, node.x));
-                    node.y = Math.max(0, Math.min(this.canvas.height, node.y));
-                });
-                
-                // Update connections with larger distance
-                this.connections = [];
-                const connectionDistance = this.isMobile ? 150 : 220;
-                for (let i = 0; i < this.nodes.length; i++) {
-                    for (let j = i + 1; j < this.nodes.length; j++) {
-                        const distance = this.getDistance(this.nodes[i], this.nodes[j]);
-                        if (distance < connectionDistance) {
-                            this.connections.push({
-                                node1: this.nodes[i],
-                                node2: this.nodes[j],
-                                opacity: Math.max(0, (1 - distance / connectionDistance) * (this.isMobile ? 0.5 : 0.9))
-                            });
-                        }
-                    }
-                }
-            }
-            
-            draw() {
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                
-                // Draw connections with thicker lines
-                this.connections.forEach(connection => {
-                    const gradient = this.ctx.createLinearGradient(
-                        connection.node1.x, connection.node1.y,
-                        connection.node2.x, connection.node2.y
-                    );
-                    gradient.addColorStop(0, `rgba(99, 102, 241, ${connection.opacity})`);
-                    gradient.addColorStop(0.5, `rgba(243, 63, 94, ${connection.opacity * 1.2})`);
-                    gradient.addColorStop(1, `rgba(6, 182, 212, ${connection.opacity})`);
-                    
-                    this.ctx.strokeStyle = gradient;
-                    this.ctx.lineWidth = this.isMobile ? 2 : 3;
-                    this.ctx.lineCap = 'round';
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(connection.node1.x, connection.node1.y);
-                    this.ctx.lineTo(connection.node2.x, connection.node2.y);
-                    this.ctx.stroke();
-                });
-                
-                // Draw nodes with pulsing effect - MUITO mais lento no mobile
-                this.nodes.forEach(node => {
-                    const timeMultiplier = this.isMobile ? 0.0005 : 0.002; // Muito mais lento no mobile
-                    const time = Date.now() * timeMultiplier;
-                    const pulse = Math.sin(time + node.x * 0.005) * 0.2 + 0.8; // Pulso mais suave
-                    
-                    const gradient = this.ctx.createRadialGradient(
-                        node.x, node.y, 0,
-                        node.x, node.y, node.radius * 2
-                    );
-                    gradient.addColorStop(0, `rgba(255, 255, 255, ${node.opacity * pulse})`);
-                    gradient.addColorStop(0.3, `rgba(243, 63, 94, ${node.opacity * pulse * 0.6})`);
-                    gradient.addColorStop(0.6, `rgba(99, 102, 241, ${node.opacity * pulse * 0.4})`);
-                    gradient.addColorStop(1, `rgba(6, 182, 212, 0)`);
-                    
-                    this.ctx.fillStyle = gradient;
-                    this.ctx.beginPath();
-                    this.ctx.arc(node.x, node.y, node.radius * pulse, 0, Math.PI * 2);
-                    this.ctx.fill();
-                });
-            }
-            
-            animate() {
-                this.update();
-                this.draw();
-                requestAnimationFrame(() => this.animate());
-            }
-        }
-
-        // Initialize neural network and particles on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const canvas = document.getElementById('neural-network');
-            new NeuralNetwork(canvas);
-            
-            // Aguardar um pouco para garantir que particles.js foi carregado
-            setTimeout(() => {
-                if (typeof particlesJS !== 'undefined') {
-                    initParticles();
-                } else {
-                    console.log('Particles.js não carregado, tentando novamente...');
-                    // Tentar novamente após mais tempo
-                    setTimeout(() => {
-                        if (typeof particlesJS !== 'undefined') {
-                            initParticles();
-                        } else {
-                            console.log('Particles.js não disponível, continuando sem partículas');
-                        }
-                    }, 1000);
-                }
-            }, 500);
-        });
-
-        // Função separada para inicializar particles
+        // ========================================
+        // CONFIGURAÇÃO DE PARTÍCULAS MELHORADA
+        // ========================================
+        
         function initParticles() {
-            // Initialize particles.js with MUCH slower animations, especialmente no mobile
+            if (typeof particlesJS === 'undefined') {
+                setTimeout(initParticles, 1000);
+                return;
+            }
+
+            const isMobile = window.innerWidth < 768;
+            
             particlesJS('particles-js', {
                 particles: {
                     number: { 
-                        value: window.innerWidth < 768 ? 30 : 80, // Menos partículas no mobile
+                        value: isMobile ? 8 : 15,
                         density: {
                             enable: true,
-                            value_area: window.innerWidth < 768 ? 800 : 500
+                            value_area: isMobile ? 1500 : 1200
                         }
                     },
-                    color: { value: ["#6366F1", "#06B6D4", "#F43F5E"] },
+                    color: { value: ["#6366F1", "#06B6D4"] },
                     shape: { 
                         type: "circle",
                         stroke: {
-                            width: 1,
-                            color: "#6366F1"
+                            width: 0,
+                            color: "#000000"
                         }
                     },
                     opacity: { 
-                        value: window.innerWidth < 768 ? 0.4 : 0.7, // Menos opaco no mobile
+                        value: isMobile ? 0.1 : 0.15,
                         random: true,
                         anim: {
                             enable: true,
-                            speed: window.innerWidth < 768 ? 0.5 : 1.5, // Muito mais lento no mobile
-                            opacity_min: 0.2,
+                            speed: isMobile ? 0.1 : 0.2,
+                            opacity_min: 0.02,
                             sync: false
                         }
                     },
                     size: { 
-                        value: window.innerWidth < 768 ? 3 : 5, // Menor no mobile
+                        value: isMobile ? 1 : 1.5,
                         random: true,
                         anim: {
                             enable: true,
-                            speed: window.innerWidth < 768 ? 0.5 : 1.5, // Muito mais lento no mobile
-                            size_min: 1,
+                            speed: isMobile ? 0.2 : 0.4,
+                            size_min: 0.2,
                             sync: false
                         }
                     },
                     line_linked: {
                         enable: true,
-                        distance: window.innerWidth < 768 ? 120 : 180, // Distância menor no mobile
+                        distance: isMobile ? 120 : 180,
                         color: "#6366F1",
-                        opacity: window.innerWidth < 768 ? 0.3 : 0.6, // Menos opaco no mobile
-                        width: window.innerWidth < 768 ? 1.5 : 2.5
+                        opacity: isMobile ? 0.05 : 0.08,
+                        width: 0.5
                     },
                     move: { 
                         enable: true,
-                        speed: window.innerWidth < 768 ? 0.3 : 1, // MUITO mais lento no mobile
+                        speed: isMobile ? 0.2 : 0.3,
                         direction: "none",
                         random: true,
                         straight: false,
                         out_mode: "out",
-                        bounce: true,
-                        attract: {
-                            enable: true,
-                            rotateX: window.innerWidth < 768 ? 200 : 400, // Menos rotação no mobile
-                            rotateY: window.innerWidth < 768 ? 400 : 800
-                        }
+                        bounce: false
                     }
                 },
                 interactivity: {
                     detect_on: "canvas",
                     events: { 
                         onhover: { 
-                            enable: window.innerWidth >= 768, // Desabilitar hover no mobile
+                            enable: false,
                             mode: "grab" 
                         },
                         onclick: {
-                            enable: true,
+                            enable: false,
                             mode: "push"
                         },
                         resize: true
-                    },
-                    modes: {
-                        grab: {
-                            distance: window.innerWidth < 768 ? 150 : 250,
-                            line_linked: {
-                                opacity: window.innerWidth < 768 ? 0.5 : 1
-                            }
-                        },
-                        bubble: {
-                            distance: window.innerWidth < 768 ? 200 : 400,
-                            size: window.innerWidth < 768 ? 8 : 12,
-                            duration: 0.5,
-                            opacity: 1,
-                            speed: window.innerWidth < 768 ? 0.5 : 1.5 // Mais lento no mobile
-                        },
-                        repulse: {
-                            distance: window.innerWidth < 768 ? 100 : 200,
-                            duration: 0.1
-                        },
-                        push: {
-                            particles_nb: window.innerWidth < 768 ? 3 : 8 // Menos partículas no mobile
-                        }
                     }
                 },
                 retina_detect: true
             });
         }
 
-        // Language toggle event listener
-        document.getElementById('language-toggle').addEventListener('click', switchLanguage);
+        // ========================================
+        // INICIALIZAÇÃO MELHORADA
+        // ========================================
+        
+        function initializeApp() {
+            console.log('🚀 Inicializando WellkOn - QAI...');
+            
+            // Inicializar Neural Network
+            const canvas = document.getElementById('neural-network');
+            if (canvas) {
+                try {
+                    window.neuralNetwork = new NeuralNetwork(canvas);
+                    console.log('✅ Neural Network inicializada com sucesso!');
+                } catch (error) {
+                    console.error('❌ Erro ao inicializar Neural Network:', error);
+                }
+            }
+            
+            // Inicializar particles com delay
+            setTimeout(initParticles, 300);
+            
+            // Language toggle
+            const languageToggle = document.getElementById('language-toggle');
+            if (languageToggle) {
+                languageToggle.addEventListener('click', switchLanguage);
+                console.log('🌍 Sistema de idiomas inicializado');
+            }
+            
+            // Inicializar idioma
+            updateLanguageDisplay();
+            translatePage();
+        }
 
-        // Observador de interseção para animações de fade-in
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', initializeApp);
+
+        // Observador de interseção para animações
         const observerOptions = {
             threshold: 0.15,
             rootMargin: "0px 0px -50px 0px"
@@ -1429,22 +1535,23 @@
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const navMenu = document.getElementById('nav-menu');
         
-        mobileMenuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileMenuToggle.querySelector('i').classList.toggle('fa-bars');
-            mobileMenuToggle.querySelector('i').classList.toggle('fa-times');
-        });
-
-        // Fechar menu móvel ao clicar em um link
-        document.querySelectorAll('.nav-link, .cta-button').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-                mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                mobileMenuToggle.querySelector('i').classList.toggle('fa-bars');
+                mobileMenuToggle.querySelector('i').classList.toggle('fa-times');
             });
-        });
 
-        // Adicionar scroll suave para navegação
+            document.querySelectorAll('.nav-link, .cta-button').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                    mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                });
+            });
+        }
+
+        // Scroll suave
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1466,32 +1573,40 @@
             });
         });
 
-        // Update neural network on window resize
+        // Redimensionamento responsivo
         window.addEventListener('resize', () => {
-            const canvas = document.getElementById('neural-network');
-            if (canvas.neuralNetwork) {
-                canvas.neuralNetwork.resize();
-                canvas.neuralNetwork.init();
+            if (window.neuralNetwork) {
+                window.neuralNetwork.resize();
+                window.neuralNetwork.init();
             }
             
-            // Update particles on resize com configurações específicas para mobile
-            if (window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS) {
-                const pJS = window.pJSDom[0].pJS;
-                const isMobile = window.innerWidth < 768;
-                
-                // Atualizar configurações específicas para mobile
-                pJS.particles.number.value = isMobile ? 30 : 80;
-                pJS.particles.move.speed = isMobile ? 0.3 : 1;
-                pJS.particles.opacity.anim.speed = isMobile ? 0.5 : 1.5;
-                pJS.particles.size.anim.speed = isMobile ? 0.5 : 1.5;
-                pJS.particles.line_linked.distance = isMobile ? 120 : 180;
-                pJS.particles.line_linked.opacity = isMobile ? 0.3 : 0.6;
-                pJS.particles.line_linked.width = isMobile ? 1.5 : 2.5;
-                pJS.particles.move.attract.rotateX = isMobile ? 200 : 400;
-                pJS.particles.move.attract.rotateY = isMobile ? 400 : 800;
-                
-                pJS.fn.particlesRefresh();
+            // Reinicializar particles
+            if (typeof pJSDom !== 'undefined' && pJSDom[0] && pJSDom[0].pJS) {
+                pJSDom[0].pJS.fn.vendors.destroypJS();
+                pJSDom = [];
+                setTimeout(initParticles, 100);
             }
+        });
+
+        // Performance optimization
+        let ticking = false;
+        
+        function optimizeForLowEndDevices() {
+            const isLowEnd = navigator.hardwareConcurrency <= 2 || 
+                           /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isLowEnd && window.neuralNetwork) {
+                window.neuralNetwork.config.nodeCount = Math.floor(window.neuralNetwork.config.nodeCount * 0.4);
+                window.neuralNetwork.config.pulseFrequency *= 0.3;
+                window.neuralNetwork.config.nodeSpeed *= 0.5;
+                console.log('🔧 Otimizações aplicadas para dispositivos de baixo desempenho');
+            }
+        }
+
+        // Aplicar otimizações após carregamento
+        window.addEventListener('load', () => {
+            optimizeForLowEndDevices();
+            console.log('🎯 WellkOn - QAI totalmente carregado!');
         });
     </script>
 </body>
