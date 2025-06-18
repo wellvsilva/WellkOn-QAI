@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
@@ -37,6 +37,7 @@
             line-height: 1.7;
             overflow-x: hidden;
             font-family: 'Montserrat', sans-serif;
+            position: relative;
         }
 
         h1, h2, h3, h4, h5 {
@@ -51,6 +52,50 @@
             padding: 0 1.5rem;
             position: relative;
             z-index: 1;
+        }
+
+        /* Neural Network Background Effect */
+        #neural-network {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-toggle {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 0.5rem 1rem;
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .language-toggle:hover {
+            background: var(--gradient);
+            transform: translateY(-2px);
+        }
+
+        .language-toggle i {
+            font-size: 1rem;
         }
 
         /* Header */
@@ -74,6 +119,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
 
         .logo {
@@ -166,15 +217,6 @@
             overflow: hidden;
         }
 
-        #particles-js {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -191,13 +233,6 @@
             z-index: 1;
             display: flex;
             justify-content: center;
-        }
-
-        .hero-image img {
-            width: 90%;
-            max-width: 500px;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .quantum-illustration {
@@ -645,6 +680,15 @@
             .robot-avatar {
                 margin-bottom: 2rem;
             }
+
+            .header-nav {
+                gap: 1rem;
+            }
+
+            .language-toggle {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -668,7 +712,7 @@
     </style>
 </head>
 <body>
-    <div id="particles-js"></div>
+    <canvas id="neural-network"></canvas>
     
     <!-- Header -->
     <header>
@@ -678,18 +722,26 @@
                     <i class="fas fa-atom logo-icon"></i>
                     WellkOn - QAI
                 </div>
-                <nav>
-                    <button class="mobile-menu-btn" id="mobile-menu-toggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <ul class="nav-menu" id="nav-menu">
-                        <li><a href="#" class="nav-link">Início</a></li>
-                        <li><a href="#about" class="nav-link">Sobre Nós</a></li>
-                        <li><a href="#research" class="nav-link">Pesquisas</a></li>
-                        <li><a href="#differential" class="nav-link">Diferenciais</a></li>
-                        <li><a href="#contact" class="cta-button">Contato</a></li>
-                    </ul>
-                </nav>
+                <div class="header-nav">
+                    <nav>
+                        <button class="mobile-menu-btn" id="mobile-menu-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <ul class="nav-menu" id="nav-menu">
+                            <li><a href="#" class="nav-link" data-translate="nav-home">Home</a></li>
+                            <li><a href="#about" class="nav-link" data-translate="nav-about">About Us</a></li>
+                            <li><a href="#research" class="nav-link" data-translate="nav-research">Research</a></li>
+                            <li><a href="#differential" class="nav-link" data-translate="nav-differential">Differentials</a></li>
+                            <li><a href="#contact" class="cta-button" data-translate="nav-contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <div class="language-selector">
+                        <div class="language-toggle" id="language-toggle">
+                            <i class="fas fa-globe"></i>
+                            <span id="current-language">EN</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -701,12 +753,12 @@
                 <div class="hero-text fade-up">
                     <h1 class="main-title">WellkOn - QAI</h1>
                     <h2 class="subtitle">Quantum Artificial Intelligence</h2>
-                    <p class="vision-statement">
-                        "Na fronteira entre ciência e inovação, a WellkOn desenvolve tecnologias quânticas e inteligência artificial para resolver os mais complexos desafios do mundo contemporâneo."
+                    <p class="vision-statement" data-translate="hero-vision">
+                        "At the frontier between science and innovation, WellkOn develops quantum technologies and artificial intelligence to solve the most complex challenges of the contemporary world."
                     </p>
                     <div class="cta-buttons">
-                        <a href="#research" class="cta-button">Nossas Pesquisas</a>
-                        <a href="#contact" class="secondary-button">Fale Conosco</a>
+                        <a href="#research" class="cta-button" data-translate="hero-cta1">Our Research</a>
+                        <a href="#contact" class="secondary-button" data-translate="hero-cta2">Contact Us</a>
                     </div>
                 </div>
                 <div class="hero-image fade-up">
@@ -822,13 +874,14 @@
                     </svg>
                 </div>
                 <div class="about-content fade-up">
-                    <h2>Tecnologia Quântica e IA</h2>
-                    <p><p>
-                        A WellkOn - QAI é uma deep tech startup dedicada à pesquisa e desenvolvimento de tecnologias que desafiam os paradigmas convencionais. Fundada por especialistas em ciência da computação e inteligência artificial, estamos desenvolvendo soluções inovadoras no campo tecnológico.                    </p>
-                    <p>
-                        Nossa missão é desenvolver sistemas computacionais quânticos e algoritmos de IA avançados que possam resolver problemas complexos em áreas como saúde, energia, logística e ciência de materiais, criando soluções que até recentemente eram consideradas impossíveis.
+                    <h2 data-translate="about-title">Quantum Technology and AI</h2>
+                    <p data-translate="about-description1">
+                        WellkOn - QAI is a deep tech startup dedicated to research and development of technologies that challenge conventional paradigms. Founded by specialists in computer science and artificial intelligence, we are developing innovative solutions in the technological field.
                     </p>
-                    <a href="#research" class="cta-button">Conheça Nossas Pesquisas</a>
+                    <p data-translate="about-description2">
+                        Our mission is to develop quantum computational systems and advanced AI algorithms that can solve complex problems in areas such as health, energy, logistics and materials science, creating solutions that until recently were considered impossible.
+                    </p>
+                    <a href="#research" class="cta-button" data-translate="about-cta">Learn About Our Research</a>
                 </div>
             </div>
         </div>
@@ -838,25 +891,25 @@
     <section class="section" id="research">
         <div class="container">
             <div class="section-title fade-up">
-                <h2 class="highlight-title">Áreas de Pesquisa</h2>
+                <h2 class="highlight-title" data-translate="research-title">Research Areas</h2>
             </div>
             <div class="cards-grid">
                 <div class="card fade-up">
                     <i class="fas fa-microchip card-icon"></i>
-                    <h3 class="card-title">Computação Quântica</h3>
-                    <p class="card-text">Desenvolvemos algoritmos quânticos e especializado para processamento exponencialmente mais rápido que sistemas clássicos, permitindo resolver problemas anteriormente intratáveis em otimização, criptografia e simulação molecular.</p>
+                    <h3 class="card-title" data-translate="research-quantum-title">Quantum Computing</h3>
+                    <p class="card-text" data-translate="research-quantum-description">We develop quantum algorithms specialized for exponentially faster processing than classical systems, enabling the solution of previously intractable problems in optimization, cryptography and molecular simulation.</p>
                 </div>
                 
                 <div class="card fade-up">
                     <i class="fas fa-brain card-icon"></i>
-                    <h3 class="card-title">Inteligência Artificial Avançada</h3>
-                    <p class="card-text">Nossas pesquisas em IA incluem aprendizado profundo, processamento de linguagem natural e sistemas de raciocínio simbólico, criando algoritmos que podem analisar padrões complexos e extrair insights significativos de grandes volumes de dados.</p>
+                    <h3 class="card-title" data-translate="research-ai-title">Advanced Artificial Intelligence</h3>
+                    <p class="card-text" data-translate="research-ai-description">Our AI research includes deep learning, natural language processing and symbolic reasoning systems, creating algorithms that can analyze complex patterns and extract meaningful insights from large volumes of data.</p>
                 </div>
                 
                 <div class="card fade-up">
                     <i class="fas fa-vr-cardboard card-icon"></i>
-                    <h3 class="card-title">Realidade Virtual e Aumentada</h3>
-                    <p class="card-text">Exploramos novas fronteiras em experiências imersivas, desenvolvendo interfaces que permitem visualização e manipulação intuitiva de dados complexos, com aplicações em treinamento, educação e simulação científica.</p>
+                    <h3 class="card-title" data-translate="research-vr-title">Virtual and Augmented Reality</h3>
+                    <p class="card-text" data-translate="research-vr-description">We explore new frontiers in immersive experiences, developing interfaces that allow intuitive visualization and manipulation of complex data, with applications in training, education and scientific simulation.</p>
                 </div>
             </div>
         </div>
@@ -866,15 +919,17 @@
     <section class="section" id="differential">
         <div class="container">
             <div class="section-title fade-up">
-                <h2 class="highlight-title">Nosso Diferencial</h2>
+                <h2 class="highlight-title" data-translate="differential-title">Our Differential</h2>
             </div>
             <div class="differential-grid">
                 <div class="differential-item fade-up">
-                    <h3>Pesquisa Multidisciplinar</h3>
-                    <p>Nossa pesquisa multidisciplinar abrange computação quântica, inteligência artificial, realidade virtual (VR), realidade aumentada (VA) e hologramas, criando um ambiente único onde ideias revolucionárias emergem da colaboração entre diferentes campos do conhecimento, permitindo o desenvolvimento de soluções tecnológicas que transcendem as abordagens convencionais.</p>                </div>
+                    <h3 data-translate="differential-research-title">Multidisciplinary Research</h3>
+                    <p data-translate="differential-research-description">Our multidisciplinary research spans quantum computing, artificial intelligence, virtual reality (VR), augmented reality (AR) and holograms, creating a unique environment where revolutionary ideas emerge from collaboration between different fields of knowledge, enabling the development of technological solutions that transcend conventional approaches.</p>
+                </div>
                 <div class="differential-item fade-up">
-                    <h3>Abordagem Centrada em Resultados</h3>
-                    <p>Nosso compromisso é transformar pesquisa de ponta em soluções práticas para problemas reais, acelerando a transição entre descobertas científicas e aplicações que beneficiam diversos setores da sociedade e indústria. Buscamos constantemente a excelência em tecnologias inovadoras que resolvem desafios atuais e antecipam necessidades futuras, gerando valor sustentável para nossos parceiros e clientes.</p>                </div>
+                    <h3 data-translate="differential-results-title">Results-Centered Approach</h3>
+                    <p data-translate="differential-results-description">Our commitment is to transform cutting-edge research into practical solutions for real problems, accelerating the transition between scientific discoveries and applications that benefit various sectors of society and industry. We constantly seek excellence in innovative technologies that solve current challenges and anticipate future needs, generating sustainable value for our partners and clients.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -883,11 +938,11 @@
     <section class="section" id="contact">
         <div class="container">
             <div class="cta-section fade-up">
-                <h2>Vamos Construir o Futuro</h2>
-                <p>Entre em contato para conhecer como as tecnologias da WellkOn - QAI podem impulsionar seu negócio ou para explorar possibilidades de colaboração em projetos inovadores.</p>
+                <h2 data-translate="cta-title">Let's Build the Future</h2>
+                <p data-translate="cta-description">Contact us to learn how WellkOn - QAI technologies can boost your business or to explore collaboration possibilities in innovative projects.</p>
                 <div class="cta-buttons">
-                    <a href="#" class="cta-button">Agendar Reunião</a>
-                    <a href="#" class="secondary-button">Solicitar Informações</a>
+                    <a href="#" class="cta-button" data-translate="cta-button1">Schedule Meeting</a>
+                    <a href="#" class="secondary-button" data-translate="cta-button2">Request Information</a>
                 </div>
             </div>
         </div>
@@ -901,8 +956,8 @@
                     <div class="footer-logo">
                         <i class="fas fa-atom"></i> WellkOn - QAI
                     </div>
-                    <p class="footer-description">
-                        Desbravando as fronteiras da ciência e tecnologia através da pesquisa em Computação Quântica, Inteligência Artificial e Realidade Estendida.
+                    <p class="footer-description" data-translate="footer-description">
+                        Pioneering the frontiers of science and technology through research in Quantum Computing, Artificial Intelligence and Extended Reality.
                     </p>
                     <div class="social-icons">
                         <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
@@ -912,76 +967,298 @@
                     </div>
                 </div>
                 <div class="footer-col">
-                    <h3>Navegação</h3>
+                    <h3 data-translate="footer-nav-title">Navigation</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Início</a></li>
-                        <li><a href="#about">Sobre Nós</a></li>
-                        <li><a href="#research">Pesquisas</a></li>
-                        <li><a href="#differential">Diferenciais</a></li>
-                        <li><a href="#contact">Contato</a></li>
+                        <li><a href="#" data-translate="nav-home">Home</a></li>
+                        <li><a href="#about" data-translate="nav-about">About Us</a></li>
+                        <li><a href="#research" data-translate="nav-research">Research</a></li>
+                        <li><a href="#differential" data-translate="nav-differential">Differentials</a></li>
+                        <li><a href="#contact" data-translate="nav-contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Pesquisas</h3>
+                    <h3 data-translate="footer-research-title">Research</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Computação Quântica</a></li>
-                        <li><a href="#">Inteligência Artificial</a></li>
-                        <li><a href="#">Realidade Virtual</a></li>
-                        <li><a href="#">Publicações Científicas</a></li>
-                        <li><a href="#">Parcerias Acadêmicas</a></li>
+                        <li><a href="#" data-translate="footer-quantum">Quantum Computing</a></li>
+                        <li><a href="#" data-translate="footer-ai">Artificial Intelligence</a></li>
+                        <li><a href="#" data-translate="footer-vr">Virtual Reality</a></li>
+                        <li><a href="#" data-translate="footer-publications">Scientific Publications</a></li>
+                        <li><a href="#" data-translate="footer-partnerships">Academic Partnerships</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Contato</h3>
+                    <h3 data-translate="footer-contact-title">Contact</h3>
                     <ul class="footer-links">
                         <li><a href="mailto:contato@wellkonai.com">wellington@wellkonai.com</a></li>
                         <li><a href="tel:+5586998322099">+55 86 99832-2099</a></li>
-                        <li><a href="#">Teresina - Piauí, Brasil</a></li>
+                        <li><a href="#" data-translate="footer-location">Teresina - Piauí, Brazil</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 WellkOn - QAI. Todos os direitos reservados.</p>
+                <p data-translate="footer-copyright">© 2025 WellkOn - QAI. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Partículas responsivas
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: window.innerWidth < 768 ? 30 : 60 },
-                color: { value: ["#6366F1", "#06B6D4"] },
-                shape: { type: "circle" },
-                opacity: { value: 0.5 },
-                size: { value: 2 },
-                move: { 
-                    speed: window.innerWidth < 768 ? 1 : 2,
-                    direction: "none",
-                    random: true,
-                    out_mode: "out"
-                }
+        // Translations object
+        const translations = {
+            en: {
+                'nav-home': 'Home',
+                'nav-about': 'About Us',
+                'nav-research': 'Research',
+                'nav-differential': 'Differentials',
+                'nav-contact': 'Contact',
+                'hero-vision': '"At the frontier between science and innovation, WellkOn develops quantum technologies and artificial intelligence to solve the most complex challenges of the contemporary world."',
+                'hero-cta1': 'Our Research',
+                'hero-cta2': 'Contact Us',
+                'about-title': 'Quantum Technology and AI',
+                'about-description1': 'WellkOn - QAI is a deep tech startup dedicated to research and development of technologies that challenge conventional paradigms. Founded by specialists in computer science and artificial intelligence, we are developing innovative solutions in the technological field.',
+                'about-description2': 'Our mission is to develop quantum computational systems and advanced AI algorithms that can solve complex problems in areas such as health, energy, logistics and materials science, creating solutions that until recently were considered impossible.',
+                'about-cta': 'Learn About Our Research',
+                'research-title': 'Research Areas',
+                'research-quantum-title': 'Quantum Computing',
+                'research-quantum-description': 'We develop quantum algorithms specialized for exponentially faster processing than classical systems, enabling the solution of previously intractable problems in optimization, cryptography and molecular simulation.',
+                'research-ai-title': 'Advanced Artificial Intelligence',
+                'research-ai-description': 'Our AI research includes deep learning, natural language processing and symbolic reasoning systems, creating algorithms that can analyze complex patterns and extract meaningful insights from large volumes of data.',
+                'research-vr-title': 'Virtual and Augmented Reality',
+                'research-vr-description': 'We explore new frontiers in immersive experiences, developing interfaces that allow intuitive visualization and manipulation of complex data, with applications in training, education and scientific simulation.',
+                'differential-title': 'Our Differential',
+                'differential-research-title': 'Multidisciplinary Research',
+                'differential-research-description': 'Our multidisciplinary research spans quantum computing, artificial intelligence, virtual reality (VR), augmented reality (AR) and holograms, creating a unique environment where revolutionary ideas emerge from collaboration between different fields of knowledge, enabling the development of technological solutions that transcend conventional approaches.',
+                'differential-results-title': 'Results-Centered Approach',
+                'differential-results-description': 'Our commitment is to transform cutting-edge research into practical solutions for real problems, accelerating the transition between scientific discoveries and applications that benefit various sectors of society and industry. We constantly seek excellence in innovative technologies that solve current challenges and anticipate future needs, generating sustainable value for our partners and clients.',
+                'cta-title': 'Let\'s Build the Future',
+                'cta-description': 'Contact us to learn how WellkOn - QAI technologies can boost your business or to explore collaboration possibilities in innovative projects.',
+                'cta-button1': 'Schedule Meeting',
+                'cta-button2': 'Request Information',
+                'footer-description': 'Pioneering the frontiers of science and technology through research in Quantum Computing, Artificial Intelligence and Extended Reality.',
+                'footer-nav-title': 'Navigation',
+                'footer-research-title': 'Research',
+                'footer-quantum': 'Quantum Computing',
+                'footer-ai': 'Artificial Intelligence',
+                'footer-vr': 'Virtual Reality',
+                'footer-publications': 'Scientific Publications',
+                'footer-partnerships': 'Academic Partnerships',
+                'footer-contact-title': 'Contact',
+                'footer-location': 'Teresina - Piauí, Brazil',
+                'footer-copyright': '© 2025 WellkOn - QAI. All rights reserved.'
             },
-            interactivity: {
-                events: { 
-                    onhover: { 
-                        enable: true, 
-                        mode: "repulse" 
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: "push"
-                    }
-                },
-                modes: {
-                    repulse: {
-                        distance: 100,
-                        duration: 0.4
+            pt: {
+                'nav-home': 'Início',
+                'nav-about': 'Sobre Nós',
+                'nav-research': 'Pesquisas',
+                'nav-differential': 'Diferenciais',
+                'nav-contact': 'Contato',
+                'hero-vision': '"Na fronteira entre ciência e inovação, a WellkOn desenvolve tecnologias quânticas e inteligência artificial para resolver os mais complexos desafios do mundo contemporâneo."',
+                'hero-cta1': 'Nossas Pesquisas',
+                'hero-cta2': 'Fale Conosco',
+                'about-title': 'Tecnologia Quântica e IA',
+                'about-description1': 'A WellkOn - QAI é uma deep tech startup dedicada à pesquisa e desenvolvimento de tecnologias que desafiam os paradigmas convencionais. Fundada por especialistas em ciência da computação e inteligência artificial, estamos desenvolvendo soluções inovadoras no campo tecnológico.',
+                'about-description2': 'Nossa missão é desenvolver sistemas computacionais quânticos e algoritmos de IA avançados que possam resolver problemas complexos em áreas como saúde, energia, logística e ciência de materiais, criando soluções que até recentemente eram consideradas impossíveis.',
+                'about-cta': 'Conheça Nossas Pesquisas',
+                'research-title': 'Áreas de Pesquisa',
+                'research-quantum-title': 'Computação Quântica',
+                'research-quantum-description': 'Desenvolvemos algoritmos quânticos especializados para processamento exponencialmente mais rápido que sistemas clássicos, permitindo resolver problemas anteriormente intratáveis em otimização, criptografia e simulação molecular.',
+                'research-ai-title': 'Inteligência Artificial Avançada',
+                'research-ai-description': 'Nossas pesquisas em IA incluem aprendizado profundo, processamento de linguagem natural e sistemas de raciocínio simbólico, criando algoritmos que podem analisar padrões complexos e extrair insights significativos de grandes volumes de dados.',
+                'research-vr-title': 'Realidade Virtual e Aumentada',
+                'research-vr-description': 'Exploramos novas fronteiras em experiências imersivas, desenvolvendo interfaces que permitem visualização e manipulação intuitiva de dados complexos, com aplicações em treinamento, educação e simulação científica.',
+                'differential-title': 'Nosso Diferencial',
+                'differential-research-title': 'Pesquisa Multidisciplinar',
+                'differential-research-description': 'Nossa pesquisa multidisciplinar abrange computação quântica, inteligência artificial, realidade virtual (VR), realidade aumentada (VA) e hologramas, criando um ambiente único onde ideias revolucionárias emergem da colaboração entre diferentes campos do conhecimento, permitindo o desenvolvimento de soluções tecnológicas que transcendem as abordagens convencionais.',
+                'differential-results-title': 'Abordagem Centrada em Resultados',
+                'differential-results-description': 'Nosso compromisso é transformar pesquisa de ponta em soluções práticas para problemas reais, acelerando a transição entre descobertas científicas e aplicações que beneficiam diversos setores da sociedade e indústria. Buscamos constantemente a excelência em tecnologias inovadoras que resolvem desafios atuais e antecipam necessidades futuras, gerando valor sustentável para nossos parceiros e clientes.',
+                'cta-title': 'Vamos Construir o Futuro',
+                'cta-description': 'Entre em contato para conhecer como as tecnologias da WellkOn - QAI podem impulsionar seu negócio ou para explorar possibilidades de colaboração em projetos inovadores.',
+                'cta-button1': 'Agendar Reunião',
+                'cta-button2': 'Solicitar Informações',
+                'footer-description': 'Desbravando as fronteiras da ciência e tecnologia através da pesquisa em Computação Quântica, Inteligência Artificial e Realidade Estendida.',
+                'footer-nav-title': 'Navegação',
+                'footer-research-title': 'Pesquisas',
+                'footer-quantum': 'Computação Quântica',
+                'footer-ai': 'Inteligência Artificial',
+                'footer-vr': 'Realidade Virtual',
+                'footer-publications': 'Publicações Científicas',
+                'footer-partnerships': 'Parcerias Acadêmicas',
+                'footer-contact-title': 'Contato',
+                'footer-location': 'Teresina - Piauí, Brasil',
+                'footer-copyright': '© 2025 WellkOn - QAI. Todos os direitos reservados.'
+            }
+        };
+
+        // Current language state
+        let currentLanguage = 'en';
+
+        // Language switching function
+        function switchLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'pt' : 'en';
+            
+            // Update language indicator
+            document.getElementById('current-language').textContent = currentLanguage.toUpperCase();
+            
+            // Update document language
+            document.documentElement.lang = currentLanguage === 'en' ? 'en' : 'pt-BR';
+            
+            // Update all translatable elements
+            const translatableElements = document.querySelectorAll('[data-translate]');
+            translatableElements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        // Neural Network Animation
+        class NeuralNetwork {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.nodes = [];
+                this.connections = [];
+                this.resize();
+                this.init();
+                this.animate();
+                
+                window.addEventListener('resize', () => this.resize());
+            }
+            
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = document.body.scrollHeight;
+                this.canvas.style.width = '100%';
+                this.canvas.style.height = '100%';
+            }
+            
+            init() {
+                this.nodes = [];
+                this.connections = [];
+                
+                const nodeCount = Math.floor((this.canvas.width * this.canvas.height) / 40000);
+                
+                // Create nodes with larger size
+                for (let i = 0; i < nodeCount; i++) {
+                    this.nodes.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        vx: (Math.random() - 0.5) * 0.8,
+                        vy: (Math.random() - 0.5) * 0.8,
+                        radius: Math.random() * 4 + 2,
+                        opacity: Math.random() * 0.9 + 0.4
+                    });
+                }
+                
+                // Create connections with increased distance
+                for (let i = 0; i < this.nodes.length; i++) {
+                    for (let j = i + 1; j < this.nodes.length; j++) {
+                        const distance = this.getDistance(this.nodes[i], this.nodes[j]);
+                        if (distance < 200) {
+                            this.connections.push({
+                                node1: this.nodes[i],
+                                node2: this.nodes[j],
+                                opacity: Math.max(0, (1 - distance / 200) * 0.8)
+                            });
+                        }
                     }
                 }
-            },
-            retina_detect: true
+            }
+            
+            getDistance(node1, node2) {
+                return Math.sqrt(Math.pow(node1.x - node2.x, 2) + Math.pow(node1.y - node2.y, 2));
+            }
+            
+            update() {
+                // Update nodes
+                this.nodes.forEach(node => {
+                    node.x += node.vx;
+                    node.y += node.vy;
+                    
+                    // Bounce off edges
+                    if (node.x < 0 || node.x > this.canvas.width) node.vx *= -1;
+                    if (node.y < 0 || node.y > this.canvas.height) node.vy *= -1;
+                    
+                    // Keep within bounds
+                    node.x = Math.max(0, Math.min(this.canvas.width, node.x));
+                    node.y = Math.max(0, Math.min(this.canvas.height, node.y));
+                });
+                
+                // Update connections with larger distance
+                this.connections = [];
+                for (let i = 0; i < this.nodes.length; i++) {
+                    for (let j = i + 1; j < this.nodes.length; j++) {
+                        const distance = this.getDistance(this.nodes[i], this.nodes[j]);
+                        if (distance < 200) {
+                            this.connections.push({
+                                node1: this.nodes[i],
+                                node2: this.nodes[j],
+                                opacity: Math.max(0, (1 - distance / 200) * 0.8)
+                            });
+                        }
+                    }
+                }
+            }
+            
+            draw() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Draw connections with thicker lines
+                this.connections.forEach(connection => {
+                    const gradient = this.ctx.createLinearGradient(
+                        connection.node1.x, connection.node1.y,
+                        connection.node2.x, connection.node2.y
+                    );
+                    gradient.addColorStop(0, `rgba(99, 102, 241, ${connection.opacity})`);
+                    gradient.addColorStop(1, `rgba(6, 182, 212, ${connection.opacity})`);
+                    
+                    this.ctx.strokeStyle = gradient;
+                    this.ctx.lineWidth = 2;
+                    this.ctx.lineCap = 'round';
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(connection.node1.x, connection.node1.y);
+                    this.ctx.lineTo(connection.node2.x, connection.node2.y);
+                    this.ctx.stroke();
+                });
+                
+                // Draw nodes with larger size and glow effect
+                this.nodes.forEach(node => {
+                    const gradient = this.ctx.createRadialGradient(
+                        node.x, node.y, 0,
+                        node.x, node.y, node.radius * 1.5
+                    );
+                    gradient.addColorStop(0, `rgba(255, 255, 255, ${node.opacity})`);
+                    gradient.addColorStop(0.5, `rgba(99, 102, 241, ${node.opacity * 0.8})`);
+                    gradient.addColorStop(1, `rgba(6, 182, 212, ${node.opacity * 0.2})`);
+                    
+                    this.ctx.fillStyle = gradient;
+                    this.ctx.beginPath();
+                    this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    // Add glow effect
+                    this.ctx.shadowColor = '#6366F1';
+                    this.ctx.shadowBlur = 10;
+                    this.ctx.fill();
+                    this.ctx.shadowBlur = 0;
+                });
+            }
+            
+            animate() {
+                this.update();
+                this.draw();
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Initialize neural network on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('neural-network');
+            new NeuralNetwork(canvas);
         });
+
+        // Language toggle event listener
+        document.getElementById('language-toggle').addEventListener('click', switchLanguage);
 
         // Observador de interseção para animações de fade-in
         const observerOptions = {
@@ -1020,73 +1297,47 @@
             navMenu.classList.toggle('active');
             mobileMenuToggle.querySelector('i').classList.toggle('fa-bars');
             mobileMenuToggle.querySelector('i').classList.toggle('fa-times');
-            // Continuação do script anterior
         });
 
-// Fechar menu móvel ao clicar em um link
-document.querySelectorAll('.nav-link, .cta-button').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-        mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-    });
-});
-
-// Adicionar scroll suave para navegação
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const target = document.querySelector(targetId);
-        if (!target) return;
-        
-        const headerOffset = 100;
-        const elementPosition = target.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
+        // Fechar menu móvel ao clicar em um link
+        document.querySelectorAll('.nav-link, .cta-button').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+            });
         });
-    });
-});
 
-// Ajuste responsivo para partículas
-window.addEventListener('resize', () => {
-    if (window.innerWidth < 768) {
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 30 },
-                move: { speed: 1 }
+        // Adicionar scroll suave para navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (!target) return;
+                
+                const headerOffset = 100;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Update neural network on window resize
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('neural-network');
+            if (canvas.neuralNetwork) {
+                canvas.neuralNetwork.resize();
+                canvas.neuralNetwork.init();
             }
         });
-    } else {
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 60 },
-                move: { speed: 2 }
-            }
-        });
-    }
-});
-
-// Preload de imagens para melhor performance
-const preloadImages = () => {
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        const src = img.getAttribute('src');
-        if (src) {
-            const newImg = new Image();
-            newImg.src = src;
-        }
-    });
-};
-
-// Executar preload após o carregamento completo da página
-window.addEventListener('load', preloadImages);
-</script>
+    </script>
 </body>
 </html>
