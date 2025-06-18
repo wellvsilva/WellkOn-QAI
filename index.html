@@ -23,6 +23,7 @@
             --highlight: #F43F5E;
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
             --glass: rgba(255, 255, 255, 0.05);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -55,6 +56,16 @@
         }
 
         /* Neural Network Background Effect */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         #neural-network {
             position: fixed;
             top: 0;
@@ -81,7 +92,7 @@
             padding: 0.5rem 1rem;
             color: var(--light);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.1s ease;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -91,7 +102,7 @@
 
         .language-toggle:hover {
             background: var(--gradient);
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.05);
         }
 
         .language-toggle i {
@@ -161,7 +172,7 @@
             font-weight: 500;
             position: relative;
             padding: 0.5rem 0;
-            transition: all 0.3s ease;
+            transition: all 0.1s ease;
         }
 
         .nav-link::after {
@@ -193,8 +204,8 @@
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5);
         }
 
         /* Menu mobile */
@@ -257,13 +268,13 @@
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
             top: -50%;
             left: -50%;
-            animation: pulseGlow 6s linear infinite;
+            animation: pulseGlow 3s linear infinite; /* Reduzido de 1s para 3s */
         }
 
         @keyframes pulseGlow {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 0.8; }
-            100% { transform: scale(0.8); opacity: 0.5; }
+            0% { transform: scale(0.95); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.6; }
+            100% { transform: scale(0.95); opacity: 0.3; }
         }
         
         .quantum-illustration svg {
@@ -282,7 +293,7 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% 200%;
-            animation: gradientAnimation 5s ease infinite;
+            animation: gradientAnimation 2s ease infinite; /* Reduzido de 0.8s para 2s */
         }
 
         .subtitle {
@@ -352,8 +363,8 @@
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.3);
             border-color: var(--secondary);
         }
 
@@ -431,12 +442,12 @@
             border-radius: 16px;
             padding: 2.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            transition: all 0.1s ease;
         }
 
         .differential-item:hover {
             border-color: var(--secondary);
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
         }
 
         .differential-item h3 {
@@ -487,14 +498,14 @@
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.1s ease;
             text-decoration: none;
         }
 
         .secondary-button:hover {
             background: var(--secondary);
             color: var(--dark);
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.05);
         }
 
         /* Rodapé */
@@ -568,13 +579,13 @@
             justify-content: center;
             color: var(--light);
             font-size: 1.2rem;
-            transition: all 0.3s ease;
+            transition: all 0.1s ease;
             text-decoration: none;
         }
 
         .social-icon:hover {
             background: var(--gradient);
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.1);
         }
 
         .footer-bottom {
@@ -589,7 +600,7 @@
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.6s ease-out;
+            transition: all 0.3s ease-out;
         }
 
         .fade-up.active {
@@ -605,16 +616,16 @@
 
         /* Floating elements */
         .floating {
-            animation: floating 3s ease-in-out infinite;
+            animation: floating 2.5s ease-in-out infinite; /* Reduzido de 0.8s para 2.5s */
         }
 
         @keyframes floating {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
 
-        /* Electron animation */
+        /* Electron animation - VELOCIDADES REDUZIDAS */
         @keyframes orbit {
             0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
             100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
@@ -630,15 +641,15 @@
         }
 
         .electron-1 {
-            animation: orbit 3s linear infinite;
+            animation: orbit 2s linear infinite; /* Reduzido de 0.5s para 2s */
         }
 
         .electron-2 {
-            animation: orbit 5s linear infinite;
+            animation: orbit 3s linear infinite; /* Reduzido de 0.7s para 3s */
         }
 
         .electron-3 {
-            animation: orbit 7s linear infinite;
+            animation: orbit 4s linear infinite; /* Reduzido de 0.9s para 4s */
         }
 
         /* Responsividade */
@@ -1111,7 +1122,7 @@
             });
         }
 
-        // Neural Network Animation
+        // Neural Network Animation - VELOCIDADES REDUZIDAS
         class NeuralNetwork {
             constructor(canvas) {
                 this.canvas = canvas;
@@ -1136,17 +1147,17 @@
                 this.nodes = [];
                 this.connections = [];
                 
-                const nodeCount = Math.floor((this.canvas.width * this.canvas.height) / 40000);
+                const nodeCount = Math.floor((this.canvas.width * this.canvas.height) / 35000);
                 
-                // Create nodes with larger size
+                // Create nodes with MUCH slower movement
                 for (let i = 0; i < nodeCount; i++) {
                     this.nodes.push({
                         x: Math.random() * this.canvas.width,
                         y: Math.random() * this.canvas.height,
-                        vx: (Math.random() - 0.5) * 0.8,
-                        vy: (Math.random() - 0.5) * 0.8,
-                        radius: Math.random() * 4 + 2,
-                        opacity: Math.random() * 0.9 + 0.4
+                        vx: (Math.random() - 0.5) * 0.5, // Reduzido de 3 para 0.5
+                        vy: (Math.random() - 0.5) * 0.5, // Reduzido de 3 para 0.5
+                        radius: Math.random() * 5 + 2,
+                        opacity: Math.random() * 0.9 + 0.5
                     });
                 }
                 
@@ -1154,11 +1165,11 @@
                 for (let i = 0; i < this.nodes.length; i++) {
                     for (let j = i + 1; j < this.nodes.length; j++) {
                         const distance = this.getDistance(this.nodes[i], this.nodes[j]);
-                        if (distance < 200) {
+                        if (distance < 220) {
                             this.connections.push({
                                 node1: this.nodes[i],
                                 node2: this.nodes[j],
-                                opacity: Math.max(0, (1 - distance / 200) * 0.8)
+                                opacity: Math.max(0, (1 - distance / 220) * 0.9)
                             });
                         }
                     }
@@ -1189,11 +1200,11 @@
                 for (let i = 0; i < this.nodes.length; i++) {
                     for (let j = i + 1; j < this.nodes.length; j++) {
                         const distance = this.getDistance(this.nodes[i], this.nodes[j]);
-                        if (distance < 200) {
+                        if (distance < 220) {
                             this.connections.push({
                                 node1: this.nodes[i],
                                 node2: this.nodes[j],
-                                opacity: Math.max(0, (1 - distance / 200) * 0.8)
+                                opacity: Math.max(0, (1 - distance / 220) * 0.9)
                             });
                         }
                     }
@@ -1210,10 +1221,11 @@
                         connection.node2.x, connection.node2.y
                     );
                     gradient.addColorStop(0, `rgba(99, 102, 241, ${connection.opacity})`);
+                    gradient.addColorStop(0.5, `rgba(243, 63, 94, ${connection.opacity * 1.2})`);
                     gradient.addColorStop(1, `rgba(6, 182, 212, ${connection.opacity})`);
                     
                     this.ctx.strokeStyle = gradient;
-                    this.ctx.lineWidth = 2;
+                    this.ctx.lineWidth = 3;
                     this.ctx.lineCap = 'round';
                     this.ctx.beginPath();
                     this.ctx.moveTo(connection.node1.x, connection.node1.y);
@@ -1221,26 +1233,24 @@
                     this.ctx.stroke();
                 });
                 
-                // Draw nodes with larger size and glow effect
+                // Draw nodes with pulsing effect
                 this.nodes.forEach(node => {
+                    const time = Date.now() * 0.002; // Reduzido de 0.01 para 0.002
+                    const pulse = Math.sin(time + node.x * 0.01) * 0.3 + 0.7;
+                    
                     const gradient = this.ctx.createRadialGradient(
                         node.x, node.y, 0,
-                        node.x, node.y, node.radius * 1.5
+                        node.x, node.y, node.radius * 2
                     );
-                    gradient.addColorStop(0, `rgba(255, 255, 255, ${node.opacity})`);
-                    gradient.addColorStop(0.5, `rgba(99, 102, 241, ${node.opacity * 0.8})`);
-                    gradient.addColorStop(1, `rgba(6, 182, 212, ${node.opacity * 0.2})`);
+                    gradient.addColorStop(0, `rgba(255, 255, 255, ${node.opacity * pulse})`);
+                    gradient.addColorStop(0.3, `rgba(243, 63, 94, ${node.opacity * pulse * 0.8})`);
+                    gradient.addColorStop(0.6, `rgba(99, 102, 241, ${node.opacity * pulse * 0.6})`);
+                    gradient.addColorStop(1, `rgba(6, 182, 212, 0)`);
                     
                     this.ctx.fillStyle = gradient;
                     this.ctx.beginPath();
-                    this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                    this.ctx.arc(node.x, node.y, node.radius * pulse, 0, Math.PI * 2);
                     this.ctx.fill();
-                    
-                    // Add glow effect
-                    this.ctx.shadowColor = '#6366F1';
-                    this.ctx.shadowBlur = 10;
-                    this.ctx.fill();
-                    this.ctx.shadowBlur = 0;
                 });
             }
             
@@ -1255,6 +1265,105 @@
         document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('neural-network');
             new NeuralNetwork(canvas);
+            
+            // Initialize particles.js with MUCH slower animations
+            particlesJS('particles-js', {
+                particles: {
+                    number: { 
+                        value: window.innerWidth < 768 ? 50 : 100,
+                        density: {
+                            enable: true,
+                            value_area: 500
+                        }
+                    },
+                    color: { value: ["#6366F1", "#06B6D4", "#F43F5E"] },
+                    shape: { 
+                        type: "circle",
+                        stroke: {
+                            width: 1,
+                            color: "#6366F1"
+                        }
+                    },
+                    opacity: { 
+                        value: 0.9,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 2, // Reduzido de 8 para 2
+                            opacity_min: 0.4,
+                            sync: false
+                        }
+                    },
+                    size: { 
+                        value: 5,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 2, // Reduzido de 10 para 2
+                            size_min: 1,
+                            sync: false
+                        }
+                    },
+                    line_linked: {
+                        enable: true,
+                        distance: 200,
+                        color: "#6366F1",
+                        opacity: 0.8,
+                        width: 3
+                    },
+                    move: { 
+                        enable: true,
+                        speed: window.innerWidth < 768 ? 1 : 2, // Reduzido de 8/12 para 1/2
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: true,
+                        attract: {
+                            enable: true,
+                            rotateX: 600, // Reduzido de 1200 para 600
+                            rotateY: 1200 // Reduzido de 2400 para 1200
+                        }
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: { 
+                        onhover: { 
+                            enable: true, 
+                            mode: "grab" 
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: "push"
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        grab: {
+                            distance: 250,
+                            line_linked: {
+                                opacity: 1
+                            }
+                        },
+                        bubble: {
+                            distance: 400,
+                            size: 12,
+                            duration: 0.5,
+                            opacity: 1,
+                            speed: 2 // Reduzido de 8 para 2
+                        },
+                        repulse: {
+                            distance: 200,
+                            duration: 0.1
+                        },
+                        push: {
+                            particles_nb: 10
+                        }
+                    }
+                },
+                retina_detect: true
+            });
         });
 
         // Language toggle event listener
@@ -1336,6 +1445,16 @@
             if (canvas.neuralNetwork) {
                 canvas.neuralNetwork.resize();
                 canvas.neuralNetwork.init();
+            }
+            
+            // Update particles on resize
+            if (window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS) {
+                const pJS = window.pJSDom[0].pJS;
+                const isMobile = window.innerWidth < 768;
+                
+                pJS.particles.number.value = isMobile ? 50 : 100;
+                pJS.particles.move.speed = isMobile ? 1 : 2; // Velocidades reduzidas
+                pJS.fn.particlesRefresh();
             }
         });
     </script>
