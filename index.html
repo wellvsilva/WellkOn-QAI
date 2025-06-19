@@ -60,7 +60,7 @@
         }
 
         /* ===============================
-           BACKGROUND ANIMATIONS & NEURAL NETWORK
+           BACKGROUND ANIMATIONS & NEURAL NETWORK - Desktop Only
         =============================== */
         #particles-js {
             position: fixed;
@@ -114,6 +114,22 @@
                     radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 27%),
                     radial-gradient(circle at 10% 90%, rgba(0, 102, 255, 0.06) 0%, transparent 38%),
                     linear-gradient(135deg, var(--primary) 0%, rgba(26, 16, 36, 0.8) 100%);
+            }
+        }
+
+        /* Mobile-specific styles - Remove effects */
+        @media (max-width: 768px) {
+            #particles-js {
+                display: none;
+            }
+            
+            #neural-network {
+                display: none;
+            }
+            
+            body::before {
+                background: var(--primary);
+                animation: none;
             }
         }
 
@@ -925,6 +941,7 @@
         .footer {
             background: var(--secondary);
             border-top: 1px solid var(--border);
+            position: relative;
         }
 
         .footer-grid {
@@ -1033,7 +1050,7 @@
 
         @media (max-width: 768px) {
             :root {
-                --section-padding: clamp(2rem, 5vw, 4rem);
+                --section-padding: clamp(3rem, 6vw, 4rem);
                 --container-width: calc(100vw - 1rem);
             }
 
@@ -1046,7 +1063,7 @@
             }
 
             .container {
-                padding: 0 0.75rem;
+                padding: 0 1rem;
             }
 
             .mobile-toggle {
@@ -1058,7 +1075,7 @@
             }
 
             .header.scrolled .nav {
-                padding: 0.75rem 0;
+                padding: 0.875rem 0;
             }
 
             .nav-menu {
@@ -1082,7 +1099,7 @@
             }
 
             .nav-right {
-                gap: 0.5rem;
+                gap: 0.75rem;
             }
 
             .language-toggle {
@@ -1130,7 +1147,16 @@
 
             .hero-actions {
                 justify-content: center;
-                gap: 0.75rem;
+                gap: 1rem;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button, .secondary-button {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+                padding: 1rem 1.5rem;
             }
 
             .about-grid {
@@ -1177,10 +1203,57 @@
                 padding: 2rem 1.5rem;
             }
 
+            /* FOOTER MOBILE FIXES */
+            .footer {
+                padding-top: 3rem;
+                padding-bottom: 0;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+                text-align: left;
+            }
+
+            .footer-brand {
                 text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .footer-description {
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+
+            .social-icons {
+                justify-content: center;
+                margin-top: 1rem;
+                margin-bottom: 0;
+            }
+
+            .footer-title {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 0.5rem;
+            }
+
+            .footer-links {
+                margin-bottom: 1.5rem;
+            }
+
+            .footer-links li {
+                margin-bottom: 0.75rem;
+            }
+
+            .footer-links a {
+                font-size: 0.95rem;
+            }
+
+            .footer-bottom {
+                padding: 1.5rem 0;
+                margin-top: 2rem;
+                font-size: 0.85rem;
             }
 
             .quantum-sphere {
@@ -1236,19 +1309,27 @@
                 font-size: 1rem;
             }
 
-            .footer-description {
-                text-align: center;
+            /* Remove hover effects on mobile for better performance */
+            .feature-card:hover,
+            .differential-item:hover,
+            .about-image:hover .robot-atom,
+            .about-image:hover .robot-head {
+                transform: none;
             }
 
-            .footer-bottom {
-                padding: 1.5rem 0;
-                margin-top: 2rem;
+            .feature-card::before,
+            .differential-item::before {
+                display: none;
             }
         }
 
         @media (max-width: 480px) {
             :root {
-                --section-padding: clamp(1.5rem, 4vw, 3rem);
+                --section-padding: clamp(2rem, 5vw, 3rem);
+            }
+
+            .container {
+                padding: 0 0.75rem;
             }
 
             .hero-title {
@@ -1277,16 +1358,15 @@
             }
 
             .hero-actions {
-                flex-direction: column;
-                align-items: center;
+                gap: 0.75rem;
             }
 
-            .cta-button, .secondary-button {
-                padding: 0.75rem 1.25rem;
-                font-size: 0.85rem;
-                width: 100%;
-                max-width: 200px;
-                text-align: center;
+            .footer-grid {
+                gap: 1.5rem;
+            }
+
+            .footer-links a {
+                font-size: 0.9rem;
             }
         }
 
@@ -1306,6 +1386,50 @@
 
         .animate-on-scroll {
             animation: slideInUp 0.8s ease-out;
+        }
+
+        /* Remove animations on mobile for better performance */
+        @media (max-width: 768px) {
+            .text-gradient {
+                animation: none;
+                background: var(--accent);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .quantum-sphere::before,
+            .quantum-sphere::after {
+                animation: none;
+            }
+
+            .robot-atom .atom-orbit {
+                animation: none !important;
+            }
+
+            .robot-atom .electron {
+                animation: none !important;
+            }
+
+            .atom-core {
+                animation: none;
+            }
+
+            .quantum-sphere {
+                animation: none;
+            }
+
+            .robot-head {
+                animation: none;
+            }
+
+            .atom-orbit {
+                animation: none !important;
+            }
+
+            .electron {
+                animation: none !important;
+            }
         }
     </style>
 </head>
@@ -1374,7 +1498,7 @@
                     
                     <div class="hero-actions">
                         <a href="#research" class="cta-button" data-translate="hero-cta1">Our Research</a>
-                        <a href="#contact" class="secondary-button" data-translate="hero-cta2">Contact Us</a>
+                        <a href="mailto:wellington@wellkonai.com" class="secondary-button" data-translate="hero-cta2">Contact Us</a>
                     </div>
                 </div>
                 
@@ -1508,7 +1632,7 @@
                 </p>
                 <div class="hero-actions" style="justify-content: center;">
                     <a href="mailto:wellington@wellkonai.com" class="cta-button" data-translate="cta-button1">Schedule Meeting</a>
-                    <a href="tel:+5586998322099" class="secondary-button" data-translate="cta-button2">Request Information</a>
+                    <a href="mailto:wellington@wellkonai.com" class="secondary-button" data-translate="cta-button2">Request Information</a>
                 </div>
             </div>
         </div>
@@ -1583,7 +1707,7 @@
 
     <script>
         // ===============================
-        // NEURAL NETWORK CLASS
+        // NEURAL NETWORK CLASS - Desktop Only
         // ===============================
         class NeuralNetwork {
             constructor(canvas) {
@@ -1595,10 +1719,15 @@
                 this.animationId = null;
                 this.isRunning = false;
                 
+                // Don't initialize on mobile
+                if (window.innerWidth <= 768) {
+                    return;
+                }
+                
                 this.config = {
-                    nodeCount: window.innerWidth < 768 ? 15 : 25,
-                    maxDistance: window.innerWidth < 768 ? 200 : 300,
-                    nodeSize: window.innerWidth < 768 ? 1 : 1.5,
+                    nodeCount: 25,
+                    maxDistance: 300,
+                    nodeSize: 1.5,
                     pulseSpeed: 0.3,
                     pulseFrequency: 0.001,
                     nodeSpeed: 0.1,
@@ -1615,6 +1744,8 @@
             }
             
             resize() {
+                if (window.innerWidth <= 768) return;
+                
                 const dpr = window.devicePixelRatio || 1;
                 this.canvas.width = window.innerWidth * dpr;
                 this.canvas.height = window.innerHeight * dpr;
@@ -1624,6 +1755,8 @@
             }
             
             init() {
+                if (window.innerWidth <= 768) return;
+                
                 this.nodes = [];
                 this.connections = [];
                 this.pulses = [];
@@ -1643,6 +1776,8 @@
             }
             
             updateConnections() {
+                if (window.innerWidth <= 768) return;
+                
                 this.connections = [];
                 
                 for (let i = 0; i < this.nodes.length; i++) {
@@ -1665,6 +1800,8 @@
             }
             
             update() {
+                if (window.innerWidth <= 768) return;
+                
                 this.nodes.forEach(node => {
                     node.x += node.vx;
                     node.y += node.vy;
@@ -1700,6 +1837,8 @@
             }
             
             draw() {
+                if (window.innerWidth <= 768) return;
+                
                 this.ctx.fillStyle = 'rgba(10, 10, 11, 0.02)';
                 this.ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
                 
@@ -1742,7 +1881,7 @@
             }
             
             animate() {
-                if (!this.isRunning) return;
+                if (!this.isRunning || window.innerWidth <= 768) return;
                 
                 this.update();
                 this.draw();
@@ -1751,7 +1890,7 @@
             }
             
             start() {
-                if (this.isRunning) return;
+                if (this.isRunning || window.innerWidth <= 768) return;
                 this.isRunning = true;
                 this.animate();
             }
@@ -1891,23 +2030,23 @@
         }
 
         // ===============================
-        // PARTICLES CONFIGURATION
+        // PARTICLES CONFIGURATION - Desktop Only
         // ===============================
         function initParticles() {
-            if (typeof particlesJS === 'undefined') {
-                setTimeout(initParticles, 1000);
+            if (typeof particlesJS === 'undefined' || window.innerWidth <= 768) {
+                setTimeout(() => {
+                    if (window.innerWidth > 768) initParticles();
+                }, 1000);
                 return;
             }
-
-            const isMobile = window.innerWidth < 768;
             
             particlesJS('particles-js', {
                 particles: {
                     number: { 
-                        value: isMobile ? 8 : 15,
+                        value: 15,
                         density: {
                             enable: true,
-                            value_area: isMobile ? 1500 : 1200
+                            value_area: 1200
                         }
                     },
                     color: { value: ["#0066FF", "#00D4FF"] },
@@ -1919,35 +2058,35 @@
                         }
                     },
                     opacity: { 
-                        value: isMobile ? 0.1 : 0.15,
+                        value: 0.15,
                         random: true,
                         anim: {
                             enable: true,
-                            speed: isMobile ? 0.1 : 0.2,
+                            speed: 0.2,
                             opacity_min: 0.02,
                             sync: false
                         }
                     },
                     size: { 
-                        value: isMobile ? 1 : 1.5,
+                        value: 1.5,
                         random: true,
                         anim: {
                             enable: true,
-                            speed: isMobile ? 0.2 : 0.4,
+                            speed: 0.4,
                             size_min: 0.2,
                             sync: false
                         }
                     },
                     line_linked: {
                         enable: true,
-                        distance: isMobile ? 120 : 180,
+                        distance: 180,
                         color: "#0066FF",
-                        opacity: isMobile ? 0.05 : 0.08,
+                        opacity: 0.08,
                         width: 0.5
                     },
                     move: { 
                         enable: true,
-                        speed: isMobile ? 0.2 : 0.3,
+                        speed: 0.3,
                         direction: "none",
                         random: true,
                         straight: false,
@@ -2056,11 +2195,11 @@
         });
 
         // ===============================
-        // QUANTUM PARTICLES ANIMATION
+        // QUANTUM PARTICLES ANIMATION - Desktop Only
         // ===============================
         function createParticles() {
             const container = document.getElementById('particles');
-            if (!container) return;
+            if (!container || window.innerWidth <= 768) return;
             
             const particleCount = 8;
 
@@ -2116,33 +2255,42 @@
         // INITIALIZATION
         // ===============================
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Neural Network
+            // Initialize Neural Network only on desktop
             const canvas = document.getElementById('neural-network');
-            if (canvas) {
+            if (canvas && window.innerWidth > 768) {
                 window.neuralNetwork = new NeuralNetwork(canvas);
             }
             
-            // Initialize particles with delay
-            setTimeout(initParticles, 300);
+            // Initialize particles with delay only on desktop
+            if (window.innerWidth > 768) {
+                setTimeout(initParticles, 300);
+                // Initialize particles in quantum sphere
+                createParticles();
+            }
             
             // Initialize language system
             updateLanguageDisplay();
             translatePage();
             
-            // Initialize particles in quantum sphere
-            createParticles();
-            
             // Add loaded class for final animations
             document.body.classList.add('loaded');
             
-            console.log('WellkOn QAI - Combined Premium Design Loaded');
+            console.log('WellkOn QAI - Mobile Optimized Version Loaded');
         });
 
         // Resize handling
         window.addEventListener('resize', () => {
-            if (window.neuralNetwork) {
-                window.neuralNetwork.resize();
-                window.neuralNetwork.init();
+            // Reinitialize effects only on desktop
+            if (window.innerWidth > 768) {
+                if (window.neuralNetwork) {
+                    window.neuralNetwork.resize();
+                    window.neuralNetwork.init();
+                }
+            } else {
+                // Stop effects on mobile
+                if (window.neuralNetwork) {
+                    window.neuralNetwork.stop();
+                }
             }
 
             // Close mobile menu on resize to desktop
@@ -2154,7 +2302,7 @@
         // Handle orientation change
         window.addEventListener('orientationchange', () => {
             setTimeout(() => {
-                if (window.neuralNetwork) {
+                if (window.innerWidth > 768 && window.neuralNetwork) {
                     window.neuralNetwork.resize();
                     window.neuralNetwork.init();
                 }
