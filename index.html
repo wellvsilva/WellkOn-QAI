@@ -44,7 +44,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 5rem;
+            scroll-padding-top: 4rem;
         }
 
         body {
@@ -168,7 +168,7 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
+            z-index: 10000;
             background: rgba(10, 10, 11, 0.8);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
@@ -389,7 +389,7 @@
             right: 0;
             bottom: 0;
             background: rgba(0, 0, 0, 0.8);
-            z-index: 998;
+            z-index: 9998;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -405,7 +405,7 @@
             color: var(--text-primary);
             font-size: 1.25rem;
             cursor: pointer;
-            z-index: 10000;
+            z-index: 10001;
             position: relative;
         }
 
@@ -916,7 +916,7 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            text-align: justify;
+            text-align: center;
         }
 
         /* ===============================
@@ -940,7 +940,7 @@
             color: var(--text-secondary);
             margin-bottom: 2rem;
             line-height: 1.6;
-            text-align: justify;
+            text-align: left;
         }
 
         .footer-brand .logo {
@@ -1012,6 +1012,25 @@
         /* ===============================
            RESPONSIVE DESIGN
         =============================== */
+        
+        /* Tablets */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
             :root {
                 --section-padding: clamp(2rem, 5vw, 4rem);
@@ -1020,6 +1039,10 @@
 
             body {
                 padding-top: 0;
+            }
+
+            html {
+                scroll-padding-top: 5rem;
             }
 
             .container {
@@ -1070,7 +1093,7 @@
 
             .hero {
                 min-height: 100vh;
-                padding-top: 4rem;
+                padding-top: 5rem;
                 padding-bottom: 2rem;
             }
 
@@ -1133,6 +1156,7 @@
             .section-description {
                 font-size: 1rem;
                 margin-bottom: 1.5rem;
+                text-align: left;
             }
 
             .features-grid {
@@ -1350,7 +1374,7 @@
                     
                     <div class="hero-actions">
                         <a href="#research" class="cta-button" data-translate="hero-cta1">Our Research</a>
-                        <a href="#about" class="secondary-button" data-translate="hero-cta2">Contact Us</a>
+                        <a href="#contact" class="secondary-button" data-translate="hero-cta2">Contact Us</a>
                     </div>
                 </div>
                 
@@ -1780,7 +1804,7 @@
                 'cta-description': 'Contact us to learn how WellkOn QAI technologies can boost your business or to explore collaboration possibilities in innovative projects.',
                 'cta-button1': 'Schedule Meeting',
                 'cta-button2': 'Request Information',
-                'footer-description': 'Pioneering the frontiers of science and technology through research in Quantum Computing, Artificial Intelligence and Extended Reality.',
+                'footer-description': 'Exploring the frontiers of science and technology through research in Quantum Computing, Artificial Intelligence and Extended Reality.',
                 'footer-nav-title': 'Navigation',
                 'footer-research-title': 'Research',
                 'footer-quantum': 'Quantum Computing',
@@ -1827,7 +1851,7 @@
                 'cta-description': 'Entre em contato conosco para saber como as tecnologias da WellkOn QAI podem impulsionar seu negócio ou para explorar possibilidades de colaboração em projetos inovadores.',
                 'cta-button1': 'Agendar Reunião',
                 'cta-button2': 'Solicitar Informações',
-                'footer-description': 'Pioneirismo nas fronteiras da ciência e tecnologia através de pesquisa em Computação Quântica, Inteligência Artificial e Realidade Estendida.',
+                'footer-description': 'Explorando as fronteiras da ciência e tecnologia através de pesquisa em Computação Quântica, Inteligência Artificial e Realidade Estendida.',
                 'footer-nav-title': 'Navegação',
                 'footer-research-title': 'Pesquisa',
                 'footer-quantum': 'Computação Quântica',
