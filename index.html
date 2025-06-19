@@ -623,10 +623,10 @@
                 radial-gradient(circle at 30% 30%, rgba(0, 102, 255, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 70% 70%, rgba(0, 212, 255, 0.2) 0%, transparent 50%);
             position: relative;
-            animation: float 6s ease-in-out infinite;
+            animation: sphereFloat 6s ease-in-out infinite;
         }
 
-        @keyframes float {
+        @keyframes sphereFloat {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(180deg); }
         }
@@ -1221,10 +1221,15 @@
                 max-width: 100%;
             }
 
-            /* Hide visual elements on mobile */
+            /* Hide visual elements on mobile - PRIORITY */
             .hero-visual,
-            .about-image {
+            .about-image,
+            .quantum-sphere,
+            .robot-avatar,
+            .robot-atom,
+            .robot-head {
                 display: none !important;
+                visibility: hidden !important;
             }
             
             .hero-grid,
@@ -1334,19 +1339,21 @@
                 text-align: left;
             }
 
-            /* FOOTER MOBILE - Simplified Stack */
+            /* FOOTER MOBILE - Better organized */
             .footer {
                 padding-top: 2rem;
                 padding-bottom: 0;
             }
 
             .footer-grid {
-                display: block;
+                display: flex;
+                flex-direction: column;
                 text-align: center;
+                gap: 2rem;
             }
 
             .footer-brand {
-                margin-bottom: 2rem;
+                margin-bottom: 1.5rem;
                 padding-bottom: 1.5rem;
                 border-bottom: 1px solid var(--border);
             }
@@ -1355,6 +1362,7 @@
                 text-align: center;
                 margin-bottom: 1rem;
                 font-size: 0.9rem;
+                line-height: 1.5;
             }
 
             .social-icons {
@@ -1364,8 +1372,8 @@
             }
 
             .footer-grid > div:not(:first-child) {
-                margin: 2rem 0;
-                padding: 1rem 0;
+                margin: 0;
+                padding: 1.5rem 0;
                 border-bottom: 1px solid var(--border-light);
             }
 
@@ -1376,20 +1384,24 @@
 
             .footer-title {
                 font-size: 1rem;
-                margin-bottom: 1rem;
+                margin-bottom: 1.25rem;
                 color: var(--accent);
+                font-weight: 600;
             }
 
             .footer-links {
                 display: flex;
                 flex-direction: column;
-                gap: 0.75rem;
+                gap: 1rem;
                 align-items: center;
+                margin-bottom: 0.5rem;
             }
 
             .footer-links a {
                 font-size: 0.9rem;
-                padding: 0.5rem 0;
+                padding: 0.25rem 0;
+                display: inline-block;
+                line-height: 1.4;
             }
 
             .footer-bottom {
@@ -1397,6 +1409,7 @@
                 margin-top: 1rem;
                 font-size: 0.8rem;
                 border-top: 1px solid var(--border);
+                text-align: center;
             }
 
             .cta-section {
@@ -1981,7 +1994,7 @@
                 'cta-description': 'Contact us to learn how WellkOn QAI technologies can boost your business or to explore collaboration possibilities in innovative projects.',
                 'cta-button1': 'Schedule Meeting',
                 'cta-button2': 'Request Information',
-                'footer-description': 'Exploring the frontiers of science and technology through research in Quantum Computing, Artificial Intelligence and Extended Reality.',
+                'footer-description': 'Pioneering the frontiers of science and technology through research in Quantum Computing, Artificial Intelligence and Extended Reality.',
                 'footer-nav-title': 'Navigation',
                 'footer-research-title': 'Research',
                 'footer-quantum': 'Quantum Computing',
