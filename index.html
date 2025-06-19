@@ -56,7 +56,6 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             position: relative;
-            padding-top: 0;
         }
 
         /* ===============================
@@ -117,19 +116,106 @@
             }
         }
 
-        /* Mobile-specific styles - Remove effects */
+        /* Mobile: Remove ALL animations and effects */
         @media (max-width: 768px) {
+            * {
+                animation: none !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            
             #particles-js {
-                display: none;
+                display: none !important;
             }
             
             #neural-network {
-                display: none;
+                display: none !important;
             }
             
             body::before {
-                background: var(--primary);
-                animation: none;
+                background: var(--primary) !important;
+                animation: none !important;
+            }
+            
+            .text-gradient {
+                background: var(--accent) !important;
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: none !important;
+            }
+            
+            .fade-in {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            
+            .quantum-sphere {
+                animation: none !important;
+                transform: none !important;
+                background: 
+                    radial-gradient(circle at 30% 30%, rgba(0, 102, 255, 0.2) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 70%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            }
+            
+            .quantum-sphere::before,
+            .quantum-sphere::after {
+                animation: none !important;
+                transform: none !important;
+            }
+            
+            .quantum-particles {
+                display: none !important;
+            }
+            
+            .about-image::before {
+                animation: none !important;
+                opacity: 0.05 !important;
+            }
+            
+            .robot-atom,
+            .robot-atom * {
+                animation: none !important;
+                transform: none !important;
+            }
+            
+            .robot-head {
+                animation: none !important;
+                transform: none !important;
+            }
+            
+            .atom-core,
+            .atom-orbit,
+            .electron {
+                animation: none !important;
+                transform: none !important;
+            }
+            
+            .logo .atom-core,
+            .logo .atom-orbit,
+            .logo .electron {
+                animation: none !important;
+                transform: none !important;
+            }
+            
+            .electron {
+                display: none !important;
+            }
+            
+            .feature-card::before,
+            .differential-item::before {
+                display: none !important;
+            }
+            
+            .feature-card:hover,
+            .differential-item:hover,
+            .about-image:hover .robot-atom,
+            .about-image:hover .robot-head,
+            .cta-button:hover,
+            .secondary-button:hover {
+                transform: none !important;
+                transition: none !important;
             }
         }
 
@@ -175,6 +261,8 @@
             display: grid;
             gap: var(--grid-gap);
         }
+
+
 
         /* ===============================
            HEADER & NAVIGATION
@@ -313,6 +401,8 @@
             from { transform: rotate(0deg) translateX(40px) rotate(0deg); }
             to { transform: rotate(-360deg) translateX(40px) rotate(360deg); }
         }
+
+
 
         .nav-menu {
             display: flex;
@@ -580,6 +670,8 @@
             opacity: 0.7;
         }
 
+
+
         /* ===============================
            ABOUT SECTION
         =============================== */
@@ -723,11 +815,6 @@
             animation: float 4s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
         .about-image:hover .robot-atom {
             transform: scale(1.1);
             transition: transform 0.3s ease;
@@ -741,6 +828,8 @@
         .about-image:hover .atom-orbit {
             animation-duration: 2s !important;
         }
+
+
 
         .section-header {
             margin-bottom: 3rem;
@@ -836,6 +925,8 @@
             text-align: justify;
         }
 
+
+
         /* ===============================
            DIFFERENTIALS SECTION
         =============================== */
@@ -892,6 +983,8 @@
             line-height: 1.6;
             text-align: justify;
         }
+
+
 
         /* ===============================
            CTA SECTION
@@ -1050,7 +1143,7 @@
 
         @media (max-width: 768px) {
             :root {
-                --section-padding: clamp(3rem, 6vw, 4rem);
+                --section-padding: clamp(2rem, 5vw, 3rem);
                 --container-width: calc(100vw - 1rem);
             }
 
@@ -1059,7 +1152,7 @@
             }
 
             html {
-                scroll-padding-top: 5rem;
+                scroll-padding-top: 4rem;
             }
 
             .container {
@@ -1109,9 +1202,12 @@
             }
 
             .hero {
-                min-height: 100vh;
-                padding-top: 5rem;
+                min-height: 90vh;
+                padding-top: 4rem;
                 padding-bottom: 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .hero-grid {
@@ -1125,24 +1221,39 @@
                 max-width: 100%;
             }
 
-            .hero-visual {
-                order: 2;
-                margin-top: 1rem;
+            /* Hide visual elements on mobile */
+            .hero-visual,
+            .about-image {
+                display: none !important;
             }
-
-            .hero-subtitle {
+            
+            .hero-grid,
+            .about-grid {
+                grid-template-columns: 1fr !important;
                 text-align: center;
-                font-size: 1.1rem;
-                margin-bottom: 1.5rem;
+                gap: 1rem;
             }
+            
+            .hero-content,
+            .about-content {
+                max-width: 100%;
+                order: 1;
+                padding: 0 1rem;
+            }
+            
+
+
+
 
             .hero-title {
-                font-size: clamp(2rem, 8vw, 3rem);
+                font-size: clamp(1.75rem, 8vw, 2.5rem);
                 margin-bottom: 1rem;
+                line-height: 1.2;
             }
 
             .hero-badge {
                 margin-bottom: 1.5rem;
+                font-size: 0.8rem;
             }
 
             .hero-actions {
@@ -1150,6 +1261,7 @@
                 gap: 1rem;
                 flex-direction: column;
                 align-items: center;
+                margin-top: 2rem;
             }
 
             .cta-button, .secondary-button {
@@ -1157,32 +1269,33 @@
                 max-width: 280px;
                 text-align: center;
                 padding: 1rem 1.5rem;
+                font-size: 0.95rem;
             }
 
+            .about {
+                padding: 3rem 0;
+                text-align: center;
+            }
+            
             .about-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
-            .about-image {
-                order: 1;
-                max-width: 300px;
-                margin: 0 auto;
-            }
-
             .section-header {
                 margin-bottom: 2rem;
+                text-align: center;
             }
 
             .section-title {
-                font-size: clamp(1.5rem, 6vw, 2.5rem);
+                font-size: clamp(1.5rem, 6vw, 2rem);
                 margin-bottom: 0.75rem;
             }
 
             .section-description {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 margin-bottom: 1.5rem;
-                text-align: left;
+                text-align: center;
             }
 
             .features-grid {
@@ -1194,35 +1307,54 @@
                 padding: 1.5rem;
             }
 
+            .feature-title {
+                font-size: 1.1rem;
+            }
+
+            .feature-description {
+                font-size: 0.9rem;
+                text-align: left;
+            }
+
             .differential-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
             .differential-item {
-                padding: 2rem 1.5rem;
+                padding: 1.5rem;
             }
 
-            /* FOOTER MOBILE FIXES */
+            .differential-title {
+                font-size: 1.25rem;
+            }
+
+            .differential-description {
+                font-size: 0.9rem;
+                text-align: left;
+            }
+
+            /* FOOTER MOBILE - Simplified Stack */
             .footer {
-                padding-top: 3rem;
+                padding-top: 2rem;
                 padding-bottom: 0;
             }
 
             .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: left;
+                display: block;
+                text-align: center;
             }
 
             .footer-brand {
-                text-align: center;
                 margin-bottom: 2rem;
+                padding-bottom: 1.5rem;
+                border-bottom: 1px solid var(--border);
             }
 
             .footer-description {
                 text-align: center;
-                margin-bottom: 1.5rem;
+                margin-bottom: 1rem;
+                font-size: 0.9rem;
             }
 
             .social-icons {
@@ -1231,101 +1363,60 @@
                 margin-bottom: 0;
             }
 
+            .footer-grid > div:not(:first-child) {
+                margin: 2rem 0;
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--border-light);
+            }
+
+            .footer-grid > div:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+
             .footer-title {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 margin-bottom: 1rem;
-                border-bottom: 1px solid var(--border);
-                padding-bottom: 0.5rem;
+                color: var(--accent);
             }
 
             .footer-links {
-                margin-bottom: 1.5rem;
-            }
-
-            .footer-links li {
-                margin-bottom: 0.75rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: center;
             }
 
             .footer-links a {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
+                padding: 0.5rem 0;
             }
 
             .footer-bottom {
                 padding: 1.5rem 0;
-                margin-top: 2rem;
-                font-size: 0.85rem;
-            }
-
-            .quantum-sphere {
-                width: 280px;
-                height: 280px;
-            }
-
-            .robot-atom {
-                width: 60px !important;
-                height: 60px !important;
-            }
-
-            .robot-atom .atom-orbit:nth-child(1) {
-                width: 45px !important;
-                height: 45px !important;
-            }
-
-            .robot-atom .atom-orbit:nth-child(2) {
-                width: 60px !important;
-                height: 60px !important;
-            }
-
-            .robot-atom .atom-orbit:nth-child(3) {
-                width: 36px !important;
-                height: 36px !important;
-            }
-
-            .robot-head {
-                font-size: 3.5rem !important;
-            }
-
-            @keyframes orbit1 {
-                from { transform: rotate(0deg) translateX(22px) rotate(0deg); }
-                to { transform: rotate(360deg) translateX(22px) rotate(-360deg); }
-            }
-
-            @keyframes orbit2 {
-                from { transform: rotate(0deg) translateX(30px) rotate(0deg); }
-                to { transform: rotate(-360deg) translateX(30px) rotate(360deg); }
-            }
-
-            @keyframes orbit3 {
-                from { transform: rotate(0deg) translateX(18px) rotate(0deg); }
-                to { transform: rotate(360deg) translateX(18px) rotate(-360deg); }
+                margin-top: 1rem;
+                font-size: 0.8rem;
+                border-top: 1px solid var(--border);
             }
 
             .cta-section {
-                padding: 2.5rem 1.5rem;
+                padding: 2rem 1rem;
+                margin: 2rem 0;
+            }
+
+            .cta-title {
+                font-size: clamp(1.5rem, 6vw, 2rem);
             }
 
             .cta-description {
                 text-align: center;
-                font-size: 1rem;
-            }
-
-            /* Remove hover effects on mobile for better performance */
-            .feature-card:hover,
-            .differential-item:hover,
-            .about-image:hover .robot-atom,
-            .about-image:hover .robot-head {
-                transform: none;
-            }
-
-            .feature-card::before,
-            .differential-item::before {
-                display: none;
+                font-size: 0.95rem;
             }
         }
 
         @media (max-width: 480px) {
             :root {
-                --section-padding: clamp(2rem, 5vw, 3rem);
+                --section-padding: clamp(1.5rem, 4vw, 2.5rem);
             }
 
             .container {
@@ -1333,16 +1424,11 @@
             }
 
             .hero-title {
-                font-size: clamp(1.75rem, 7vw, 2.5rem);
+                font-size: clamp(1.5rem, 7vw, 2rem);
             }
 
             .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .quantum-sphere {
-                width: 250px;
-                height: 250px;
+                font-size: 0.9rem;
             }
 
             .feature-card {
@@ -1350,23 +1436,19 @@
             }
 
             .differential-item {
-                padding: 1.5rem;
+                padding: 1.25rem;
             }
 
             .cta-section {
-                padding: 2rem 1rem;
+                padding: 1.5rem 0.75rem;
             }
 
-            .hero-actions {
-                gap: 0.75rem;
-            }
-
-            .footer-grid {
-                gap: 1.5rem;
+            .footer-description {
+                font-size: 0.85rem;
             }
 
             .footer-links a {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
         }
 
@@ -1386,50 +1468,6 @@
 
         .animate-on-scroll {
             animation: slideInUp 0.8s ease-out;
-        }
-
-        /* Remove animations on mobile for better performance */
-        @media (max-width: 768px) {
-            .text-gradient {
-                animation: none;
-                background: var(--accent);
-                -webkit-background-clip: text;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-
-            .quantum-sphere::before,
-            .quantum-sphere::after {
-                animation: none;
-            }
-
-            .robot-atom .atom-orbit {
-                animation: none !important;
-            }
-
-            .robot-atom .electron {
-                animation: none !important;
-            }
-
-            .atom-core {
-                animation: none;
-            }
-
-            .quantum-sphere {
-                animation: none;
-            }
-
-            .robot-head {
-                animation: none;
-            }
-
-            .atom-orbit {
-                animation: none !important;
-            }
-
-            .electron {
-                animation: none !important;
-            }
         }
     </style>
 </head>
@@ -1534,7 +1572,7 @@
                     </div>
                 </div>
                 
-                <div class="fade-in">
+                <div class="about-content fade-in">
                     <div class="section-header">
                         <div class="section-label" data-translate="about-label">About WellkOn QAI</div>
                         <h2 class="section-title" data-translate="about-title">Quantum Technology and AI</h2>
@@ -2034,9 +2072,6 @@
         // ===============================
         function initParticles() {
             if (typeof particlesJS === 'undefined' || window.innerWidth <= 768) {
-                setTimeout(() => {
-                    if (window.innerWidth > 768) initParticles();
-                }, 1000);
                 return;
             }
             
@@ -2113,7 +2148,7 @@
         }
 
         // ===============================
-        // INTERSECTION OBSERVER FOR ANIMATIONS
+        // INTERSECTION OBSERVER FOR ANIMATIONS - Desktop Only
         // ===============================
         const observerOptions = {
             threshold: 0.1,
@@ -2121,6 +2156,8 @@
         };
 
         const observer = new IntersectionObserver((entries) => {
+            if (window.innerWidth <= 768) return;
+            
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -2128,9 +2165,11 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
 
         // ===============================
         // HEADER SCROLL EFFECT
@@ -2259,10 +2298,7 @@
             const canvas = document.getElementById('neural-network');
             if (canvas && window.innerWidth > 768) {
                 window.neuralNetwork = new NeuralNetwork(canvas);
-            }
-            
-            // Initialize particles with delay only on desktop
-            if (window.innerWidth > 768) {
+                // Initialize particles with delay only on desktop
                 setTimeout(initParticles, 300);
                 // Initialize particles in quantum sphere
                 createParticles();
@@ -2275,7 +2311,7 @@
             // Add loaded class for final animations
             document.body.classList.add('loaded');
             
-            console.log('WellkOn QAI - Mobile Optimized Version Loaded');
+            console.log('WellkOn QAI - Static Mobile Version Loaded');
         });
 
         // Resize handling
