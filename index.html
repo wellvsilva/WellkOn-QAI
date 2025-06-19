@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WellkOn QAI: Quantum Artificial Intelligence</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -490,9 +486,9 @@
             border-color: transparent;
         }
 
-        /* Mobile Navigation Overlay - Always visible on mobile */
+        /* Mobile Navigation Overlay */
         .nav-overlay {
-            display: block;
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -501,17 +497,15 @@
             background: rgba(0, 0, 0, 0.8);
             z-index: 9998;
             opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease;
         }
 
         .nav-overlay.active {
             opacity: 1;
-            visibility: visible;
         }
 
         .mobile-toggle {
-            display: block;
+            display: none;
             background: none;
             border: none;
             color: var(--text-primary);
@@ -521,7 +515,11 @@
             position: relative;
         }
 
-
+        @media (max-width: 768px) {
+            .nav-overlay {
+                display: block;
+            }
+        }
 
         /* ===============================
            HERO SECTION
@@ -1719,7 +1717,7 @@
                         </a>
                     </div>
                     <p class="footer-description" data-translate="footer-description">
-                        Pioneering the frontiers of science and technology through research in Quantum Computing, Artificial Intelligence and Extended Reality.
+                        Exploring the frontiers of science and technology through research in Quantum Computing, Artificial Intelligence and Extended Reality.
                     </p>
                     <div class="social-icons">
                         <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -1769,7 +1767,7 @@
 
     <script>
         // ===============================
-        // NEURAL NETWORK CLASS - Desktop Only (48em+)
+        // NEURAL NETWORK CLASS - Desktop Only
         // ===============================
         class NeuralNetwork {
             constructor(canvas) {
@@ -1781,8 +1779,8 @@
                 this.animationId = null;
                 this.isRunning = false;
                 
-                // Don't initialize on mobile (less than 48em)
-                if (window.innerWidth < 768) {
+                // Don't initialize on mobile
+                if (window.innerWidth <= 768) {
                     return;
                 }
                 
@@ -1806,7 +1804,7 @@
             }
             
             resize() {
-                if (window.innerWidth < 768) return;
+                if (window.innerWidth <= 768) return;
                 
                 const dpr = window.devicePixelRatio || 1;
                 this.canvas.width = window.innerWidth * dpr;
@@ -1817,7 +1815,7 @@
             }
             
             init() {
-                if (window.innerWidth < 768) return;
+                if (window.innerWidth <= 768) return;
                 
                 this.nodes = [];
                 this.connections = [];
@@ -1838,7 +1836,7 @@
             }
             
             updateConnections() {
-                if (window.innerWidth < 768) return;
+                if (window.innerWidth <= 768) return;
                 
                 this.connections = [];
                 
@@ -1862,7 +1860,7 @@
             }
             
             update() {
-                if (window.innerWidth < 768) return;
+                if (window.innerWidth <= 768) return;
                 
                 this.nodes.forEach(node => {
                     node.x += node.vx;
@@ -1899,7 +1897,7 @@
             }
             
             draw() {
-                if (window.innerWidth < 768) return;
+                if (window.innerWidth <= 768) return;
                 
                 this.ctx.fillStyle = 'rgba(10, 10, 11, 0.02)';
                 this.ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
@@ -1943,7 +1941,7 @@
             }
             
             animate() {
-                if (!this.isRunning || window.innerWidth < 768) return;
+                if (!this.isRunning || window.innerWidth <= 768) return;
                 
                 this.update();
                 this.draw();
@@ -1952,7 +1950,7 @@
             }
             
             start() {
-                if (this.isRunning || window.innerWidth < 768) return;
+                if (this.isRunning || window.innerWidth <= 768) return;
                 this.isRunning = true;
                 this.animate();
             }
@@ -2005,7 +2003,7 @@
                 'cta-description': 'Contact us to learn how WellkOn QAI technologies can boost your business or to explore collaboration possibilities in innovative projects.',
                 'cta-button1': 'Schedule Meeting',
                 'cta-button2': 'Request Information',
-                'footer-description': 'Pioneering the frontiers of science and technology through research in Quantum Computing, Artificial Intelligence and Extended Reality.',
+                'footer-description': 'Exploring the frontiers of science and technology through research in Quantum Computing, Artificial Intelligence and Extended Reality.',
                 'footer-nav-title': 'Navigation',
                 'footer-research-title': 'Research',
                 'footer-quantum': 'Quantum Computing',
@@ -2092,10 +2090,10 @@
         }
 
         // ===============================
-        // PARTICLES CONFIGURATION - Desktop Only (48em+)
+        // PARTICLES CONFIGURATION - Desktop Only
         // ===============================
         function initParticles() {
-            if (typeof particlesJS === 'undefined' || window.innerWidth < 768) {
+            if (typeof particlesJS === 'undefined' || window.innerWidth <= 768) {
                 return;
             }
             
@@ -2180,7 +2178,7 @@
         };
 
         const observer = new IntersectionObserver((entries) => {
-            if (window.innerWidth < 768) return;
+            if (window.innerWidth <= 768) return;
             
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -2189,7 +2187,7 @@
             });
         }, observerOptions);
 
-        if (window.innerWidth >= 768) {
+        if (window.innerWidth > 768) {
             document.querySelectorAll('.fade-in').forEach(el => {
                 observer.observe(el);
             });
@@ -2258,11 +2256,11 @@
         });
 
         // ===============================
-        // QUANTUM PARTICLES ANIMATION - Desktop Only (48em+)
+        // QUANTUM PARTICLES ANIMATION - Desktop Only
         // ===============================
         function createParticles() {
             const container = document.getElementById('particles');
-            if (!container || window.innerWidth < 768) return;
+            if (!container || window.innerWidth <= 768) return;
             
             const particleCount = 8;
 
@@ -2318,9 +2316,9 @@
         // INITIALIZATION
         // ===============================
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Neural Network only on desktop (768px+)
+            // Initialize Neural Network only on desktop
             const canvas = document.getElementById('neural-network');
-            if (canvas && window.innerWidth >= 768) {
+            if (canvas && window.innerWidth > 768) {
                 window.neuralNetwork = new NeuralNetwork(canvas);
                 // Initialize particles with delay only on desktop
                 setTimeout(initParticles, 300);
@@ -2335,13 +2333,13 @@
             // Add loaded class for final animations
             document.body.classList.add('loaded');
             
-            console.log('WellkOn QAI - Mobile-First Responsive Version Loaded');
+            console.log('WellkOn QAI - Static Mobile Version Loaded');
         });
 
         // Resize handling
         window.addEventListener('resize', () => {
-            // Reinitialize effects only on desktop (768px+)
-            if (window.innerWidth >= 768) {
+            // Reinitialize effects only on desktop
+            if (window.innerWidth > 768) {
                 if (window.neuralNetwork) {
                     window.neuralNetwork.resize();
                     window.neuralNetwork.init();
@@ -2354,7 +2352,7 @@
             }
 
             // Close mobile menu on resize to desktop
-            if (window.innerWidth >= 768 && window.closeMobileMenu) {
+            if (window.innerWidth > 768 && window.closeMobileMenu) {
                 window.closeMobileMenu();
             }
         });
@@ -2362,7 +2360,7 @@
         // Handle orientation change
         window.addEventListener('orientationchange', () => {
             setTimeout(() => {
-                if (window.innerWidth >= 768 && window.neuralNetwork) {
+                if (window.innerWidth > 768 && window.neuralNetwork) {
                     window.neuralNetwork.resize();
                     window.neuralNetwork.init();
                 }
