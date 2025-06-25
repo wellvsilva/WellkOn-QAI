@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WellkOn QAI: Quantum Artificial Intelligence</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LYT6LVWN9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7LYT6LVWN9');
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -290,6 +300,14 @@
             justify-content: space-between;
             padding: 1.5rem 0;
             transition: padding 0.3s ease;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-left: auto;
+            margin-right: 1rem;
         }
 
         .header.scrolled .nav {
@@ -1125,6 +1143,15 @@
         
         /* Tablets */
         @media (max-width: 1024px) and (min-width: 769px) {
+            .nav-center {
+                margin-right: 0.25rem;
+                gap: 2rem;
+            }
+            
+            .nav-menu {
+                gap: 1.5rem;
+            }
+            
             .hero-grid {
                 grid-template-columns: 1fr;
                 gap: 3rem;
@@ -1171,7 +1198,7 @@
                 padding: 0.875rem 0;
             }
 
-            .nav-menu {
+            .nav-center {
                 position: fixed;
                 top: 0;
                 right: -100%;
@@ -1179,16 +1206,31 @@
                 height: 100vh;
                 background: rgba(10, 10, 11, 0.98);
                 backdrop-filter: blur(20px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.3s ease;
+                z-index: 9999;
+                margin: 0;
+                gap: 0;
+            }
+
+            .nav-center.active {
+                right: 0;
+            }
+
+            .nav-menu {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                backdrop-filter: none;
                 flex-direction: column;
                 justify-content: center;
                 gap: 2rem;
-                transition: right 0.3s ease;
-                z-index: 9999;
+                transition: none;
+                z-index: auto;
                 padding: 2rem;
-            }
-
-            .nav-menu.active {
-                right: 0;
             }
 
             .nav-right {
@@ -1514,13 +1556,15 @@
                     WellkOn QAI
                 </a>
                 
-                <ul class="nav-menu" id="nav-menu">
-                    <li><a href="#home" class="nav-link" data-translate="nav-home">Home</a></li>
-                    <li><a href="#about" class="nav-link" data-translate="nav-about">About Us</a></li>
-                    <li><a href="#research" class="nav-link" data-translate="nav-research">Research</a></li>
-                    <li><a href="#differential" class="nav-link" data-translate="nav-differential">Differentials</a></li>
-                    <li><a href="#contact" class="cta-button" data-translate="nav-contact">Contact</a></li>
-                </ul>
+                <div class="nav-center">
+                    <ul class="nav-menu" id="nav-menu">
+                        <li><a href="#home" class="nav-link" data-translate="nav-home">Home</a></li>
+                        <li><a href="#about" class="nav-link" data-translate="nav-about">About Us</a></li>
+                        <li><a href="#research" class="nav-link" data-translate="nav-research">Research</a></li>
+                        <li><a href="#differential" class="nav-link" data-translate="nav-differential">Differentials</a></li>
+                        <li><a href="#contact" class="cta-button" data-translate="nav-contact">Contact</a></li>
+                    </ul>
+                </div>
                 
                 <div class="nav-right">
                     <div class="language-selector">
@@ -1766,6 +1810,16 @@
     </footer>
 
     <script>
+        // ===============================
+        // GOOGLE ANALYTICS EVENT TRACKING
+        // ===============================
+        function trackEvent(eventName, parameters = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, parameters);
+                console.log('Event tracked:', eventName, parameters);
+            }
+        }
+
         // ===============================
         // NEURAL NETWORK CLASS - Desktop Only
         // ===============================
@@ -2070,6 +2124,12 @@
             currentLanguage = currentLanguage === 'en' ? 'pt' : 'en';
             updateLanguageDisplay();
             translatePage();
+            
+            // Track language change event
+            trackEvent('language_change', {
+                new_language: currentLanguage,
+                previous_language: currentLanguage === 'en' ? 'pt' : 'en'
+            });
         }
 
         function updateLanguageDisplay() {
@@ -2211,19 +2271,26 @@
         // MOBILE NAVIGATION
         // ===============================
         const mobileToggle = document.getElementById('mobile-toggle');
+        const navCenter = document.querySelector('.nav-center');
         const navMenu = document.getElementById('nav-menu');
         const navOverlay = document.getElementById('nav-overlay');
         const languageToggle = document.getElementById('language-toggle');
 
         function toggleMobileMenu() {
-            navMenu.classList.toggle('active');
+            navCenter.classList.toggle('active');
             navOverlay.classList.toggle('active');
             const icon = mobileToggle.querySelector('i');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
             
+            // Track mobile menu events
+            const isOpen = navCenter.classList.contains('active');
+            trackEvent('mobile_menu_toggle', {
+                action: isOpen ? 'open' : 'close'
+            });
+            
             // Prevent body scroll when menu is open
-            if (navMenu.classList.contains('active')) {
+            if (navCenter.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
             } else {
                 document.body.style.overflow = '';
@@ -2231,7 +2298,7 @@
         }
 
         function closeMobileMenu() {
-            navMenu.classList.remove('active');
+            navCenter.classList.remove('active');
             navOverlay.classList.remove('active');
             const icon = mobileToggle.querySelector('i');
             icon.classList.add('fa-bars');
@@ -2293,6 +2360,13 @@
                 e.preventDefault();
                 const href = this.getAttribute('href');
                 
+                // Track navigation clicks
+                trackEvent('navigation_click', {
+                    target_section: href,
+                    link_text: this.textContent.trim(),
+                    link_type: this.classList.contains('cta-button') ? 'cta' : 'nav'
+                });
+                
                 // Special case for home - scroll to top
                 if (href === '#home') {
                     window.scrollTo({
@@ -2316,6 +2390,15 @@
         // INITIALIZATION
         // ===============================
         document.addEventListener('DOMContentLoaded', () => {
+            // Track page load
+            trackEvent('page_view', {
+                page_title: document.title,
+                page_language: currentLanguage,
+                user_agent: navigator.userAgent,
+                screen_resolution: `${screen.width}x${screen.height}`,
+                viewport_size: `${window.innerWidth}x${window.innerHeight}`
+            });
+
             // Initialize Neural Network only on desktop
             const canvas = document.getElementById('neural-network');
             if (canvas && window.innerWidth > 768) {
@@ -2333,7 +2416,83 @@
             // Add loaded class for final animations
             document.body.classList.add('loaded');
             
-            console.log('WellkOn QAI - Static Mobile Version Loaded');
+            // Track CTA button clicks
+            document.querySelectorAll('.cta-button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    trackEvent('cta_click', {
+                        button_text: button.textContent.trim(),
+                        button_location: button.closest('section')?.id || 'unknown',
+                        target_url: button.href || button.getAttribute('href') || 'unknown'
+                    });
+                });
+            });
+
+            // Track secondary button clicks
+            document.querySelectorAll('.secondary-button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    trackEvent('secondary_button_click', {
+                        button_text: button.textContent.trim(),
+                        button_location: button.closest('section')?.id || 'unknown',
+                        target_url: button.href || button.getAttribute('href') || 'unknown'
+                    });
+                });
+            });
+
+            // Track footer link clicks
+            document.querySelectorAll('.footer-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    trackEvent('footer_link_click', {
+                        link_text: link.textContent.trim(),
+                        link_url: link.href || link.getAttribute('href') || 'unknown'
+                    });
+                });
+            });
+
+            // Track social media clicks
+            document.querySelectorAll('.social-icon').forEach(icon => {
+                icon.addEventListener('click', () => {
+                    trackEvent('social_media_click', {
+                        platform: icon.getAttribute('aria-label') || 'unknown',
+                        icon_location: 'footer'
+                    });
+                });
+            });
+
+            // Track email and phone clicks
+            document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"]').forEach(link => {
+                link.addEventListener('click', () => {
+                    const isEmail = link.href.startsWith('mailto:');
+                    trackEvent('contact_click', {
+                        contact_type: isEmail ? 'email' : 'phone',
+                        contact_value: link.href.replace(isEmail ? 'mailto:' : 'tel:', ''),
+                        source_location: link.closest('section')?.id || 'unknown'
+                    });
+                });
+            });
+
+            // Track scroll depth
+            let maxScrollDepth = 0;
+            window.addEventListener('scroll', () => {
+                const scrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+                if (scrollDepth > maxScrollDepth && scrollDepth % 25 === 0) {
+                    maxScrollDepth = scrollDepth;
+                    trackEvent('scroll_depth', {
+                        depth_percentage: scrollDepth
+                    });
+                }
+            });
+
+            // Track time on page
+            const startTime = Date.now();
+            window.addEventListener('beforeunload', () => {
+                const timeOnPage = Math.round((Date.now() - startTime) / 1000);
+                trackEvent('time_on_page', {
+                    seconds: timeOnPage,
+                    minutes: Math.round(timeOnPage / 60)
+                });
+            });
+            
+            console.log('WellkOn QAI - Google Analytics Integrated Successfully! ID: G-7LYT6LVWN9');
         });
 
         // Resize handling
