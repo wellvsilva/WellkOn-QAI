@@ -4,7 +4,6 @@
 function trackEvent(eventName, parameters = {}) {
     if (typeof gtag !== 'undefined') {
         gtag('event', eventName, parameters);
-        console.log('Event tracked:', eventName, parameters);
     }
 }
 
@@ -608,24 +607,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add loaded class for final animations
     document.body.classList.add('loaded');
     
-    // Track CTA button clicks
-    document.querySelectorAll('.cta-button').forEach(button => {
-        button.addEventListener('click', (e) => {
+    // Track CTA button clicks (.btn-primary e .btn-ghost)
+    document.querySelectorAll('.btn-primary, .btn-ghost').forEach(button => {
+        button.addEventListener('click', () => {
             trackEvent('cta_click', {
                 button_text: button.textContent.trim(),
-                button_location: button.closest('section')?.id || 'unknown',
-                target_url: button.href || button.getAttribute('href') || 'unknown'
-            });
-        });
-    });
-
-    // Track secondary button clicks
-    document.querySelectorAll('.secondary-button').forEach(button => {
-        button.addEventListener('click', (e) => {
-            trackEvent('secondary_button_click', {
-                button_text: button.textContent.trim(),
-                button_location: button.closest('section')?.id || 'unknown',
-                target_url: button.href || button.getAttribute('href') || 'unknown'
+                button_location: button.closest('section')?.id || 'header',
+                target_url: button.getAttribute('href') || 'unknown'
             });
         });
     });
@@ -635,34 +623,19 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', () => {
             trackEvent('footer_link_click', {
                 link_text: link.textContent.trim(),
-                link_url: link.href || link.getAttribute('href') || 'unknown'
+                link_url: link.getAttribute('href') || 'unknown'
             });
         });
     });
 
-    // Track social media clicks
-    document.querySelectorAll('.social-icon').forEach(icon => {
+    // Track social media clicks (.soc-btn)
+    document.querySelectorAll('.soc-btn').forEach(icon => {
         icon.addEventListener('click', () => {
             trackEvent('social_media_click', {
-                platform: icon.getAttribute('data-label') || 'unknown',
+                platform: icon.getAttribute('aria-label') || 'unknown',
                 icon_location: 'footer'
             });
         });
-    });
-
-    // Social icon label interactions
-    document.querySelectorAll('.social-icon').forEach(icon => {
-        const label = icon.querySelector('.label');
-        if (label) {
-            icon.addEventListener('mouseenter', () => {
-                label.style.opacity = '1';
-                label.style.bottom = '-30px';
-            });
-            icon.addEventListener('mouseleave', () => {
-                label.style.opacity = '0';
-                label.style.bottom = '-25px';
-            });
-        }
     });
 
     // Track email and phone clicks
