@@ -134,7 +134,7 @@ body::before {
 }
 .header.scrolled {
     background: rgba(6, 6, 15, .88);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(8px);
     box-shadow: 0 1px 0 var(--border);
 }
 
@@ -410,7 +410,7 @@ body::before {
     border-radius: 24px;
     padding: 2.5rem;
     overflow: hidden;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(8px);
     box-shadow: var(--glow);
 }
 .holo-glow {
@@ -625,7 +625,7 @@ body::before {
     padding: 5rem 3rem;
     text-align: center;
     overflow: hidden;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(8px);
 }
 .cta-gfx {
     position: absolute; inset: 0;
@@ -717,7 +717,7 @@ body::before {
         position: fixed;
         top: var(--nav-h); left: 0; right: 0;
         background: rgba(6,6,15,.97);
-        backdrop-filter: blur(24px);
+        backdrop-filter: blur(14px);
         flex-direction: column;
         padding: 1.5rem;
         gap: .25rem;

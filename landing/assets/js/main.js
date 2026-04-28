@@ -17,38 +17,30 @@ class NeuralNetwork {
         this.ctx    = canvas.getContext('2d');
         this.nodes  = [];
         this.pulses = [];
+        this._conns = [];
+        this._tick  = 0;
         this.animationId = null;
         this.isRunning   = false;
 
         if (window.innerWidth <= 768) return;
 
-        // Logo colors: deep indigo-blue → bright sky-blue + white accents
-        // Matching the atom orbital gradient in the logo
-        this.BLUE  = { r: 58,  g: 90,  b: 220 }; // #3A5ADC  (logo deep blue)
-        this.CYAN  = { r: 60,  g: 185, b: 245 }; // #3CB9F5  (logo bright blue)
-        this.WHITE = { r: 255, g: 255, b: 255 }; // #FFFFFF
-
         this.CFG = {
-            count:      70,       // number of nodes
-            dist:       200,      // max connection distance (px)
-            speed:      0.45,     // node movement speed — clearly visible
-            pulseFreq:  0.06,     // chance per frame to emit a pulse
-            pulseSpd:   0.8,      // pulse travel speed
+            count:     38,    // reduced: fewer nodes = fewer pairs
+            dist:      190,   // max connection distance
+            speed:     0.4,
+            pulseFreq: 0.03,  // reduced pulse frequency
+            pulseSpd:  0.9,
         };
 
         this.resize();
         this.init();
         this.start();
-    }
 
-    // Interpolate between logo deep-blue and bright-blue
-    blueShade(t) {
-        const { BLUE: A, CYAN: B } = this;
-        return {
-            r: Math.round(A.r + (B.r - A.r) * t),
-            g: Math.round(A.g + (B.g - A.g) * t),
-            b: Math.round(A.b + (B.b - A.b) * t),
-        };
+        // Pause when tab not visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) this.stop();
+            else this.start();
+        });
     }
 
     resize() {
@@ -67,60 +59,30 @@ class NeuralNetwork {
         if (window.innerWidth <= 768) return;
         this.nodes  = [];
         this.pulses = [];
+        this._conns = [];
+        this._tick  = 0;
         const { W, H, CFG } = this;
 
         for (let i = 0; i < CFG.count; i++) {
-            // Give each node a random angle and speed so movement is clearly visible
             const angle = Math.random() * Math.PI * 2;
             const spd   = CFG.speed * (0.5 + Math.random() * 0.8);
             this.nodes.push({
-                x:      Math.random() * W,
-                y:      Math.random() * H,
-                vx:     Math.cos(angle) * spd,
-                vy:     Math.sin(angle) * spd,
-                phase:  Math.random() * Math.PI * 2,
-                pSpd:   0.025 + Math.random() * 0.02,
-                r:      2 + Math.random() * 2,   // base radius
-                act:    0,                         // activation flash level
+                x: Math.random() * W,
+                y: Math.random() * H,
+                vx: Math.cos(angle) * spd,
+                vy: Math.sin(angle) * spd,
+                phase: Math.random() * Math.PI * 2,
+                pSpd:  0.02 + Math.random() * 0.015,
+                r:     2 + Math.random() * 2,
+                act:   0,
             });
         }
+        this._buildConns();
     }
 
-    // Fire a node: it lights up and emits pulses on all its edges
-    fireNode(nIdx, connections) {
-        this.nodes[nIdx].act = 1.2;
-        connections.forEach(([i, j]) => {
-            if (i !== nIdx && j !== nIdx) return;
-            this.pulses.push({
-                from: i, to: j,
-                t:    i === nIdx ? 0 : 1,
-                dir:  i === nIdx ? 1 : -1,
-                spd:  this.CFG.pulseSpd * (0.7 + Math.random() * 0.6),
-                r:    3 + Math.random() * 3,
-                life: 1,
-            });
-        });
-    }
-
-    update() {
-        if (window.innerWidth <= 768) return;
-        const { W, H, CFG, nodes } = this;
-
-        // Move nodes — speed is high enough to be clearly seen
-        nodes.forEach(n => {
-            n.x += n.vx;
-            n.y += n.vy;
-            n.phase += n.pSpd;
-            if (n.act > 0) n.act -= 0.03;
-
-            // Bounce off edges
-            if (n.x < 0)  { n.x = 0;  n.vx =  Math.abs(n.vx); }
-            if (n.x > W)  { n.x = W;  n.vx = -Math.abs(n.vx); }
-            if (n.y < 0)  { n.y = 0;  n.vy =  Math.abs(n.vy); }
-            if (n.y > H)  { n.y = H;  n.vy = -Math.abs(n.vy); }
-        });
-
-        // Build connection list (computed fresh each frame since nodes move)
+    // Rebuild connection cache — called every 60 ticks (~2s), not every frame
+    _buildConns() {
+        const { nodes, CFG } = this;
         this._conns = [];
         for (let i = 0; i < nodes.length; i++) {
             for (let j = i + 1; j < nodes.length; j++) {
@@ -130,120 +92,136 @@ class NeuralNetwork {
                 if (d < CFG.dist) this._conns.push([i, j, 1 - d / CFG.dist]);
             }
         }
+    }
 
-        // Random neuron burst
-        if (Math.random() < 0.006) {
-            this.fireNode(Math.floor(Math.random() * nodes.length), this._conns.map(c => [c[0], c[1]]));
+    update() {
+        const { W, H, nodes, CFG } = this;
+        this._tick++;
+
+        nodes.forEach(n => {
+            n.x += n.vx;
+            n.y += n.vy;
+            n.phase += n.pSpd;
+            if (n.act > 0) n.act -= 0.03;
+            if (n.x < 0)  { n.x = 0;  n.vx =  Math.abs(n.vx); }
+            if (n.x > W)  { n.x = W;  n.vx = -Math.abs(n.vx); }
+            if (n.y < 0)  { n.y = 0;  n.vy =  Math.abs(n.vy); }
+            if (n.y > H)  { n.y = H;  n.vy = -Math.abs(n.vy); }
+        });
+
+        // Rebuild connections every 60 ticks instead of every frame
+        if (this._tick % 60 === 0) this._buildConns();
+
+        // Occasional neuron burst
+        if (Math.random() < 0.004 && this._conns.length > 0) {
+            const nIdx = Math.floor(Math.random() * nodes.length);
+            nodes[nIdx].act = 1.2;
+            this._conns.forEach(([i, j]) => {
+                if (i !== nIdx && j !== nIdx) return;
+                this.pulses.push({
+                    from: i, to: j,
+                    t: i === nIdx ? 0 : 1,
+                    dir: i === nIdx ? 1 : -1,
+                    spd: CFG.pulseSpd * (0.7 + Math.random() * 0.5),
+                    r: 3 + Math.random() * 2, life: 1,
+                });
+            });
         }
 
-        // Regular pulses
+        // Regular pulse
         if (Math.random() < CFG.pulseFreq && this._conns.length > 0) {
             const c = this._conns[Math.floor(Math.random() * this._conns.length)];
             this.pulses.push({
                 from: c[0], to: c[1],
                 t: 0, dir: 1,
                 spd: CFG.pulseSpd * (0.7 + Math.random() * 0.5),
-                r: 2.5 + Math.random() * 2,
-                life: 1,
+                r: 2.5 + Math.random() * 2, life: 1,
             });
         }
 
-        // Advance & cull pulses
         this.pulses = this.pulses.filter(p => {
             p.t    += (p.spd * p.dir) / 100;
-            p.life -= 0.016;
+            p.life -= 0.018;
             return p.t >= 0 && p.t <= 1 && p.life > 0;
         });
     }
 
     draw() {
-        if (window.innerWidth <= 768) return;
-        const { ctx, W, H, nodes, _conns = [], pulses } = this;
+        const { ctx, W, H, nodes, _conns, pulses } = this;
 
-        // Dark trail (motion blur effect)
-        ctx.fillStyle = 'rgba(8, 8, 14, 0.22)';
+        ctx.fillStyle = 'rgba(8,8,14,0.25)';
         ctx.fillRect(0, 0, W, H);
 
-        // ── Connections ────────────────────────────────────────────
+        // ── Connections: no gradient, no shadowBlur, no save/restore ──
+        ctx.shadowBlur = 0;
+        ctx.lineWidth  = 0.8;
         _conns.forEach(([i, j, str]) => {
             const A = nodes[i], B = nodes[j];
-            const alpha = str * 0.45;
-
-            const grad = ctx.createLinearGradient(A.x, A.y, B.x, B.y);
-            const cA   = this.blueShade(A.y / H);
-            const cB   = this.blueShade(B.y / H);
-            grad.addColorStop(0, `rgba(${cA.r},${cA.g},${cA.b},${alpha})`);
-            grad.addColorStop(1, `rgba(${cB.r},${cB.g},${cB.b},${alpha})`);
-
-            ctx.save();
-            ctx.strokeStyle = grad;
-            ctx.lineWidth   = 0.6 + str * 1.1;
-            ctx.shadowBlur  = 6;
-            ctx.shadowColor = `rgba(60,185,245,${alpha * 0.6})`;
+            // Flat color — far cheaper than createLinearGradient per line
+            ctx.strokeStyle = `rgba(60,140,240,${str * 0.38})`;
+            ctx.lineWidth   = 0.5 + str * 0.8;
             ctx.beginPath();
             ctx.moveTo(A.x, A.y);
             ctx.lineTo(B.x, B.y);
             ctx.stroke();
-            ctx.restore();
         });
 
-        // ── Pulses (white bullets travelling along connections) ─────
+        // ── Pulses: shadowBlur only here (few elements) ─────────────
+        ctx.shadowBlur  = 14;
+        ctx.shadowColor = 'rgba(60,185,245,0.9)';
         pulses.forEach(p => {
             const A = nodes[p.from], B = nodes[p.to];
             const x = A.x + (B.x - A.x) * p.t;
             const y = A.y + (B.y - A.y) * p.t;
-            const a = p.life;
-
-            ctx.save();
-            // Outer blue glow
-            ctx.shadowBlur  = 18;
-            ctx.shadowColor = `rgba(60,185,245,${a})`;
-            ctx.fillStyle   = `rgba(100,200,255,${a * 0.75})`;
+            ctx.fillStyle = `rgba(100,200,255,${p.life * 0.8})`;
             ctx.beginPath();
             ctx.arc(x, y, p.r, 0, Math.PI * 2);
             ctx.fill();
-            // White hot core
-            ctx.shadowBlur  = 8;
-            ctx.shadowColor = 'rgba(255,255,255,1)';
-            ctx.fillStyle   = `rgba(255,255,255,${a})`;
+            // White core
+            ctx.shadowBlur = 6;
+            ctx.fillStyle  = `rgba(255,255,255,${p.life})`;
             ctx.beginPath();
-            ctx.arc(x, y, p.r * 0.42, 0, Math.PI * 2);
+            ctx.arc(x, y, p.r * 0.4, 0, Math.PI * 2);
             ctx.fill();
-            ctx.restore();
+            ctx.shadowBlur = 14;
         });
 
-        // ── Nodes ──────────────────────────────────────────────────
+        // ── Nodes: moderate shadowBlur ───────────────────────────────
         nodes.forEach(n => {
-            const beat  = (Math.sin(n.phase) + 1) * 0.5;   // 0..1
-            const flash = Math.max(beat * 0.3, n.act);
-            const size  = n.r + beat * 1.4 + n.act * 3.5;
-            const c     = this.blueShade(n.y / H);
-            const alpha = 0.55 + flash * 0.4;
-            const glow  = 8 + flash * 25;
+            const beat  = (Math.sin(n.phase) + 1) * 0.5;
+            const flash = Math.max(beat * 0.25, n.act);
+            const size  = n.r + beat * 1.2 + n.act * 2.5;
+            const t     = n.y / H;
+            const r     = Math.round(58  + (60  - 58)  * t);
+            const g     = Math.round(90  + (185 - 90)  * t);
+            const b     = Math.round(220 + (245 - 220) * t);
+            const alpha = 0.55 + flash * 0.35;
 
-            ctx.save();
-            // Outer halo (blue)
-            ctx.shadowBlur  = glow;
-            ctx.shadowColor = `rgba(${c.r},${c.g},${c.b},0.95)`;
-            ctx.fillStyle   = `rgba(${c.r},${c.g},${c.b},${alpha})`;
+            ctx.shadowBlur  = 6 + flash * 14;
+            ctx.shadowColor = `rgba(${r},${g},${b},0.9)`;
+            ctx.fillStyle   = `rgba(${r},${g},${b},${alpha})`;
             ctx.beginPath();
             ctx.arc(n.x, n.y, size, 0, Math.PI * 2);
             ctx.fill();
-            // White centre
-            ctx.shadowBlur  = glow * 0.4;
-            ctx.shadowColor = 'rgba(255,255,255,1)';
-            ctx.fillStyle   = `rgba(255,255,255,${0.3 + flash * 0.65})`;
+
+            ctx.shadowBlur = 4;
+            ctx.fillStyle  = `rgba(255,255,255,${0.25 + flash * 0.55})`;
             ctx.beginPath();
             ctx.arc(n.x, n.y, size * 0.38, 0, Math.PI * 2);
             ctx.fill();
-            ctx.restore();
         });
+
+        ctx.shadowBlur = 0;
     }
 
     animate() {
-        if (!this.isRunning || window.innerWidth <= 768) return;
-        this.update();
-        this.draw();
+        if (!this.isRunning) return;
+        // Run at ~30fps: skip every other frame
+        this._frame = (this._frame || 0) + 1;
+        if (this._frame % 2 === 0) {
+            this.update();
+            this.draw();
+        }
         this.animationId = requestAnimationFrame(() => this.animate());
     }
 
