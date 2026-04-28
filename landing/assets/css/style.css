@@ -452,6 +452,26 @@ body::before {
     margin-bottom: 1.5rem;
 }
 
+/* Bloch Sphere */
+.bloch-wrap {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: flex-start;
+    margin-bottom: 1.2rem;
+}
+.bloch-svg {
+    width: 148px; height: 148px;
+    overflow: visible;
+    filter: drop-shadow(0 0 14px rgba(58,90,220,.5));
+}
+.bloch-label {
+    font-family: var(--mono);
+    font-size: .65rem;
+    color: rgba(60,185,245,.65);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin-top: .35rem;
+}
+
 .holo-data { position: relative; z-index: 1; margin-bottom: 1.5rem; }
 .hd-row {
     display: flex; justify-content: space-between; align-items: center;

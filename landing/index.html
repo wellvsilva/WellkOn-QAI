@@ -171,7 +171,50 @@
                         <div class="hr hr2"></div>
                         <div class="hr hr3"></div>
                     </div>
-                    <div class="holo-icon"><i class="fas fa-microchip"></i></div>
+                    <!-- Bloch Sphere -->
+                    <div class="bloch-wrap">
+                        <svg class="bloch-svg" viewBox="-82 -82 164 164" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <radialGradient id="bsGrad" cx="38%" cy="35%">
+                                    <stop offset="0%"   stop-color="rgba(90,140,255,0.18)"/>
+                                    <stop offset="100%" stop-color="rgba(10,20,90,0.04)"/>
+                                </radialGradient>
+                            </defs>
+                            <!-- Sphere body -->
+                            <circle cx="0" cy="0" r="62" fill="url(#bsGrad)"/>
+                            <circle cx="0" cy="0" r="62" fill="none" stroke="rgba(60,185,245,0.5)" stroke-width="1.3"/>
+                            <!-- Equator back (dashed) -->
+                            <ellipse cx="0" cy="0" rx="62" ry="20" fill="none" stroke="rgba(60,185,245,0.2)" stroke-width="0.8" stroke-dasharray="3,3"/>
+                            <!-- Equator front -->
+                            <path d="M -62,0 A 62,20 0 0 0 62,0" fill="none" stroke="rgba(60,185,245,0.55)" stroke-width="1.1"/>
+                            <!-- Longitude (back, dashed) -->
+                            <ellipse cx="0" cy="0" rx="20" ry="62" fill="none" stroke="rgba(60,185,245,0.15)" stroke-width="0.8" stroke-dasharray="3,3"/>
+                            <!-- Z axis -->
+                            <line x1="0" y1="-75" x2="0" y2="75" stroke="rgba(60,185,245,0.6)" stroke-width="1"/>
+                            <polygon points="0,-78 -3,-68 3,-68" fill="rgba(60,185,245,0.95)"/>
+                            <!-- X axis -->
+                            <line x1="-75" y1="0" x2="75" y2="0" stroke="rgba(60,185,245,0.32)" stroke-width="0.8"/>
+                            <polygon points="78,0 68,-2.5 68,2.5" fill="rgba(60,185,245,0.6)"/>
+                            <!-- Y axis (perspective) -->
+                            <line x1="-52" y1="17" x2="52" y2="-17" stroke="rgba(60,185,245,0.22)" stroke-width="0.8"/>
+                            <!-- Labels -->
+                            <text x="6"   y="-67" fill="rgba(255,255,255,0.95)" font-size="12" font-family="monospace" font-weight="600">|0⟩</text>
+                            <text x="6"   y="80"  fill="rgba(255,255,255,0.95)" font-size="12" font-family="monospace" font-weight="600">|1⟩</text>
+                            <text x="69"  y="5"   fill="rgba(60,185,245,0.8)"   font-size="10" font-family="monospace">x</text>
+                            <text x="-58" y="24"  fill="rgba(60,185,245,0.7)"   font-size="10" font-family="monospace">y</text>
+                            <!-- State vector precessing around Z axis -->
+                            <g>
+                                <!-- Glow ring -->
+                                <circle cx="44" cy="-44" r="8"   fill="rgba(255,210,60,0.18)"/>
+                                <!-- Vector line -->
+                                <line   x1="0" y1="0" x2="44" y2="-44" stroke="rgba(255,210,60,0.95)" stroke-width="2" stroke-linecap="round"/>
+                                <!-- Vector tip -->
+                                <circle cx="44" cy="-44" r="4.5" fill="rgba(255,225,80,1)"/>
+                                <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="7s" repeatCount="indefinite"/>
+                            </g>
+                        </svg>
+                        <span class="bloch-label">Bloch Sphere</span>
+                    </div>
                     <div class="holo-data">
                         <div class="hd-row"><span class="hd-key">STATUS</span><span class="hd-val hd-online">ACTIVE</span></div>
                         <div class="hd-row"><span class="hd-key">MODE</span><span class="hd-val">QUANTUM</span></div>
