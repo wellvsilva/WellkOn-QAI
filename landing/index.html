@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WellkOn QAI: Quantum Artificial Intelligence</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7LYT6LVWN9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7LYT6LVWN9');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <canvas id="neural-network"></canvas>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <!-- ══ HEADER ══════════════════════════════════════════════════ -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#home" class="logo">
+                    <div class="logo-atom">
+                        <div class="la-ring la-r1"></div>
+                        <div class="la-ring la-r2"></div>
+                        <div class="la-dot la-d1"></div>
+                        <div class="la-dot la-d2"></div>
+                        <div class="la-core"></div>
+                    </div>
+                    WellkOn <span>QAI</span>
+                </a>
+
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#home"         class="nav-link" data-translate="nav-home">Home</a></li>
+                    <li><a href="#about"        class="nav-link" data-translate="nav-about">About Us</a></li>
+                    <li><a href="#research"     class="nav-link" data-translate="nav-research">Research</a></li>
+                    <li><a href="#differential" class="nav-link" data-translate="nav-differential">Differentials</a></li>
+                </ul>
+
+                <div class="nav-right">
+                    <button class="lang-btn" id="language-toggle" aria-label="Toggle language">
+                        <i class="fas fa-globe"></i>
+                        <span id="current-language">EN</span>
+                    </button>
+                    <a href="mailto:wellington@wellkonai.com" class="btn-primary" data-translate="nav-contact">Contact</a>
+                    <button class="hamburger" id="mobile-toggle" aria-label="Menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ══ HERO ════════════════════════════════════════════════════ -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-grid">
+
+                <div class="hero-content">
+                    <div class="pill-badge">
+                        <span class="pill-dot"></span>
+                        <span data-translate="hero-badge">Quantum Artificial Intelligence</span>
+                    </div>
+
+                    <h1>WellkOn<br>
+                        <span class="grad-text" data-translate="hero-title-2">Quantum AI</span>
+                    </h1>
+
+                    <p class="hero-sub" data-translate="hero-vision">
+                        "At the frontier between science and innovation, WellkOn develops quantum technologies and artificial intelligence to solve the most complex challenges of the contemporary world."
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#research"                    class="btn-primary"  data-translate="hero-cta1">Our Research</a>
+                        <a href="mailto:wellington@wellkonai.com" class="btn-ghost"    data-translate="hero-cta2">Contact Us</a>
+                    </div>
+
+                    <div class="hero-metrics">
+                        <div class="metric">
+                            <strong>3+</strong>
+                            <span data-translate="hstat-areas">Research Areas</span>
+                        </div>
+                        <div class="metric-sep"></div>
+                        <div class="metric">
+                            <strong>Deep</strong>
+                            <span data-translate="hstat-tech">Tech Startup</span>
+                        </div>
+                        <div class="metric-sep"></div>
+                        <div class="metric">
+                            <strong>QAI</strong>
+                            <span data-translate="hstat-quantum">Quantum AI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Futuristic quantum sphere visual -->
+                <div class="hero-visual">
+                    <div class="qviz">
+                        <div class="qv-glow"></div>
+                        <div class="qv-sphere">
+                            <div class="qv-ring qv-r1"><div class="qv-electron"></div></div>
+                            <div class="qv-ring qv-r2"><div class="qv-electron"></div></div>
+                            <div class="qv-ring qv-r3"><div class="qv-electron"></div></div>
+                            <div class="qv-core">
+                                <div class="qv-core-inner"></div>
+                                <div class="qv-core-pulse"></div>
+                            </div>
+                        </div>
+                        <div class="qv-circuit">
+                            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 100 H70 V50 H130 V100 H170" stroke="url(#g1)" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M100 30 V70 H50 V130 H100 V170" stroke="url(#g2)" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M130 100 V150 H70 V130"          stroke="url(#g1)" stroke-width="1" stroke-linecap="round"/>
+                                <circle cx="70"  cy="100" r="4"  fill="#3CB9F5"/>
+                                <circle cx="130" cy="100" r="4"  fill="#3A5ADC"/>
+                                <circle cx="100" cy="70"  r="4"  fill="#3CB9F5"/>
+                                <circle cx="100" cy="130" r="4"  fill="#3A5ADC"/>
+                                <circle cx="130" cy="50"  r="6"  fill="none" stroke="#3CB9F5" stroke-width="1.5"/>
+                                <circle cx="70"  cy="150" r="6"  fill="none" stroke="#3A5ADC" stroke-width="1.5"/>
+                                <circle cx="50"  cy="130" r="3"  fill="#3CB9F5" opacity="0.6"/>
+                                <circle cx="150" cy="70"  r="3"  fill="#3A5ADC" opacity="0.6"/>
+                                <defs>
+                                    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%"   stop-color="#3A5ADC" stop-opacity="0.8"/>
+                                        <stop offset="100%" stop-color="#3CB9F5" stop-opacity="0.8"/>
+                                    </linearGradient>
+                                    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%"   stop-color="#3CB9F5" stop-opacity="0.8"/>
+                                        <stop offset="100%" stop-color="#3A5ADC" stop-opacity="0.8"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="qv-hud">
+                            <div class="qv-hud-line qv-hl1"></div>
+                            <div class="qv-hud-line qv-hl2"></div>
+                            <div class="qv-hud-corner qv-hc-tl"></div>
+                            <div class="qv-hud-corner qv-hc-tr"></div>
+                            <div class="qv-hud-corner qv-hc-bl"></div>
+                            <div class="qv-hud-corner qv-hc-br"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-hint">
+            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+        </div>
+    </section>
+
+    <!-- ══ ABOUT ═══════════════════════════════════════════════════ -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+
+                <!-- Futuristic holographic card visual -->
+                <div class="holo-card fade-in">
+                    <div class="holo-glow"></div>
+                    <div class="holo-bg"></div>
+                    <div class="holo-rings">
+                        <div class="hr hr1"></div>
+                        <div class="hr hr2"></div>
+                        <div class="hr hr3"></div>
+                    </div>
+                    <div class="holo-icon"><i class="fas fa-microchip"></i></div>
+                    <div class="holo-data">
+                        <div class="hd-row"><span class="hd-key">STATUS</span><span class="hd-val hd-online">ACTIVE</span></div>
+                        <div class="hd-row"><span class="hd-key">MODE</span><span class="hd-val">QUANTUM</span></div>
+                        <div class="hd-row"><span class="hd-key">CORES</span><span class="hd-val">∞</span></div>
+                        <div class="hd-row"><span class="hd-key">TYPE</span><span class="hd-val">DEEP TECH</span></div>
+                    </div>
+                    <div class="holo-tags">
+                        <span>QBits</span><span>Neural</span><span>Entanglement</span><span>AI</span>
+                    </div>
+                    <div class="holo-scan"></div>
+                </div>
+
+                <div class="about-content fade-in">
+                    <span class="section-label" data-translate="about-label">About WellkOn QAI</span>
+                    <h2 data-translate="about-title">Quantum Technology and AI</h2>
+                    <p data-translate="about-description1">
+                        WellkOn QAI is a deep tech startup dedicated to research and development of technologies that challenge conventional paradigms. Founded by specialists in computer science and artificial intelligence, we are developing innovative solutions in the technological field.
+                    </p>
+                    <p data-translate="about-description2">
+                        Our mission is to develop quantum computational systems and advanced AI algorithms that can solve complex problems in areas such as health, energy, logistics and materials science, creating solutions that until recently were considered impossible.
+                    </p>
+                    <a href="#research" class="btn-primary" data-translate="about-cta">Learn About Our Research</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ RESEARCH ════════════════════════════════════════════════ -->
+    <section class="research-section" id="research">
+        <div class="container">
+            <div class="section-head fade-in">
+                <span class="section-label" data-translate="research-label">Core Technologies</span>
+                <h2 class="grad-text" data-translate="research-title">Research Areas</h2>
+                <p data-translate="research-description">Our research spans multiple cutting-edge fields, creating synergies that drive breakthrough innovations.</p>
+            </div>
+
+            <div class="r-grid">
+                <div class="r-card fade-in">
+                    <div class="r-card-img r-img-quantum">
+                        <div class="r-img-overlay"></div>
+                        <div class="r-img-icon"><i class="fas fa-microchip"></i></div>
+                        <div class="r-img-dots"></div>
+                    </div>
+                    <div class="r-card-body">
+                        <h3 data-translate="research-quantum-title">Quantum Computing</h3>
+                        <p data-translate="research-quantum-description">We develop quantum and hybrid algorithms specialized for exponentially faster processing than classical systems, enabling the solution of previously intractable problems in optimization, cryptography and molecular simulation.</p>
+                        <div class="r-tags"><span>Algorithms</span><span>Cryptography</span><span>Simulation</span></div>
+                    </div>
+                </div>
+
+                <div class="r-card r-card-featured fade-in">
+                    <div class="r-card-img r-img-ai">
+                        <div class="r-img-overlay"></div>
+                        <div class="r-img-icon"><i class="fas fa-brain"></i></div>
+                        <div class="r-img-nodes"></div>
+                    </div>
+                    <div class="r-card-body">
+                        <h3 data-translate="research-ai-title">Advanced Artificial Intelligence</h3>
+                        <p data-translate="research-ai-description">Our AI research includes deep learning, natural language processing and symbolic reasoning systems, creating algorithms that can analyze complex patterns and extract meaningful insights from large volumes of data.</p>
+                        <div class="r-tags"><span>Deep Learning</span><span>NLP</span><span>Reasoning</span></div>
+                    </div>
+                </div>
+
+                <div class="r-card fade-in">
+                    <div class="r-card-img r-img-vr">
+                        <div class="r-img-overlay"></div>
+                        <div class="r-img-icon"><i class="fas fa-vr-cardboard"></i></div>
+                        <div class="r-img-grid"></div>
+                    </div>
+                    <div class="r-card-body">
+                        <h3 data-translate="research-vr-title">Virtual & Augmented Reality</h3>
+                        <p data-translate="research-vr-description">We explore new frontiers in immersive experiences, developing interfaces that allow intuitive visualization and manipulation of complex data, with applications in training, education and scientific simulation.</p>
+                        <div class="r-tags"><span>VR</span><span>AR</span><span>Holograms</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ DIFFERENTIALS ═══════════════════════════════════════════ -->
+    <section class="diff-section" id="differential">
+        <div class="container">
+            <div class="section-head fade-in">
+                <span class="section-label" data-translate="differential-label">Our Advantages</span>
+                <h2 class="grad-text" data-translate="differential-title">Our Differential</h2>
+            </div>
+
+            <div class="diff-grid">
+                <div class="diff-card fade-in">
+                    <div class="diff-icon-wrap"><i class="fas fa-atom"></i></div>
+                    <h3 data-translate="differential-research-title">Multidisciplinary Research</h3>
+                    <p data-translate="differential-research-description">Our multidisciplinary research spans quantum computing, artificial intelligence, virtual reality (VR), augmented reality (AR) and holograms, creating a unique environment where revolutionary ideas emerge from collaboration between different fields of knowledge, enabling the development of technological solutions that transcend conventional approaches.</p>
+                </div>
+                <div class="diff-card fade-in">
+                    <div class="diff-icon-wrap"><i class="fas fa-rocket"></i></div>
+                    <h3 data-translate="differential-results-title">Results-Centered Approach</h3>
+                    <p data-translate="differential-results-description">Our commitment is to transform cutting-edge research into practical solutions for real problems, accelerating the transition between scientific discoveries and applications that benefit various sectors of society and industry. We constantly seek excellence in innovative technologies that solve current challenges and anticipate future needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ CTA ══════════════════════════════════════════════════════ -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="cta-box fade-in">
+                <div class="cta-gfx"></div>
+                <span class="section-label">Get In Touch</span>
+                <h2 class="grad-text" data-translate="cta-title">Let's Build the Future</h2>
+                <p data-translate="cta-description">Contact us to learn how WellkOn QAI technologies can boost your business or to explore collaboration possibilities in innovative projects.</p>
+                <div class="cta-btns">
+                    <a href="mailto:wellington@wellkonai.com" class="btn-primary btn-lg" data-translate="cta-button1">Schedule Meeting</a>
+                    <a href="mailto:wellington@wellkonai.com" class="btn-ghost   btn-lg" data-translate="cta-button2">Request Information</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ FOOTER ═══════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#home" class="logo">
+                        <div class="logo-atom">
+                            <div class="la-ring la-r1"></div>
+                            <div class="la-ring la-r2"></div>
+                            <div class="la-dot la-d1"></div>
+                            <div class="la-dot la-d2"></div>
+                            <div class="la-core"></div>
+                        </div>
+                        WellkOn <span>QAI</span>
+                    </a>
+                    <p data-translate="footer-description">Exploring the frontiers of science and technology through research in Quantum Computing, Artificial Intelligence and Extended Reality.</p>
+                    <div class="socials">
+                        <a href="#" class="soc-btn" aria-label="LinkedIn"         rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="soc-btn" aria-label="Instagram @Qubits" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="soc-btn" aria-label="GitHub"           rel="noopener"><i class="fab fa-github"></i></a>
+                        <a href="#" class="soc-btn" aria-label="Twitter"          rel="noopener"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="soc-btn" aria-label="ResearchGate"     rel="noopener"><i class="fas fa-graduation-cap"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 data-translate="footer-nav-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home"         data-translate="nav-home">Home</a></li>
+                        <li><a href="#about"        data-translate="nav-about">About Us</a></li>
+                        <li><a href="#research"     data-translate="nav-research">Research</a></li>
+                        <li><a href="#differential" data-translate="nav-differential">Differentials</a></li>
+                        <li><a href="#contact"      data-translate="nav-contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 data-translate="footer-research-title">Research</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-translate="footer-quantum">Quantum Computing</a></li>
+                        <li><a href="#" data-translate="footer-ai">Artificial Intelligence</a></li>
+                        <li><a href="#" data-translate="footer-vr">Virtual Reality</a></li>
+                        <li><a href="#" data-translate="footer-publications">Scientific Publications</a></li>
+                        <li><a href="#" data-translate="footer-partnerships">Academic Partnerships</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 data-translate="footer-contact-title">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:wellington@wellkonai.com">wellington@wellkonai.com</a></li>
+                        <li><a href="tel:+5586998322099">+55 86 99832-2099</a></li>
+                        <li><a href="#" data-translate="footer-location">Teresina – Piauí, Brazil</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-translate="footer-copyright">© 2025 WellkOn QAI. All rights reserved.</p>
+                <div class="footer-line"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+</body>
+</html>
